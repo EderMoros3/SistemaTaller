@@ -4,8 +4,16 @@ import java.util.ArrayList;
 public class Taller {
     // Atributos
     ArrayList<Cliente> listaClientes = new ArrayList<>();
-
+    ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
+
+    // Constructor
+    public Taller() {
+        this.listaClientes = new ArrayList<>();
+        this.listaVehiculos = new ArrayList<>();
+    }
+
+    // Metodos cliente
     public void gestionClientes() {
         int opcion;
         do {
@@ -145,4 +153,126 @@ public class Taller {
             System.out.println(cliente);
         }
     }
+
+    // Metodos vehiculo
+    public void gestionVehiculos() {
+        int opcion;
+        do {
+            System.out.println("Gestion de vehiculos");
+            System.out.println("1. Agregar vehiculo");
+            System.out.println("2. Modificar vehiculo");
+            System.out.println("3. Eliminar vehiculo");
+            System.out.println("4. Listar vehiculos");
+            System.out.println("5. Volver al menu principal");
+            System.out.println("Ingrese una opcion: ");
+            opcion = sc.nextInt();
+        } while (opcion != 5);
+
+        switch (opcion) {
+            case 1 -> this.agregarVehiculo();
+            case 2 -> this.modificarVehiculo();
+            case 3 -> this.eliminarVehiculo();
+            case 4 -> this.listarVehiculos();
+            case 5 -> System.out.println("Volviendo al menu principal");
+        }
+    }
+
+    public void agregarVehiculo() {
+        System.out.println("Agregar vehiculo");
+        System.out.println("Introduce la matricula: ");
+        String matricula = sc.nextLine();
+        sc.next();
+        System.out.println("Introduce la marca: ");
+        String marca = sc.nextLine();
+        sc.next();
+        System.out.println("Introduce el modelo: ");
+        String modelo = sc.nextLine();
+        sc.next();
+        System.out.println("Introduce el año: ");
+        int year = sc.nextInt();
+        Cliente titular = this.getClienteDni();
+        Vehiculo vehiculo = new Vehiculo(matricula, marca, modelo, year, titular);
+        listaVehiculos.add(vehiculo);
+        System.out.println("Vehiculo agregado correctamente");
+    }
+
+    public Vehiculo getVehiculoMatricula() {
+        String matricula;
+        if (!this.listaVehiculos.isEmpty()) {
+            do {
+                System.out.println("Introduce la matricula del vehiculo: ");
+                matricula = sc.nextLine();
+                sc.next();
+                for (Vehiculo vehiculo : this.listaVehiculos) {
+                    if (vehiculo.getMatricula().equals(matricula)) {
+                        return vehiculo;
+                    }
+                }
+                System.out.println("No se encontro ningun vehiculo con esa matricula");
+            } while (true);
+        }
+        return null;
+    }
+
+    public void modificarVehiculo() {
+        Vehiculo vehiculo = this.getVehiculoMatricula();
+        System.out.println("Modificar vehiculo");
+        System.out.println("1. Modificar matricula");
+        System.out.println("2. Modificar marca");
+        System.out.println("3. Modificar modelo");
+        System.out.println("4. Modificar año");
+        System.out.println("5. Modificar titular");
+        System.out.println("6. Volver al menu anterior");
+        System.out.println("Ingrese una opcion: ");
+        int opcion = sc.nextInt();
+
+        switch (opcion) {
+            case 1 -> {
+                System.out.println("Introduce la matricula: ");
+                String matricula = sc.nextLine();
+                sc.next();
+                vehiculo.setMatricula(matricula);
+                System.out.println("Matricula modificada correctamente");
+            }
+            case 2 -> {
+                System.out.println("Introduce la marca: ");
+                String marca = sc.nextLine();
+                sc.next();
+                vehiculo.setMarca(marca);
+                System.out.println("Marca modificada correctamente");
+            }
+            case 3 -> {
+                System.out.println("Introduce el modelo: ");
+                String modelo = sc.nextLine();
+                sc.next();
+                vehiculo.setModelo(modelo);
+                System.out.println("Modelo modificado correctamente");
+            }
+            case 4 -> {
+                System.out.println("Introduce el año: ");
+                int year = sc.nextInt();
+                vehiculo.setYear(year);
+                System.out.println("Año modificado correctamente");
+            }
+            case 5 -> {
+                Cliente titular = this.getClienteDni();
+                vehiculo.setTitular(titular);
+                System.out.println("Titular modificado correctamente");
+            }
+            case 6 -> System.out.println("Volviendo al menu anterior");
+        }
+    }
+
+    public void eliminarVehiculo() {
+        Vehiculo vehiculo = this.getVehiculoMatricula();
+        this.listaVehiculos.remove(vehiculo);
+        System.out.println("Vehiculo eliminado correctamente");
+    }
+
+    public void listarVehiculos() {
+        for (Vehiculo vehiculo : listaVehiculos) {
+            System.out.println(vehiculo);
+        }
+    }
+
 }

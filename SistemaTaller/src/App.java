@@ -5,6 +5,7 @@ public class App {
         
         Scanner sc = new Scanner(System.in);
         int opcion;
+        Taller taller = new Taller();
 
         do {
             System.out.println("Bienvenido al taller: ");
@@ -23,7 +24,7 @@ public class App {
         } while (opcion != 8);
 
         switch (opcion) {
-            1 -> //gestionClientes();
+            1 -> taller.gestionClientes();
             2 -> //gestionEmpleados();
             3 -> //gestionServicios();
             4 -> //gestionInvetario();
