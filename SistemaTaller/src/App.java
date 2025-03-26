@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         Taller taller = new Taller();
@@ -24,14 +24,14 @@ public class App {
         } while (opcion != 8);
 
         switch (opcion) {
-            1 -> taller.gestionClientes();
-            2 -> taller.gestionEmpleados();
-            3 -> gestionServicios();
-            4 -> gestionInvetario();
-            5 -> gestionPedidos();
-            6 -> taller.gestionVehiculos();
-            7 -> gestionCitas();
-            8 -> System.out.println("El programa se cerro");
+            case 1 -> taller.gestionClientes();
+            case 2 -> taller.gestionEmpleados();
+            case 3 -> taller.gestionServicios(); // asignaciones
+            case 4 -> gestionInvetario(); // provedores
+            case 5 -> gestionPedidos();
+            case 6 -> taller.gestionVehiculos();
+            case 7 -> gestionCitas();
+            case 8 -> System.out.println("El programa se cerro");
         }
 
     }

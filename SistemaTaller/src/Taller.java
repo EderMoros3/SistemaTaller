@@ -4,18 +4,18 @@ import java.util.Scanner;
 public class Taller {
     Scanner sc = new Scanner(System.in);
 
-    //Listas
+    // Listas
     ArrayList<Empleado> listaEmpleados = new ArrayList<>();
     ArrayList<Cliente> listaClientes = new ArrayList<>();
     ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
 
-    //constructor
+    // constructor
     public Taller() {
         this.listaEmpleados = new ArrayList<>();
         this.listaClientes = new ArrayList<>();
     }
 
-    //getters
+    // getters
     public Empleado getEmpleadoID() {
         int idEmpleado;
         if (!this.listaEmpleados.isEmpty()) {
@@ -33,6 +33,7 @@ public class Taller {
         }
         return null;
     }
+
     public Cliente getClienteDni() {
         String dni;
         if (!this.listaClientes.isEmpty()) {
@@ -50,6 +51,7 @@ public class Taller {
         }
         return null;
     }
+
     public Vehiculo getVehiculoMatricula() {
         String matricula;
         if (!this.listaVehiculos.isEmpty()) {
@@ -68,8 +70,7 @@ public class Taller {
         return null;
     }
 
-
-    //metodos menus
+    // metodos menus
     public void gestionClientes() {
         int opcion;
         do {
@@ -104,7 +105,7 @@ public class Taller {
             System.out.println("5. Volver al Menu Principal");
             opcion = sc.nextInt();
 
-        } while(opcion != 5);
+        } while (opcion != 5);
 
         switch (opcion) {
             case 1 -> agregarEmpleado();
@@ -114,14 +115,16 @@ public class Taller {
             case 5 -> System.out.println("Volver al Menu Principal");
         }
 
-
     }
 
-    public void gestionServicios() {}
+    public void gestionServicios() {
+    }
 
-    public void gestionInvetario() {}
+    public void gestionInvetario() {
+    }
 
-    public void gestionPedidos() {}
+    public void gestionPedidos() {
+    }
 
     public void gestionVehiculos() {
         int opcion;
@@ -145,10 +148,10 @@ public class Taller {
         }
     }
 
-    public void gestionCitas() {}
+    public void gestionCitas() {
+    }
 
-
-    //metodosClientes
+    // metodosClientes
     public void agregarCliente() {
         System.out.println("Agregar cliente");
         System.out.println("Introduce el nombre: ");
@@ -173,6 +176,7 @@ public class Taller {
         listaClientes.add(cliente);
         System.out.println("Cliente agregado correctamente");
     }
+
     public void modificarCliente() {
         Cliente cliente = this.getClienteDni();
         int opcion;
@@ -235,18 +239,20 @@ public class Taller {
         }
 
     }
+
     public void eliminarCliente() {
         Cliente cliente = this.getClienteDni();
         this.listaClientes.remove(cliente);
         System.out.println("Cliente eliminado correctamente");
     }
+
     public void listarClientes() {
         for (Cliente cliente : listaClientes) {
             System.out.println(cliente);
         }
     }
 
-    //metodosEmpleados
+    // metodosEmpleados
     public void agregarEmpleado() {
         System.out.println("Agregar empleado");
         System.out.println("-----------------------");
@@ -268,6 +274,7 @@ public class Taller {
         listaEmpleados.add(empleado);
         System.out.println("Empleado agregado correctamente");
     }
+
     public void modificarEmpleado() {
         Empleado empleado = this.getEmpleadoID();
         int opcion;
@@ -315,18 +322,19 @@ public class Taller {
 
         }
     }
+
     public void listarAsignaciones() {
         Empleado empleado = this.getEmpleadoID();
 
+    } // falta terminar asignaciones
 
-    } //falta terminar asignaciones
     public void eliminarEmpleado() {
         Empleado empleado = this.getEmpleadoID();
         this.listaEmpleados.remove(empleado);
         System.out.println("Empleado eliminado correctamente");
     }
 
-    //metodosVehiculos
+    // metodosVehiculos
     public void agregarVehiculo() {
         System.out.println("Agregar vehiculo");
         System.out.println("Introduce la matricula: ");
@@ -345,6 +353,7 @@ public class Taller {
         listaVehiculos.add(vehiculo);
         System.out.println("Vehiculo agregado correctamente");
     }
+
     public void modificarVehiculo() {
         Vehiculo vehiculo = this.getVehiculoMatricula();
         System.out.println("Modificar vehiculo");
@@ -393,17 +402,17 @@ public class Taller {
             case 6 -> System.out.println("Volviendo al menu anterior");
         }
     }
+
     public void eliminarVehiculo() {
         Vehiculo vehiculo = this.getVehiculoMatricula();
         this.listaVehiculos.remove(vehiculo);
         System.out.println("Vehiculo eliminado correctamente");
     }
+
     public void listarVehiculos() {
         for (Vehiculo vehiculo : listaVehiculos) {
             System.out.println(vehiculo);
         }
     }
-
-
 
 }
