@@ -8,7 +8,7 @@ public class App {
         int opcion;
 
         do {
-            System.out.println("Bienvenido al taller: ");
+            System.out.println("\nBienvenido al taller: ");
             System.out.println("----------------------------");
             System.out.println("1. Gestion de clientes");
             System.out.println("2. Gestion de empleados");
@@ -21,18 +21,18 @@ public class App {
             System.out.println("Selecciona una opcion: ");
             opcion = sc.nextInt();
 
+            switch (opcion) {
+                case 1 -> taller.gestionClientes();
+                case 2 -> taller.gestionEmpleados();
+                case 3 -> taller.gestionServicios(); // asignaciones
+                case 4 -> taller.gestionInvetario(); // provedores
+                //case 5 -> gestionPedidos();
+                case 6 -> taller.gestionVehiculos();
+                //case 7 -> gestionCitas();
+                case 8 -> System.out.println("El programa se cerro");
+            }
         } while (opcion != 8);
 
-        switch (opcion) {
-            case 1 -> taller.gestionClientes();
-            case 2 -> taller.gestionEmpleados();
-            case 3 -> taller.gestionServicios(); // asignaciones
-            case 4 -> taller.gestionInvetario(); // provedores
-            case 5 -> gestionPedidos();
-            case 6 -> taller.gestionVehiculos();
-            case 7 -> gestionCitas();
-            case 8 -> System.out.println("El programa se cerro");
-        }
 
     }
 }
