@@ -5,6 +5,7 @@ public class Empleado {
     private int idEmpleado;
     private int telefono;
 
+
     public Empleado(String nombre, String apellido, int idEmpleado, int telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -12,11 +13,17 @@ public class Empleado {
         this.telefono = telefono;
     }
 
-    //getter
+    //getters
     public String getNombre() {return nombre;}
     public String getApellido() {return apellido;}
     public int getIdEmpleado() {return idEmpleado;}
     public int getTelefono() {return telefono;}
 
-}
+    //setters
+    public void setNombre(String nombre) {this.nombre = nombre;}
+    public void setApellido(String apellido) {this.apellido = apellido;}
+    public void setIdEmpleado(int idEmpleado) {this.idEmpleado = idEmpleado;}
+    public void setTelefono(int telefono) {this.telefono = telefono;}
 
+
+}

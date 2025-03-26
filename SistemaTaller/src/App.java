@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
-public class App {
-    public static void main(String[] args) throws Exception {
-        
+public class Main {
+    public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+        Taller taller = new Taller();
         int opcion;
 
         do {
@@ -23,14 +24,15 @@ public class App {
         } while (opcion != 8);
 
         switch (opcion) {
-            1 -> gestionClientes();
-            2 -> gestionEmpleados();
+            1 -> taller.gestionClientes();
+            2 -> taller.gestionEmpleados();
             3 -> gestionServicios();
             4 -> gestionInvetario();
             5 -> gestionPedidos();
-            6 -> gestionVehiculos();
+            6 -> taller.gestionVehiculos();
             7 -> gestionCitas();
             8 -> System.out.println("El programa se cerro");
         }
+
     }
 }
