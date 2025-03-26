@@ -32,4 +32,10 @@ public class Cliente {
     public String getDireccion() { return direccion; }
     public String getEmail() { return email; }
     public String getDni() { return dni; }
+
+    @Override
+    public String toString() {
+        return "Cliente [nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion="
+                + direccion + ", email=" + email + ", dni=" + dni + "]";
+    }
 }

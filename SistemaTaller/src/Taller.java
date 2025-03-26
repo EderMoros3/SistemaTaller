@@ -20,10 +20,10 @@ public class Taller {
         } while (opcion != 5);
         
         switch (opcion) {
-            case 1 -> agregarCliente();
-            case 2 -> modificarCliente();
-            case 3 -> //eliminarCliente();
-            case 4 -> //listarClientes();
+            case 1 -> this.agregarCliente();
+            case 2 -> this.modificarCliente();
+            case 3 -> this.eliminarCliente();
+            case 4 -> this.listarClientes();
             case 5 -> System.out.println("Volviendo al menu principal");
         }
     }
@@ -132,5 +132,17 @@ public class Taller {
             case 7 -> System.out.println("Volviendo al menu anterior");
         }
         
+    }
+
+    public void eliminarCliente() {
+        Cliente cliente = this.getClienteDni();
+        this.listaClientes.remove(cliente);
+        System.out.println("Cliente eliminado correctamente");
+    }
+
+    public void listarClientes() {
+        for (Cliente cliente : listaClientes) {
+            System.out.println(cliente);
+        }
     }
 }
