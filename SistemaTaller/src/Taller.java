@@ -4,18 +4,21 @@ import java.util.Scanner;
 public class Taller {
     Scanner sc = new Scanner(System.in);
 
-    // Listas
+    // Atributos
     ArrayList<Empleado> listaEmpleados = new ArrayList<>();
     ArrayList<Cliente> listaClientes = new ArrayList<>();
     ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
+    ArrayList<Pieza> listaPiezas = new ArrayList<>();
 
-    // constructor
+    // Constructor
     public Taller() {
         this.listaEmpleados = new ArrayList<>();
         this.listaClientes = new ArrayList<>();
+        this.listaVehiculos = new ArrayList<>();
+        this.listaPiezas = new ArrayList<>();
     }
 
-    // getters
+    // Getters
     public Empleado getEmpleadoID() {
         int idEmpleado;
         if (!this.listaEmpleados.isEmpty()) {
@@ -70,7 +73,7 @@ public class Taller {
         return null;
     }
 
-    // metodos menus
+    // Metodos menus
     public void gestionClientes() {
         int opcion;
         do {
@@ -121,8 +124,26 @@ public class Taller {
     }
 
     public void gestionInvetario() {
-    }
+        int opcion;
+        do {
+            System.out.println("Gestion de inventario");
+            System.out.println("1. Agregar pieza");
+            System.out.println("2. Modificar pieza");
+            System.out.println("3. Eliminar pieza");
+            System.out.println("4. Listar piezas");
+            System.out.println("5. Volver al menu principal");
+            System.out.println("Ingrese una opcion: ");
+            opcion = sc.nextInt();
+        } while (opcion != 5);
 
+        switch (opcion) {
+            case 1 -> this.agregarPieza();
+            case 2 -> this.modificarPieza();
+            case 3 -> this.eliminarPieza();
+            case 4 -> this.listarPiezas();
+            case 5 -> System.out.println("Volviendo al menu principal");
+        }
+    }
     public void gestionPedidos() {
     }
 
@@ -151,7 +172,7 @@ public class Taller {
     public void gestionCitas() {
     }
 
-    // metodosClientes
+    // MetodosClientes
     public void agregarCliente() {
         System.out.println("Agregar cliente");
         System.out.println("Introduce el nombre: ");
@@ -252,7 +273,7 @@ public class Taller {
         }
     }
 
-    // metodosEmpleados
+    // MetodosEmpleados
     public void agregarEmpleado() {
         System.out.println("Agregar empleado");
         System.out.println("-----------------------");
@@ -334,7 +355,7 @@ public class Taller {
         System.out.println("Empleado eliminado correctamente");
     }
 
-    // metodosVehiculos
+    // MetodosVehiculos
     public void agregarVehiculo() {
         System.out.println("Agregar vehiculo");
         System.out.println("Introduce la matricula: ");
@@ -412,6 +433,133 @@ public class Taller {
     public void listarVehiculos() {
         for (Vehiculo vehiculo : listaVehiculos) {
             System.out.println(vehiculo);
+        }
+    }
+
+    // Metodos Inventario
+
+    public void agregarPieza() {
+        Double precioPieza;
+        int cantidad;
+
+        System.out.println("Agregar pieza");
+        System.out.println("Introduce la referencia: ");
+        String referencia = sc.nextLine();
+        sc.next();
+        System.out.println("Introduce la marca: ");
+        String marca = sc.nextLine();
+        sc.next();
+        System.out.println("Introduce la descripcion: ");
+        String descripcion = sc.nextLine();
+        sc.next();
+
+        do {
+            System.out.println("Introduce el precio: ");
+            precioPieza = sc.nextDouble();
+        } while (precioPieza < 0);
+
+        do {
+            System.out.println("Introduce la cantidad: ");
+            cantidad = sc.nextInt();
+        } while (cantidad < 0);
+        
+        Pieza pieza = new Pieza(referencia, marca, descripcion, precioPieza, cantidad);
+        listaPiezas.add(pieza);
+        System.out.println("Pieza agregada correctamente");
+    }
+
+    public Pieza getPiezaReferencia() {
+        String referencia;
+        if (!this.listaPiezas.isEmpty()) {
+            do {
+                System.out.println("Introduce la referencia de la pieza: ");
+                referencia = sc.nextLine();
+                sc.next();
+                for (Pieza pieza : this.listaPiezas) {
+                    if (pieza.getReferencia().equals(referencia)) {
+                        return pieza;
+                    }
+                }
+                System.out.println("No se encontro ninguna pieza con esa referencia");
+            } while (true);
+        }
+        return null;
+    }
+
+    public void modificarPieza() {
+        System.out.println("Modificar pieza");
+        Pieza pieza = this.getPiezaReferencia();
+        int opcion;
+        do {
+            System.out.println("1. Modificar referencia");
+            System.out.println("2. Modificar marca");
+            System.out.println("3. Modificar descripcion");
+            System.out.println("4. Modificar precio");
+            System.out.println("5. Modificar cantidad");
+            System.out.println("6. Volver al menu anterior");
+            System.out.println("Ingrese una opcion: ");
+            opcion = sc.nextInt();
+        } while (opcion != 6);
+
+        switch (opcion) {
+            case 1 -> {
+                System.out.println("Introduce la referencia: ");
+                String referencia = sc.nextLine();
+                sc.next();
+                pieza.setReferencia(referencia);
+                System.out.println("Referencia modificada correctamente");
+            }
+
+            case 2 -> {
+                System.out.println("Introduce la marca: ");
+                String marca = sc.nextLine();
+                sc.next();
+                pieza.setMarca(marca);
+                System.out.println("Marca modificada correctamente");
+            }
+
+            case 3 -> {
+                System.out.println("Introduce la descripcion: ");
+                String descripcion = sc.nextLine();
+                sc.next();
+                pieza.setDescripcion(descripcion);
+                System.out.println("Descripcion modificada correctamente");
+            }
+
+            case 4 -> {
+                Double precioPieza;
+                do {
+                    System.out.println("Introduce el precio: ");
+                    precioPieza = sc.nextDouble();
+                } while (precioPieza < 0);
+                pieza.setPrecio(precioPieza);
+                System.out.println("Precio modificado correctamente");
+            }
+
+            case 5 -> {
+                int cantidad;
+                do {
+                    System.out.println("Introduce la cantidad: ");
+                    cantidad = sc.nextInt();
+                } while (cantidad < 0);
+                pieza.setCantidad(cantidad);
+                System.out.println("Cantidad modificada correctamente");
+            }
+
+            case 6 -> System.out.println("Volviendo al menu anterior");
+        }
+
+    }
+
+    public void eliminarPieza() {
+        Pieza pieza = this.getPiezaReferencia();
+        this.listaPiezas.remove(pieza);
+        System.out.println("Pieza eliminada correctamente");
+    }
+
+    public void listarPiezas() {
+        for (Pieza pieza : listaPiezas) {
+            System.out.println(pieza);
         }
     }
 
