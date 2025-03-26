@@ -75,9 +75,10 @@ public class Taller {
 
     // Metodos menus
     public void gestionClientes() {
+
         int opcion;
         do {
-            System.out.println("Gestion de clientes");
+            System.out.println("\nGestion de clientes");
             System.out.println("1. Agregar cliente");
             System.out.println("2. Modificar cliente");
             System.out.println("3. Eliminar cliente");
@@ -85,15 +86,16 @@ public class Taller {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1 -> this.agregarCliente();
+                case 2 -> this.modificarCliente();
+                case 3 -> this.eliminarCliente();
+                case 4 -> this.listarClientes();
+                case 5 -> System.out.println("Volviendo al menu principal");
+            }
         } while (opcion != 5);
 
-        switch (opcion) {
-            case 1 -> this.agregarCliente();
-            case 2 -> this.modificarCliente();
-            case 3 -> this.eliminarCliente();
-            case 4 -> this.listarClientes();
-            case 5 -> System.out.println("Volviendo al menu principal");
-        }
     }
 
     public void gestionEmpleados() {
@@ -108,16 +110,14 @@ public class Taller {
             System.out.println("5. Volver al Menu Principal");
             opcion = sc.nextInt();
 
+            switch (opcion) {
+                case 1 -> agregarEmpleado();
+                case 2 -> modificarEmpleado();
+                case 3 -> eliminarEmpleado();
+                case 4 -> listarAsignaciones();
+                case 5 -> System.out.println("Volver al Menu Principal");
+            }
         } while (opcion != 5);
-
-        switch (opcion) {
-            case 1 -> agregarEmpleado();
-            case 2 -> modificarEmpleado();
-            case 3 -> eliminarEmpleado();
-            case 4 -> listarAsignaciones();
-            case 5 -> System.out.println("Volver al Menu Principal");
-        }
-
     }
 
     public void gestionServicios() {
@@ -134,16 +134,18 @@ public class Taller {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1 -> this.agregarPieza();
+                case 2 -> this.modificarPieza();
+                case 3 -> this.eliminarPieza();
+                case 4 -> this.listarPiezas();
+                case 5 -> System.out.println("Volviendo al menu principal");
+            }
         } while (opcion != 5);
 
-        switch (opcion) {
-            case 1 -> this.agregarPieza();
-            case 2 -> this.modificarPieza();
-            case 3 -> this.eliminarPieza();
-            case 4 -> this.listarPiezas();
-            case 5 -> System.out.println("Volviendo al menu principal");
-        }
     }
+    
     public void gestionPedidos() {
     }
 
@@ -158,15 +160,16 @@ public class Taller {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1 -> this.agregarVehiculo();
+                case 2 -> this.modificarVehiculo();
+                case 3 -> this.eliminarVehiculo();
+                case 4 -> this.listarVehiculos();
+                case 5 -> System.out.println("Volviendo al menu principal");
+            }
         } while (opcion != 5);
 
-        switch (opcion) {
-            case 1 -> this.agregarVehiculo();
-            case 2 -> this.modificarVehiculo();
-            case 3 -> this.eliminarVehiculo();
-            case 4 -> this.listarVehiculos();
-            case 5 -> System.out.println("Volviendo al menu principal");
-        }
     }
 
     public void gestionCitas() {
