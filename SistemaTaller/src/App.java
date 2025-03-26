@@ -27,7 +27,7 @@ public class App {
             case 1 -> taller.gestionClientes();
             case 2 -> taller.gestionEmpleados();
             case 3 -> taller.gestionServicios(); // asignaciones
-            case 4 -> gestionInvetario(); // provedores
+            case 4 -> taller.gestionInvetario(); // provedores
             case 5 -> gestionPedidos();
             case 6 -> taller.gestionVehiculos();
             case 7 -> gestionCitas();
