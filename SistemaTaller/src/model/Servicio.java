@@ -11,28 +11,12 @@ public class Servicio {
     }
 
     // getters
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getIdServicio() {
-        return idServicio;
-    }
-
-    public Double getPrecioServicio() {
-        return precioServicio;
-    }
+    public String getNombre() { return nombre; }
+    public int getIdServicio() { return idServicio; }
+    public Double getPrecioServicio() { return precioServicio; }
 
     // setters
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setIdServicio(int idServicio) {
-        this.idServicio = idServicio;
-    }
-
-    public void setPrecioServicio(Double precioServicio) {
-        this.precioServicio = precioServicio;
-    }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setIdServicio(int idServicio) { this.idServicio = idServicio; }
+    public void setPrecioServicio(Double precioServicio) { this.precioServicio = precioServicio; }
 }

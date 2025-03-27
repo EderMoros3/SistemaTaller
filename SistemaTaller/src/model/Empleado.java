@@ -14,37 +14,15 @@ public class Empleado {
     }
 
     // getters
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public int getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public int getTelefono() {
-        return telefono;
-    }
+    public String getNombre() { return nombre; }
+    public String getApellido() { return apellido; }
+    public int getIdEmpleado() { return idEmpleado; }
+    public int getTelefono() { return telefono; }
 
     // setters
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
+    public void setNombre(String nombre) {this.nombre = nombre; }
+    public void setApellido(String apellido) { this.apellido = apellido; }
+    public void setIdEmpleado(int idEmpleado) { this.idEmpleado = idEmpleado; }
+    public void setTelefono(int telefono) { this.telefono = telefono; }
 
 }
