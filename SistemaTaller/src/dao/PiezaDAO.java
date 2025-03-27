@@ -12,7 +12,7 @@ public class PiezaDAO {
     public void eliminarPieza(Pieza pieza) {
         // DELETE SQL
     }
-
+    
     public Pieza getPiezaReferencia() {
         // SELECT SQL
         return null;
