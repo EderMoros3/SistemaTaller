@@ -98,79 +98,14 @@ public class Taller {
     
     // Metodos menus
     
-    public void gestionEmpleados() {
-        int opcion;
-        do {
-            System.out.println("Gestion empleados");
-            System.out.println("---------------------");
-            System.out.println("1. Agregar Empleado");
-            System.out.println("2. Modificar Empleado");
-            System.out.println("3. Eliminar Empleado");
-            System.out.println("4. Listar asignaciones de un empleado por ID");
-            System.out.println("5. Volver al Menu Principal");
-            opcion = sc.nextInt();
-
-            switch (opcion) {
-                case 1 -> agregarEmpleado();
-                case 2 -> modificarEmpleado();
-                case 3 -> eliminarEmpleado();
-                case 4 -> listarAsignaciones();
-                case 5 -> System.out.println("Volver al Menu Principal");
-            }
-        } while (opcion != 5);
-    }
-    public void gestionServicios() {
-    }
-
-    public void gestionInvetario() {
-        int opcion;
-        do {
-            System.out.println("Gestion de inventario");
-            System.out.println("1. Agregar pieza");
-            System.out.println("2. Modificar pieza");
-            System.out.println("3. Eliminar pieza");
-            System.out.println("4. Listar piezas");
-            System.out.println("5. Volver al menu principal");
-            System.out.println("Ingrese una opcion: ");
-            opcion = sc.nextInt();
-
-            switch (opcion) {
-                case 1 -> this.agregarPieza();
-                case 2 -> this.modificarPieza();
-                case 3 -> this.eliminarPieza();
-                case 4 -> this.listarPiezas();
-                case 5 -> System.out.println("Volviendo al menu principal");
-            }
-        } while (opcion != 5);
-
-    }
+    
+    
+    
     
     public void gestionPedidos() {
     }
 
-    public void gestionVehiculos() {
-        int opcion;
-        do {
-            System.out.println("Gestion de vehiculos");
-            System.out.println("1. Agregar vehiculo");
-            System.out.println("2. Modificar vehiculo");
-            System.out.println("3. Eliminar vehiculo");
-            System.out.println("4. Listar vehiculos");
-            System.out.println("5. Volver al menu principal");
-            System.out.println("Ingrese una opcion: ");
-            opcion = sc.nextInt();
-
-            switch (opcion) {
-                case 1 -> this.agregarVehiculo();
-                case 2 -> this.modificarVehiculo();
-                case 3 -> this.eliminarVehiculo();
-                case 4 -> this.listarVehiculos();
-                case 5 -> System.out.println("Volviendo al menu principal");
-            }
-        } while (opcion != 5);
-
-    }
-
+   
 
     // MetodosClientes
     
@@ -242,27 +177,7 @@ public class Taller {
     
 
     // MetodosEmpleados
-    public void agregarEmpleado() {
-        System.out.println("Agregar empleado");
-        System.out.println("-----------------------");
-        System.out.println("Ingrese el nombre del empleado");
-        String nombre = sc.nextLine();
-        sc.next();
-
-        System.out.println("Ingrese el apellido del empleado");
-        String apellido = sc.nextLine();
-        sc.next();
-
-        System.out.println("Ingrese el ID del empleado");
-        int idEmpleado = sc.nextInt();
-
-        System.out.println("Ingrese el telefono del empleado");
-        int telefono = sc.nextInt();
-
-        Empleado empleado = new Empleado(nombre, apellido, idEmpleado, telefono);
-        listaEmpleados.add(empleado);
-        System.out.println("Empleado agregado correctamente");
-    }
+    
 
     public void modificarEmpleado() {
         Empleado empleado = this.getEmpleadoID();
@@ -317,32 +232,10 @@ public class Taller {
 
     } // falta terminar asignaciones
 
-    public void eliminarEmpleado() {
-        Empleado empleado = this.getEmpleadoID();
-        this.listaEmpleados.remove(empleado);
-        System.out.println("Empleado eliminado correctamente");
-    }
+    
 
     // MetodosVehiculos
-    public void agregarVehiculo() {
-        System.out.println("Agregar vehiculo");
-        System.out.println("Introduce la matricula: ");
-        String matricula = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce la marca: ");
-        String marca = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el modelo: ");
-        String modelo = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el año: ");
-        int year = sc.nextInt();
-        Cliente titular = this.getClienteDni();
-        Vehiculo vehiculo = new Vehiculo(matricula, marca, modelo, year, titular);
-        listaVehiculos.add(vehiculo);
-        System.out.println("Vehiculo agregado correctamente");
-    }
-
+   
     public void modificarVehiculo() {
         Vehiculo vehiculo = this.getVehiculoMatricula();
         System.out.println("Modificar vehiculo");
@@ -392,49 +285,10 @@ public class Taller {
         }
     }
 
-    public void eliminarVehiculo() {
-        Vehiculo vehiculo = this.getVehiculoMatricula();
-        this.listaVehiculos.remove(vehiculo);
-        System.out.println("Vehiculo eliminado correctamente");
-    }
-
-    public void listarVehiculos() {
-        for (Vehiculo vehiculo : listaVehiculos) {
-            System.out.println(vehiculo);
-        }
-    }
-
+    
     // Metodos Inventario
 
-    public void agregarPieza() {
-        Double precioPieza;
-        int cantidad;
-
-        System.out.println("Agregar pieza");
-        System.out.println("Introduce la referencia: ");
-        String referencia = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce la marca: ");
-        String marca = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce la descripcion: ");
-        String descripcion = sc.nextLine();
-        sc.next();
-
-        do {
-            System.out.println("Introduce el precio: ");
-            precioPieza = sc.nextDouble();
-        } while (precioPieza < 0);
-
-        do {
-            System.out.println("Introduce la cantidad: ");
-            cantidad = sc.nextInt();
-        } while (cantidad < 0);
-        
-        Pieza pieza = new Pieza(referencia, marca, descripcion, precioPieza, cantidad);
-        listaPiezas.add(pieza);
-        System.out.println("Pieza agregada correctamente");
-    }
+    
 
     public Pieza getPiezaReferencia() {
         String referencia;
@@ -519,18 +373,7 @@ public class Taller {
 
     }
 
-    public void eliminarPieza() {
-        Pieza pieza = this.getPiezaReferencia();
-        this.listaPiezas.remove(pieza);
-        System.out.println("Pieza eliminada correctamente");
-    }
-
-    public void listarPiezas() {
-        for (Pieza pieza : listaPiezas) {
-            System.out.println(pieza);
-        }
-    }
-
+    
     //metodosCitas
     
     public void modificarCita() {
