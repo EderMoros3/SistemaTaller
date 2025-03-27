@@ -1,3 +1,5 @@
+package model;
+
 public class Cita {
     int idCita;
     Cliente cliente;

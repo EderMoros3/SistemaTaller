@@ -1,3 +1,4 @@
+package model;
 public class Pieza {
     private String referencia;
     private String marca;

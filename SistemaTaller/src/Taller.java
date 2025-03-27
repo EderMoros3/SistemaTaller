@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import model.Cita;
+import model.Cliente;
+import model.Empleado;
+import model.Pieza;
+import model.Vehiculo;
+
 public class Taller {
     Scanner sc = new Scanner(System.in);
 

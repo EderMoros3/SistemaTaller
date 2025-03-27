@@ -1,3 +1,4 @@
+package model;
 public class Cliente {
     // Atributos
     private String nombre;

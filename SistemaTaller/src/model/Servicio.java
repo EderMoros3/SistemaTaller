@@ -1,3 +1,4 @@
+package model;
 public class Servicio {
     String nombre;
     int idServicio;

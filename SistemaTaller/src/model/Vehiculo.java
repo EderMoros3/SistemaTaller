@@ -1,3 +1,4 @@
+package model;
 public class Vehiculo {
     // Atributos
     private String matricula;

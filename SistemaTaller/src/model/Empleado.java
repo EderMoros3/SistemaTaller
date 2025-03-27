@@ -1,3 +1,4 @@
+package model;
 public class Empleado {
     // Atributos
     private String nombre;
