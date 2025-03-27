@@ -9,6 +9,7 @@ public class Taller {
     ArrayList<Cliente> listaClientes = new ArrayList<>();
     ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
     ArrayList<Pieza> listaPiezas = new ArrayList<>();
+    ArrayList<Cita> listaCitas = new ArrayList<>();
 
     // Constructor
     public Taller() {
@@ -16,6 +17,7 @@ public class Taller {
         this.listaClientes = new ArrayList<>();
         this.listaVehiculos = new ArrayList<>();
         this.listaPiezas = new ArrayList<>();
+        this.listaCitas = new ArrayList<>();
     }
 
     // Getters
@@ -36,7 +38,6 @@ public class Taller {
         }
         return null;
     }
-
     public Cliente getClienteDni() {
         String dni;
         if (!this.listaClientes.isEmpty()) {
@@ -54,7 +55,6 @@ public class Taller {
         }
         return null;
     }
-
     public Vehiculo getVehiculoMatricula() {
         String matricula;
         if (!this.listaVehiculos.isEmpty()) {
@@ -72,7 +72,24 @@ public class Taller {
         }
         return null;
     }
+    public Cita getCitaID() {
+        int idCita;
+        if (!this.listaCitas.isEmpty()) {
+            do {
+                System.out.println("Introduce el ID del empleado: ");
+                idCita = sc.nextInt();
 
+                for (Cita cita : this.listaCitas) {
+                    if (cita.getIdCita() == (idCita)) {
+                        return cita;
+                    }
+                }
+                System.out.println("No se encontro ninguna Cita con ese ID");
+            } while (true);
+        }
+        return null;
+    }
+    
     // Metodos menus
     public void gestionClientes() {
 
@@ -97,7 +114,6 @@ public class Taller {
         } while (opcion != 5);
 
     }
-
     public void gestionEmpleados() {
         int opcion;
         do {
@@ -119,7 +135,6 @@ public class Taller {
             }
         } while (opcion != 5);
     }
-
     public void gestionServicios() {
     }
 
@@ -173,6 +188,27 @@ public class Taller {
     }
 
     public void gestionCitas() {
+        int opcion;
+        do {
+            System.out.println("Gestion de citas");
+            System.out.println("-------------------");
+            System.out.println("1. Agregar cita");
+            System.out.println("2. Modificar cita");
+            System.out.println("3. Eliminar cita");
+            System.out.println("4. Listar citas");
+            System.out.println("5. Volver al menu principal");
+            opcion = sc.nextInt();
+
+        } while (opcion != 5);
+
+        switch (opcion) {
+            case 1 -> agregarCita();
+            case 2 -> modificarCita();
+            case 3 -> eliminarCita();
+            case 4 -> listarCitas();
+            case 5 -> System.out.println("Volviendo al menu principal");
+        }
+
     }
 
     // MetodosClientes
@@ -566,4 +602,32 @@ public class Taller {
         }
     }
 
+    //metodosCitas
+    public void agregarCita() {
+        System.out.println("Agregar Cita");
+        System.out.println("---------------");
+        System.out.println("Insertar ID de cita: ");
+        int idCita = sc.nextInt();
+        System.out.println("Insertar fecha de cita (DIA-MES-AÑO: ");
+        String fecha = sc.nextLine();
+        sc.next();
+        System.out.println("Insertar hora de cita (XX-XX)(12.35)(FORMATO 24H): ");
+        String hora = sc.nextLine();
+        sc.next();
+        System.out.println("Agregue una descripcion a la cita: ");
+        String descripcion = sc.nextLine();
+        sc.next();
+        Cliente cliente = this.getClienteDni();
+
+        Cita cita = new Cita(idCita, cliente, fecha, hora, descripcion);
+        listaCitas.add(cita);
+    }
+    public void modificarCita() {
+        Cita cita = this.getCitaID();
+        System.out.println("Modificar Cita");
+        System.out.println("---------------");
+        System.out.println("Insertar ID de cita: ");
+        int idCita = sc.nextInt();
+        System.out.println("");
+    }
 }
