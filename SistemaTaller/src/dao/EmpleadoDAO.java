@@ -35,7 +35,7 @@ public class EmpleadoDAO {
         // UPDATE SQL
     }
 
-    public void moficiarIDEmpleado(int id) {
+    public void modificiarIdEmpleado(int id) {
         // UPDATE SQL
     }
 }

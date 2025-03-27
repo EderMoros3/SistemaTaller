@@ -23,10 +23,10 @@ public class ClienteView {
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1 -> clienteDAO.agregarCliente();
-                case 2 -> clienteDAO.modificarCliente();
-                case 3 -> clienteDAO.eliminarCliente();
-                case 4 -> clienteDAO.listarClientes();
+                case 1 -> this.agregarCliente();
+                case 2 -> this.modificarCliente();
+                case 3 -> this.eliminarCliente();
+                case 4 -> this.listarClientes();
                 case 5 -> System.out.println("Volviendo al menu principal");
             }
         } while (opcion != 5);

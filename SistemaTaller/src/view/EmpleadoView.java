@@ -92,8 +92,8 @@ public class EmpleadoView {
             }
             case 3 -> {
                 System.out.println("Introduce el ID: ");
-                int ID = sc.nextInt();
-                empleadoDAO.modificarIDEmpleado(ID);
+                int id = sc.nextInt();
+                empleadoDAO.modificarIdEmpleado(id);
                 System.out.println("ID modificado correctamente");
             }
             case 4 -> {
