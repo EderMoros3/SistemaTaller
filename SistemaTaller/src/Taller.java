@@ -110,123 +110,14 @@ public class Taller {
     // MetodosClientes
     
 
-    public void modificarCliente() {
-        Cliente cliente = this.getClienteDni();
-        int opcion;
-        do {
-            System.out.println("Modificar cliente");
-            System.out.println("1. Modificar nombre");
-            System.out.println("2. Modificar apellido");
-            System.out.println("3. Modificar telefono");
-            System.out.println("4. Modificar direccion");
-            System.out.println("5. Modificar email");
-            System.out.println("6. Modificar dni");
-            System.out.println("7. Volver al menu anterior");
-            System.out.println("Ingrese una opcion: ");
-            opcion = sc.nextInt();
-        } while (opcion != 7);
-
-        switch (opcion) {
-            case 1 -> {
-                System.out.println("Introduce el nombre: ");
-                String nombre = sc.nextLine();
-                sc.next();
-                cliente.setNombre(nombre);
-                System.out.println("Nombre modificado correctamente");
-            }
-            case 2 -> {
-                System.out.println("Introduce el apellido: ");
-                String apellido = sc.nextLine();
-                sc.next();
-                cliente.setApellido(apellido);
-                System.out.println("Apellido modificado correctamente");
-            }
-            case 3 -> {
-                System.out.println("Introduce el telefono: ");
-                int telefono = sc.nextInt();
-                cliente.setTelefono(telefono);
-                System.out.println("Telefono modificado correctamente");
-            }
-            case 4 -> {
-                System.out.println("Introduce la direccion: ");
-                String direccion = sc.nextLine();
-                sc.next();
-                cliente.setDireccion(direccion);
-                System.out.println("Direccion modificada correctamente");
-            }
-            case 5 -> {
-                System.out.println("Introduce el email: ");
-                String email = sc.nextLine();
-                sc.next();
-                cliente.setEmail(email);
-                System.out.println("Email modificado correctamente");
-            }
-            case 6 -> {
-                System.out.println("Introduce el dni: ");
-                String dni = sc.nextLine();
-                sc.next();
-                cliente.setDni(dni);
-                System.out.println("Dni modificado correctamente");
-            }
-            case 7 -> System.out.println("Volviendo al menu anterior");
-        }
-
-    }
-
+    
     
     
 
     // MetodosEmpleados
     
 
-    public void modificarEmpleado() {
-        Empleado empleado = this.getEmpleadoID();
-        int opcion;
-
-        do {
-            System.out.println("Modificar Empleado");
-            System.out.println("-----------------------");
-            System.out.println("1. Modificar nombre del empleado");
-            System.out.println("2. Modificar apellido del empleado");
-            System.out.println("3. Modificar ID del Empleado");
-            System.out.println("4. Modificar telefono del Empleado");
-            System.out.println("5. Volver a Gestion Empleados");
-            opcion = sc.nextInt();
-
-        } while (opcion != 5);
-
-        switch (opcion) {
-            case 1 -> {
-                System.out.println("Introduce el nombre: ");
-                String nombre = sc.nextLine();
-                sc.next();
-                empleado.setNombre(nombre);
-                System.out.println("Nombre modificado correctamente");
-            }
-            case 2 -> {
-                System.out.println("Introduce el apellido: ");
-                String apellido = sc.nextLine();
-                sc.next();
-                empleado.setApellido(apellido);
-                System.out.println("Apellido modificado correctamente");
-            }
-            case 3 -> {
-                System.out.println("Introduce el ID: ");
-                int ID = sc.nextInt();
-                empleado.setTelefono(ID);
-                System.out.println("ID modificado correctamente");
-            }
-            case 4 -> {
-                System.out.println("Introduce el telefono: ");
-                int telefono = sc.nextInt();
-                empleado.setTelefono(telefono);
-                System.out.println("Telefono modificado correctamente");
-            }
-            case 5 -> System.out.println("Volviendo a gestion de empleados");
-
-        }
-    }
-
+    
     public void listarAsignaciones() {
         Empleado empleado = this.getEmpleadoID();
 
