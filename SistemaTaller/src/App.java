@@ -1,8 +1,22 @@
 import java.util.Scanner;
 
+import model.Empleado;
+import view.CitaView;
+import view.ClienteView;
+import view.EmpleadoView;
+import view.PiezaView;
+import view.ServicioView;
+import view.VehiculoView;
+
 public class App {
     public static void main(String[] args) {
-
+        ClienteView cliente = new ClienteView();
+        CitaView cita = new CitaView();
+        EmpleadoView empleado = new EmpleadoView();
+        PiezaView pieza = new PiezaView();
+        ServicioView servicio = new ServicioView();
+        VehiculoView vehiculo = new VehiculoView();
+        
         Scanner sc = new Scanner(System.in);
         Taller taller = new Taller();
         int opcion;
@@ -22,13 +36,13 @@ public class App {
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1 -> taller.gestionClientes();
-                case 2 -> taller.gestionEmpleados();
-                case 3 -> taller.gestionServicios(); // asignaciones
-                case 4 -> taller.gestionInvetario(); // provedores
-                //case 5 -> gestionPedidos();
-                case 6 -> taller.gestionVehiculos();
-                //case 7 -> gestionCitas();
+                case 1 -> cliente.gestionClientes();
+                case 2 -> empleado.gestionEmpleados();
+                case 3 -> servicio.gestionServicios(); // asignaciones
+                case 4 -> pieza.gestionInvetario(); // provedores
+                case 5 -> pedido.gestionPedidos();
+                case 6 -> vehiculo.gestionVehiculos();
+                case 7 -> cita.gestionCitas();
                 case 8 -> System.out.println("El programa se cerro");
             }
         } while (opcion != 8);

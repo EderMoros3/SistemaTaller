@@ -18,46 +18,18 @@ public class Vehiculo {
     }
 
     // getters
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public Cliente getTitular() {
-        return titular;
-    }
+    public String getMatricula() { return matricula; }
+    public String getMarca() { return marca; }
+    public String getModelo() { return modelo; }
+    public int getYear() { return year; }
+    public Cliente getTitular() { return titular; }
 
     // setters
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setTitular(Cliente titular) {
-        this.titular = titular;
-    }
+    public void setMatricula(String matricula) { this.matricula = matricula; }
+    public void setMarca(String marca) { this.marca = marca; }
+    public void setModelo(String modelo) { this.modelo = modelo; }
+    public void setYear(int year) { this.year = year; }
+    public void setTitular(Cliente titular) { this.titular = titular; }
 
     @Override
     public String toString() {
