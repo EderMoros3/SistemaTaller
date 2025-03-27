@@ -4,6 +4,7 @@ import java.util.Scanner;
 import model.Cita;
 import dao.CitaDAO;
 import dao.ClienteDAO;
+import model.Cliente;
 public class CitaView {
     private Scanner sc = new Scanner(System.in);
     private CitaDAO citaDAO = new CitaDAO();

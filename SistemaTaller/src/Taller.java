@@ -97,29 +97,7 @@ public class Taller {
     }
     
     // Metodos menus
-    public void gestionClientes() {
-
-        int opcion;
-        do {
-            System.out.println("\nGestion de clientes");
-            System.out.println("1. Agregar cliente");
-            System.out.println("2. Modificar cliente");
-            System.out.println("3. Eliminar cliente");
-            System.out.println("4. Listar clientes");
-            System.out.println("5. Volver al menu principal");
-            System.out.println("Ingrese una opcion: ");
-            opcion = sc.nextInt();
-
-            switch (opcion) {
-                case 1 -> this.agregarCliente();
-                case 2 -> this.modificarCliente();
-                case 3 -> this.eliminarCliente();
-                case 4 -> this.listarClientes();
-                case 5 -> System.out.println("Volviendo al menu principal");
-            }
-        } while (opcion != 5);
-
-    }
+    
     public void gestionEmpleados() {
         int opcion;
         do {
@@ -195,30 +173,7 @@ public class Taller {
 
 
     // MetodosClientes
-    public void agregarCliente() {
-        System.out.println("Agregar cliente");
-        System.out.println("Introduce el nombre: ");
-        String nombre = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el apellido: ");
-        String apellido = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el telefono: ");
-        int telefono = sc.nextInt();
-        System.out.println("Introduce la direccion: ");
-        String direccion = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el email: ");
-        String email = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el dni: ");
-        String dni = sc.nextLine();
-        sc.next();
-
-        Cliente cliente = new Cliente(nombre, apellido, telefono, direccion, email, dni);
-        listaClientes.add(cliente);
-        System.out.println("Cliente agregado correctamente");
-    }
+    
 
     public void modificarCliente() {
         Cliente cliente = this.getClienteDni();
@@ -283,17 +238,8 @@ public class Taller {
 
     }
 
-    public void eliminarCliente() {
-        Cliente cliente = this.getClienteDni();
-        this.listaClientes.remove(cliente);
-        System.out.println("Cliente eliminado correctamente");
-    }
-
-    public void listarClientes() {
-        for (Cliente cliente : listaClientes) {
-            System.out.println(cliente);
-        }
-    }
+    
+    
 
     // MetodosEmpleados
     public void agregarEmpleado() {
