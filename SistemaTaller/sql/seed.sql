@@ -22,7 +22,7 @@ CREATE TABLE Vehiculo (
     matricula VARCHAR(20) PRIMARY KEY,
     marca VARCHAR(100) NOT NULL,
     modelo VARCHAR(100) NOT NULL,
-    año int NOT NULL,
+    ano int NOT NULL,
     dni VARCHAR(9) NOT NULL,
     FOREIGN KEY (dni) REFERENCES Cliente(dni)
 );
