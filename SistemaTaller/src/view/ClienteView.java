@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import dao.ClienteDAO;
@@ -58,13 +59,22 @@ public class ClienteView {
     }
 
     public void eliminarCliente() {
-        Cliente cliente = clienteDAO.getClienteDni();
+        Cliente cliente = this.getClienteDni();
         clienteDAO.eliminarCliente(cliente);
         System.out.println("Cliente eliminado correctamente");
     }
 
+    public Cliente getClienteDni() {
+        System.out.println("Introduce el dni del cliente: ");
+        String dni = sc.nextLine();
+        sc.next();
+        Cliente cliente = clienteDAO.getClienteDni(dni);
+        return cliente;
+    }
+
     public void modificarCliente() {
-        Cliente cliente = clienteDAO.getClienteDni();
+        Cliente cliente = this.getClienteDni();
+        String dni = cliente.getDni();
         int opcion;
         do {
             System.out.println("Modificar cliente");
@@ -84,7 +94,7 @@ public class ClienteView {
                 System.out.println("Introduce el nombre: ");
                 String nombre = sc.nextLine();
                 sc.next();
-                clienteDAO.actualizarNombreCliente(nombre);
+                clienteDAO.actualizarNombreCliente(dni, nombre);
                 System.out.println("Nombre modificado correctamente");
             }
             case 2 -> {
@@ -127,6 +137,6 @@ public class ClienteView {
     }
 
     public void listarClientes() {
-        clienteDAO.listarClientes();
+        ArrayList<Cliente> clientes = clienteDAO.listarClientes();
     }
 }

@@ -1,6 +1,6 @@
 package dao;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,20 +68,66 @@ public class ClienteDAO {
 
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
-                
-            } catch (Exception e) {
-                // TODO: handle exception
+                while (rs.next()) {
+                    String nombre = rs.getString("nombre");
+                    String apellido = rs.getString("apellido");
+                    int telefono = rs.getInt("telefono");
+                    String direccion = rs.getString("direccion");
+                    String email = rs.getString("email");
+                    String dni = rs.getString("dni");
+
+                    Cliente cliente = new Cliente(nombre, apellido, telefono, direccion, email, dni);
+                    clientes.add(cliente);
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al listar clientes: " + e.getMessage());
             }
+        return clientes;
+        }
         return null;
     }
 
-    public Cliente getClienteDni() {
-        // SELECT SQL
-        return null;
+    public Cliente getClienteDni(String dni) {
+        Connection conexion = ConexionDB.conectar();
+        Cliente cliente = null;
+
+        if (conexion != null) {
+            String query = "SELECT * FROM Cliente WHERE dni = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, dni);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        String nombre = rs.getString("nombre");
+                        String apellido = rs.getString("apellido");
+                        int telefono = rs.getInt("telefono");
+                        String direccion = rs.getString("direccion");
+                        String email = rs.getString("email");
+
+                        cliente = new Cliente(nombre, apellido, telefono, direccion, email, dni);
+                    }
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al obtener cliente por DNI: " + e.getMessage());
+            }
+        }
+        return cliente;
     }
 
-    public void actualizarNombreCliente(String nombre) {
-        // UPDATE SQL
+    public void actualizarNombreCliente(String dni, String nombre) {
+        Connection conexion = ConexionDB.conectar();
+
+        if (conexion != null) {
+            String query = "UPDATE Cliente SET nombre = ? WHERE dni = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, nombre);
+                ps.setString(2, dni);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar nombre del cliente: " + e.getMessage());
+            }
+        }
     }
 
     public void actualizarApellidoCliente(String apellido) {
