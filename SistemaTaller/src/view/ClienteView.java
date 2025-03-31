@@ -101,32 +101,32 @@ public class ClienteView {
                 System.out.println("Introduce el apellido: ");
                 String apellido = sc.nextLine();
                 sc.next();
-                clienteDAO.actualizarApellidoCliente(apellido);
+                clienteDAO.actualizarApellidoCliente(dni, apellido);
                 System.out.println("Apellido modificado correctamente");
             }
             case 3 -> {
                 System.out.println("Introduce el telefono: ");
                 int telefono = sc.nextInt();
-                clienteDAO.actualizarTlfCliente(telefono);
+                clienteDAO.actualizarTlfCliente(dni, telefono);
                 System.out.println("Telefono modificado correctamente");
             }
             case 4 -> {
                 System.out.println("Introduce la direccion: ");
                 String direccion = sc.nextLine();
                 sc.next();
-                clienteDAO.actualizarDireccionCliente(direccion);
+                clienteDAO.actualizarDireccionCliente(dni, direccion);
                 System.out.println("Direccion modificada correctamente");
             }
             case 5 -> {
                 System.out.println("Introduce el email: ");
                 String email = sc.nextLine();
                 sc.next();
-                clienteDAO.actualizarEmailCliente(email);
+                clienteDAO.actualizarEmailCliente(dni, email);
                 System.out.println("Email modificado correctamente");
             }
             case 6 -> {
                 System.out.println("Introduce el dni: ");
-                String dni = sc.nextLine();
+                dni = sc.nextLine();
                 sc.next();
                 clienteDAO.actualizarDniCliente(dni);
                 System.out.println("Dni modificado correctamente");
@@ -138,5 +138,10 @@ public class ClienteView {
 
     public void listarClientes() {
         ArrayList<Cliente> clientes = clienteDAO.listarClientes();
+        System.out.println("Lista de clientes: ");
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.toString());
+        }
+        System.out.println("Fin de la lista de clientes");
     }
 }

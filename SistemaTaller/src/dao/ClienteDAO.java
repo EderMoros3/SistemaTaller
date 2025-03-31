@@ -130,23 +130,73 @@ public class ClienteDAO {
         }
     }
 
-    public void actualizarApellidoCliente(String apellido) {
-        // UPDATE SQL
+    public void actualizarApellidoCliente(String dni,String apellido) {
+        Connection conexion = ConexionDB.conectar();
+        if (conexion != null) {
+            String query = "UPDATE Cliente SET apellido = ? WHERE dni = ?";
+            try(PreparedStatement stmt = conexion.prepareStatement(query)){
+                stmt.setString(1, apellido);
+                stmt.setString(2, dni);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar apellido del cliente: " + e.getMessage());
+            }
+        }
     }
 
-    public void actualizarTlfCliente(int apellido) {
-        // UPDATE SQL
+    public void actualizarTlfCliente(String dni, int apellido) {
+        Connection conexion = ConexionDB.conectar();
+        if (conexion != null) {
+            String query = "UPDATE Cliente SET telefono = ? WHERE dni = ?";
+            try(PreparedStatement stmt = conexion.prepareStatement(query)){
+                stmt.setInt(1, apellido);
+                stmt.setString(2, dni);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar telefono del cliente: " + e.getMessage());
+            }
+        }
     }
 
-    public void actualizarDireccionCliente(String direccion) {
-        // UPDATE SQL
+    public void actualizarDireccionCliente(String dni, String direccion) {
+        Connection conexion = ConexionDB.conectar();
+        if (conexion != null) {
+            String query = "UPDATE Cliente SET direccion = ? WHERE dni = ?";
+            try(PreparedStatement stmt = conexion.prepareStatement(query)){
+                stmt.setString(1, direccion);
+                stmt.setString(2, dni);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar direccion del cliente: " + e.getMessage());
+            }
+        }
     }
 
-    public void actualizarEmailCliente(String email) {
-        // UPDATE SQL
+    public void actualizarEmailCliente(String dni, String email) {
+        Connection conexion = ConexionDB.conectar();
+        if (conexion != null) {
+            String query = "UPDATE Cliente SET email = ? WHERE dni = ?";
+            try(PreparedStatement stmt = conexion.prepareStatement(query)){
+                stmt.setString(1, email);
+                stmt.setString(2, dni);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar email del cliente: " + e.getMessage());
+            }
+        }
     }
 
     public void actualizarDniCliente(String dni) {
-        // UPDATE SQL
+        Connection conexion = ConexionDB.conectar();
+        if (conexion != null) {
+            String query = "UPDATE Cliente SET dni = ? WHERE dni = ?";
+            try(PreparedStatement stmt = conexion.prepareStatement(query)){
+                stmt.setString(1, dni);
+                stmt.setString(2, dni);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar dni del cliente: " + e.getMessage());
+            }
+        }
     }
 }
