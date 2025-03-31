@@ -3,6 +3,7 @@ package view;
 import java.util.Scanner;
 
 import dao.ClienteDAO;
+import view.ClienteView;
 import dao.VehiculoDAO;
 import model.Cliente;
 import model.Vehiculo;
@@ -11,6 +12,7 @@ public class VehiculoView {
     private Scanner sc = new Scanner(System.in);
     private VehiculoDAO vehiculoDAO = new VehiculoDAO();
     private ClienteDAO clienteDAO = new ClienteDAO();
+    private ClienteView clienteView = new ClienteView();
 
     public void gestionVehiculos() {
         int opcion;
@@ -48,16 +50,24 @@ public class VehiculoView {
         sc.next();
         System.out.println("Introduce el año: ");
         int year = sc.nextInt();
-        Cliente titular = clienteDAO.getClienteDni();
+        Cliente titular = clienteView.getClienteDni();
         Vehiculo vehiculo = new Vehiculo(matricula, marca, modelo, year, titular);
         vehiculoDAO.insertarVehiculo(vehiculo);
         System.out.println("Vehiculo agregado correctamente");
     }
 
     public void eliminarVehiculo() {
-        Vehiculo vehiculo = vehiculoDAO.getVehiculoMatricula();
+        Vehiculo vehiculo = this.getVehiculoMatricula();
         vehiculoDAO.eliminarVehiculo(vehiculo);
         System.out.println("Vehiculo eliminado correctamente");
+    }
+
+    public Vehiculo getVehiculoMatricula() {
+        System.out.println("Introduce la matricula del vehiculo: ");
+        String matricula = sc.nextLine();
+        sc.next();
+        Vehiculo vehiculo = vehiculoDAO.getVehiculoMatricula(matricula);
+        return vehiculo;
     }
 
     public void listarVehiculos() {
@@ -65,7 +75,8 @@ public class VehiculoView {
     }
 
     public void modificarVehiculo() {
-        Vehiculo vehiculo = vehiculoDAO.getVehiculoMatricula();
+        Vehiculo vehiculo = this.getVehiculoMatricula();
+        String matricula = vehiculo.getMatricula();
         System.out.println("Modificar vehiculo");
         System.out.println("1. Modificar matricula");
         System.out.println("2. Modificar marca");
@@ -79,7 +90,7 @@ public class VehiculoView {
         switch (opcion) {
             case 1 -> {
                 System.out.println("Introduce la matricula: ");
-                String matricula = sc.nextLine();
+                matricula = sc.nextLine();
                 sc.next();
                 vehiculoDAO.modificarMatriculaVehiculo(matricula);
                 System.out.println("Matricula modificada correctamente");
@@ -88,25 +99,26 @@ public class VehiculoView {
                 System.out.println("Introduce la marca: ");
                 String marca = sc.nextLine();
                 sc.next();
-                vehiculoDAO.moficiarMarcaVehiculo(marca);
+                vehiculoDAO.modificarMarcaVehiculo(matricula, marca);
                 System.out.println("Marca modificada correctamente");
             }
             case 3 -> {
                 System.out.println("Introduce el modelo: ");
                 String modelo = sc.nextLine();
                 sc.next();
-                vehiculoDAO.modificarModeloVehiculo(modelo);
+                vehiculoDAO.modificarModeloVehiculo(matricula, modelo);
                 System.out.println("Modelo modificado correctamente");
             }
             case 4 -> {
                 System.out.println("Introduce el año: ");
                 int year = sc.nextInt();
-                vehiculoDAO.modificarYearVehiculo(year);
+                vehiculoDAO.modificarYearVehiculo(matricula, year);
                 System.out.println("Año modificado correctamente");
             }
             case 5 -> {
-                Cliente titular = this.getClienteDni();
-                vehiculoDAO.modificarTitularVehiculo(titular);
+                Cliente titular = clienteView.getClienteDni();
+                String dni = titular.getDni();
+                vehiculoDAO.modificarTitularVehiculo(matricula, dni);
                 System.out.println("Titular modificado correctamente");
             }
             case 6 -> System.out.println("Volviendo al menu anterior");

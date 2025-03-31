@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import dao.ClienteDAO;
@@ -58,13 +59,22 @@ public class ClienteView {
     }
 
     public void eliminarCliente() {
-        Cliente cliente = clienteDAO.getClienteDni();
+        Cliente cliente = this.getClienteDni();
         clienteDAO.eliminarCliente(cliente);
         System.out.println("Cliente eliminado correctamente");
     }
 
+    public Cliente getClienteDni() {
+        System.out.println("Introduce el dni del cliente: ");
+        String dni = sc.nextLine();
+        sc.next();
+        Cliente cliente = clienteDAO.getClienteDni(dni);
+        return cliente;
+    }
+
     public void modificarCliente() {
-        Cliente cliente = clienteDAO.getClienteDni();
+        Cliente cliente = this.getClienteDni();
+        String dni = cliente.getDni();
         int opcion;
         do {
             System.out.println("Modificar cliente");
@@ -84,39 +94,39 @@ public class ClienteView {
                 System.out.println("Introduce el nombre: ");
                 String nombre = sc.nextLine();
                 sc.next();
-                clienteDAO.actualizarNombreCliente(nombre);
+                clienteDAO.actualizarNombreCliente(dni, nombre);
                 System.out.println("Nombre modificado correctamente");
             }
             case 2 -> {
                 System.out.println("Introduce el apellido: ");
                 String apellido = sc.nextLine();
                 sc.next();
-                clienteDAO.actualizarApellidoCliente(apellido);
+                clienteDAO.actualizarApellidoCliente(dni, apellido);
                 System.out.println("Apellido modificado correctamente");
             }
             case 3 -> {
                 System.out.println("Introduce el telefono: ");
                 int telefono = sc.nextInt();
-                clienteDAO.actualizarTlfCliente(telefono);
+                clienteDAO.actualizarTlfCliente(dni, telefono);
                 System.out.println("Telefono modificado correctamente");
             }
             case 4 -> {
                 System.out.println("Introduce la direccion: ");
                 String direccion = sc.nextLine();
                 sc.next();
-                clienteDAO.actualizarDireccionCliente(direccion);
+                clienteDAO.actualizarDireccionCliente(dni, direccion);
                 System.out.println("Direccion modificada correctamente");
             }
             case 5 -> {
                 System.out.println("Introduce el email: ");
                 String email = sc.nextLine();
                 sc.next();
-                clienteDAO.actualizarEmailCliente(email);
+                clienteDAO.actualizarEmailCliente(dni, email);
                 System.out.println("Email modificado correctamente");
             }
             case 6 -> {
                 System.out.println("Introduce el dni: ");
-                String dni = sc.nextLine();
+                dni = sc.nextLine();
                 sc.next();
                 clienteDAO.actualizarDniCliente(dni);
                 System.out.println("Dni modificado correctamente");
@@ -127,6 +137,10 @@ public class ClienteView {
     }
 
     public void listarClientes() {
-        clienteDAO.listarClientes();
+        ArrayList<Cliente> clientes = clienteDAO.listarClientes();
+        System.out.println("Lista de clientes: ");
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.toString());
+        }
     }
 }
