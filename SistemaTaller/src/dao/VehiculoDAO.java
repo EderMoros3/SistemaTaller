@@ -1,11 +1,12 @@
 package dao;
 
+import java.beans.Statement;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Cliente;
 
 import model.Cliente;
 import model.Vehiculo;
@@ -16,6 +17,7 @@ public class VehiculoDAO {
         String marca = vehiculo.getMarca();
         String modelo = vehiculo.getModelo();
         int year = vehiculo.getYear();
+
         String dni = vehiculo.getTitular().getDni();
 
         Connection conexion = ConexionDB.conectar();
