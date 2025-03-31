@@ -142,6 +142,5 @@ public class ClienteView {
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
         }
-        System.out.println("Fin de la lista de clientes");
     }
 }

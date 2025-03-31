@@ -144,12 +144,12 @@ public class ClienteDAO {
         }
     }
 
-    public void actualizarTlfCliente(String dni, int apellido) {
+    public void actualizarTlfCliente(String dni, int telefono) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
             String query = "UPDATE Cliente SET telefono = ? WHERE dni = ?";
             try(PreparedStatement stmt = conexion.prepareStatement(query)){
-                stmt.setInt(1, apellido);
+                stmt.setInt(1, telefono);
                 stmt.setString(2, dni);
                 stmt.executeUpdate();
             } catch (SQLException e) {
