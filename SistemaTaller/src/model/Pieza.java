@@ -1,20 +1,20 @@
 package model;
 public class Pieza {
-    private int idPieza;
     private String referencia;
     private String nombre;
     private String marca;
     private String descripcion;
     private Double precio;
     private int cantidad;
+    private int idPieza;
 
-    public Pieza(String referencia, String marca, String descripcion, Double precio, int cantidad, String nombre, int idPieza) {
+    public Pieza(String referencia, String nombre, String marca, String descripcion, Double precio, int cantidad, int idPieza) {
         this.referencia = referencia;
+        this.nombre = nombre;
         this.marca = marca;
         this.descripcion = descripcion;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.nombre = nombre;
         this.idPieza = idPieza;
     }
 
