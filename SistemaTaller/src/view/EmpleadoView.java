@@ -59,8 +59,17 @@ public class EmpleadoView {
         System.out.println("Empleado eliminado correctamente");
     }
 
+    public Empleado getEmpleadoID() {
+        System.out.println("Introduzca el ID del empleado: ");
+        int idEmpleado = sc.nextInt();
+        Empleado empleado = empleadoDAO.getIdEmpleado(idEmpleado);
+        return empleado;
+    }
+
     public void modificarEmpleado() {
-        Empleado empleado = empleadoDAO.getEmpleadoID();
+        Empleado empleado = this.getEmpleadoID();
+        int idEmpleado = empleado.getIdEmpleado();
+
         int opcion;
 
         do {
@@ -80,26 +89,26 @@ public class EmpleadoView {
                 System.out.println("Introduce el nombre: ");
                 String nombre = sc.nextLine();
                 sc.next();
-                empleadoDAO.modificarNombreEmpleado(nombre);
+                empleadoDAO.modificarNombreEmpleado(nombre, idEmpleado);
                 System.out.println("Nombre modificado correctamente");
             }
             case 2 -> {
                 System.out.println("Introduce el apellido: ");
                 String apellido = sc.nextLine();
                 sc.next();
-                empleadoDAO.modificarApellidoEmpleado(apellido);
+                empleadoDAO.modificarApellidoEmpleado(apellido, idEmpleado);
                 System.out.println("Apellido modificado correctamente");
             }
             case 3 -> {
-                System.out.println("Introduce el ID: ");
+                System.out.println("Introduce el ID nuevo: ");
                 int id = sc.nextInt();
-                empleadoDAO.modificarIdEmpleado(id);
+                empleadoDAO.modificarIdEmpleado(id, idEmpleado);
                 System.out.println("ID modificado correctamente");
             }
             case 4 -> {
                 System.out.println("Introduce el telefono: ");
                 int telefono = sc.nextInt();
-                empleadoDAO.modificarTlfEmpleado(telefono);
+                empleadoDAO.modificarTlfEmpleado(telefono, idEmpleado);
                 System.out.println("Telefono modificado correctamente");
             }
             case 5 -> System.out.println("Volviendo a gestion de empleados");

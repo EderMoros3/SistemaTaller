@@ -89,7 +89,7 @@ public class PiezaDAO {
         return pieza;
     }
 
-    public void actualizarReferenciaPieza(String referencia, int idPieza) {
+    public void modificarReferenciaPieza(String referencia, int idPieza) {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
@@ -121,7 +121,7 @@ public class PiezaDAO {
         }
     }
 
-    public void actualizarMarcaPieza(String marca, int idPieza) {
+    public void modificarMarcaPieza(String marca, int idPieza) {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
@@ -137,7 +137,7 @@ public class PiezaDAO {
         }
     }
 
-    public void actualizarDescPieza(String descripcion, int idPieza) {
+    public void modificarDescPieza(String descripcion, int idPieza) {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
@@ -153,7 +153,7 @@ public class PiezaDAO {
         }
     }
 
-    public void actualizarPrecioPieza(Double precio, int idPieza) {
+    public void modificarPrecioPieza(Double precio, int idPieza) {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
@@ -169,7 +169,7 @@ public class PiezaDAO {
         }
     }
 
-    public void actualizarCantidadPieza(int cantidad, int idPieza) {
+    public void modificarCantidadPieza(int cantidad, int idPieza) {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
