@@ -46,7 +46,7 @@ public class CitaView {
         System.out.println("Agregue una descripcion a la cita: ");
         String descripcion = sc.nextLine();
         sc.next();
-        Cliente cliente = clienteDAO.getClienteDni();  
+        Cliente cliente = clienteView.getClienteDni();  
 
         Cita cita = new Cita(idCita, cliente, fecha, hora, descripcion);
         citaDAO.insertarCita(cita);
