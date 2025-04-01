@@ -98,7 +98,7 @@ public class ServicioDAO {
         return null;
     }
 
-    public void actualizarNombreServicio(String nombre, int idServicio) {
+    public void modificarNombreServicio(String nombre, int idServicio) {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
@@ -114,7 +114,7 @@ public class ServicioDAO {
         }
     }
 
-    public void actualizarPrecioServicio(Double precio, int idServicio) {
+    public void modificarPrecioServicio(Double precio, int idServicio) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
             String query = "UPDATE Servicio SET precio = ? WHERE idServicio = ?";
@@ -128,12 +128,12 @@ public class ServicioDAO {
         }
     }
 
-    public void actualizarIdServicio(int idServicio) {
+    public void modificarIdServicio(int id, int idServicio) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "UPDATE Servicio SET idServicio = ? WHERE idServicio = ?";
+            String query = "UPDATE Servicio SET id = ? WHERE idServicio = ?";
             try(PreparedStatement stmt = conexion.prepareStatement(query)){
-                stmt.setInt(1, idServicio);
+                stmt.setInt(1, id);
                 stmt.setInt(2, idServicio);
                 stmt.executeUpdate();
             } catch (SQLException e) {

@@ -49,8 +49,14 @@ public class ServicioView {
         System.out.println("Servicio agregado correctamente");
     }
 
+    public Servicio getServicioId() {
+        System.out.println("Introduce el ID del servicio: ");
+        int id = sc.nextInt();
+        return servicioDAO.getServicioID(id);
+    }
+
     public void eliminarServicio() {
-        Servicio servicio = servicioDAO.getServicioID();
+        Servicio servicio = this.getServicioID();
         servicioDAO.eliminarServicio(servicio);
         System.out.println("Servicio eliminado correctamente");
     }
@@ -60,6 +66,8 @@ public class ServicioView {
     }
 
     public void modificarServicio() {
+        Servicio servicio = this.getServicioId();
+        int idServicio = servicio.getIdServicio();
         int opcion;
 
         do {
@@ -76,7 +84,7 @@ public class ServicioView {
                     System.out.println("Introduce el nuevo nombre: ");
                     String nombre = sc.nextLine();
                     sc.next();
-                    servicioDAO.modificarNombreServicio(nombre);
+                    servicioDAO.modificarNombreServicio(nombre, idServicio);
                     System.out.println("Nombre modificado correctamente");
                 }
                 case 2 -> {
@@ -85,7 +93,7 @@ public class ServicioView {
                         System.out.println("Introduce el nuevo precio: ");
                         precio = sc.nextDouble();
                     } while (precio < 0);
-                    servicioDAO.modificarPrecioServicio(precio);
+                    servicioDAO.modificarPrecioServicio(precio, idServicio);
                     System.out.println("Precio modificado correctamente");
                 }
                 case 3 -> {
@@ -94,7 +102,7 @@ public class ServicioView {
                         System.out.println("Introduce el nuevo id: ");
                         id = sc.nextInt();
                     } while (id < 0);
-                    servicioDAO.modificarIdServicio(id);
+                    servicioDAO.modificarIdServicio(id, idServicio);
                     System.out.println("ID modificado correctamente");
                 }
                 case 4 -> System.out.println("Volviendo al menú anterior");
