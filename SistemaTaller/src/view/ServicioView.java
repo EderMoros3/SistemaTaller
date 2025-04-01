@@ -11,22 +11,23 @@ public class ServicioView {
     public void gestionServicios() {
 
         int opcion;
-        do
-        System.out.println("Gestión de servicios");
-        System.out.println("1. Agregar servicio");
-        System.out.println("2. Modificar servicio");
-        System.out.println("3. Eliminar servicio");
-        System.out.println("4. Listar servicios");
-        System.out.println("5. Volver al menú principal");
-        System.out.println("Ingrese una opción: ");
-        opcion = sc.nextInt();
+        do{
+            System.out.println("Gestión de servicios");
+            System.out.println("1. Agregar servicio");
+            System.out.println("2. Modificar servicio");
+            System.out.println("3. Eliminar servicio");
+            System.out.println("4. Listar servicios");
+            System.out.println("5. Volver al menú principal");
+            System.out.println("Ingrese una opción: ");
+            opcion = sc.nextInt();
 
-        switch (opcion) {
-            case 1 -> this.agregarServicio();
-            case 2 -> this.modificarServicio();
-            case 3 -> this.eliminarServicio();
-            case 4 -> this.listarServicios();
-            case 5 -> System.out.println("Volviendo al menú principal");
+            switch (opcion) {
+                case 1 -> this.agregarServicio();
+                case 2 -> this.modificarServicio();
+                case 3 -> this.eliminarServicio();
+                case 4 -> this.listarServicios();
+                case 5 -> System.out.println("Volviendo al menú principal");
+            }
         }
         while (opcion != 5);
     }

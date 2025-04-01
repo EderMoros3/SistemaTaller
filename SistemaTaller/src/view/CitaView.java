@@ -9,6 +9,7 @@ public class CitaView {
     private Scanner sc = new Scanner(System.in);
     private CitaDAO citaDAO = new CitaDAO();
     private ClienteDAO clienteDAO = new ClienteDAO();
+    private ClienteView clienteView = new ClienteView();
     
     public void gestionCitas() {
         int opcion;
@@ -23,10 +24,10 @@ public class CitaView {
             opcion = sc.nextInt();
 
             switch (opcion) {
-                        case 1 -> agregarCita();
-                        case 2 -> modificarCita();
-                        case 3 -> eliminarCita();
-                        case 4 -> listarCitas();
+                        case 1 -> this.agregarCita();
+                        case 2 -> this.modificarCita();
+                        case 3 -> this.eliminarCita();
+                        case 4 -> this.listarCitas();
                         case 5 -> System.out.println("Volviendo al menu principal");
                     }
         } while (opcion != 5);
@@ -52,9 +53,16 @@ public class CitaView {
     }
 
     public void eliminarCita() {
-        Cita cita = citaDAO.getCitaId();
+        Cita cita = this.getCitaId();
         citaDAO.eliminarCita(cita);
         System.out.println("Cita eliminada correctamente");
+    }
+
+    public Cita getCitaId() {
+        System.out.println("Introduzca el ID de la cita: ");
+        int idCita = sc.nextInt();
+        Cita cita = citaDAO.getCitaId(idCita);
+        return cita;
     }
 
     public void listarCitas() {
@@ -63,6 +71,7 @@ public class CitaView {
 
     public void modificarCita() {
         int opcion;
+        Cita cita = this.getCitaId();
 
         do {
             System.out.println("Modificar cita");
@@ -77,29 +86,29 @@ public class CitaView {
             switch (opcion) {
                 case 1 -> {
                     System.out.println("Introduza el dni del cliente: ");
-                    Cliente cliente = clienteDAO.getClienteDni();
-                    Cita cita = citaDAO.getCitaId();
+                    Cliente cliente = clienteView.getClienteDni();
+                    citaDAO.modificarClienteCita(cliente, cita);
                     System.out.println("Cliente modificado correctamente");
                 }
                 case 2 -> {
                     System.out.println("Introduzca la nueva fecha: ");
                     String fecha = sc.nextLine();
                     sc.next();
-                    citaDAO.modificarFechaCita(fecha);
+                    citaDAO.modificarFechaCita(cita, fecha);
                     System.out.println("Fecha modificada correctamente");
                 }
                 case 3 -> {
                     System.out.println("Introduzca la nueva hora: ");
                     String hora = sc.nextLine();
                     sc.next();
-                    citaDAO.modificarHoraCita(hora);
+                    citaDAO.modificarHoraCita(cita, hora);
                     System.out.println("Hora modificada correctamente");
                 }
                 case 4 -> {
                     System.out.println("Introduzca la nueva descripcion: ");
                     String descripcion = sc.nextLine();
                     sc.next();
-                    citaDAO.modificarDescripcionCita(descripcion);
+                    citaDAO.modificarDescripcionCita(cita, descripcion);
                     System.out.println("Descripcion modificada correctamente");
                 }
                 case 5 -> System.out.println("Volviendo al menu anterior");
