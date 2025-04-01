@@ -23,6 +23,12 @@ public class App {
         Taller taller = new Taller();
         int opcion;
 
+        // TODO: Login para verificar admin o usuario normal
+        // TODO: Actualizar tablas de la base de datos
+        // TODO: Fix de cosas
+        // TODO: Mejorar consultas sql (ej: subconsultas, joins, etc)
+        
+
         do {
             System.out.println("\nBienvenido al taller: ");
             System.out.println("----------------------------");
