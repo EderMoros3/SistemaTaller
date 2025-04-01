@@ -7,6 +7,7 @@ import view.EmpleadoView;
 import view.PiezaView;
 import view.ServicioView;
 import view.VehiculoView;
+import view.PedidoView;
 
 public class App {
     public static void main(String[] args) {
@@ -16,6 +17,7 @@ public class App {
         PiezaView pieza = new PiezaView();
         ServicioView servicio = new ServicioView();
         VehiculoView vehiculo = new VehiculoView();
+        PedidoView pedido = new PedidoView();
         
         Scanner sc = new Scanner(System.in);
         Taller taller = new Taller();
