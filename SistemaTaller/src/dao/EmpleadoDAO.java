@@ -106,7 +106,7 @@ public class EmpleadoDAO {
         return null;
     }
 
-    public void actualizarNombreEmpleado(String nombre, int idEmpleado) {
+    public void modificarNombreEmpleado(String nombre, int idEmpleado) {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
@@ -122,7 +122,7 @@ public class EmpleadoDAO {
         }
     }
 
-    public void actualizarApellidoEmpleado(String apellido, int idEmpleado) {
+    public void modificarApellidoEmpleado(String apellido, int idEmpleado) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
             String query = "UPDATE Empleado SET apellido = ? WHERE idEmpleado = ?";
@@ -136,10 +136,10 @@ public class EmpleadoDAO {
         }
     }
 
-    public void actualizarTlfEmpleado(int telefono, int idEmpleado) {
+    public void modificarTlfEmpleado(int telefono, int idEmpleado) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "UPDATE Empleado SET telefono = ? WHERE dni = ?";
+            String query = "UPDATE Empleado SET telefono = ? WHERE idEmpleado = ?";
             try(PreparedStatement stmt = conexion.prepareStatement(query)){
                 stmt.setInt(1, telefono);
                 stmt.setInt(2, idEmpleado);
@@ -150,12 +150,12 @@ public class EmpleadoDAO {
         }
     }
 
-    public void actualizarIdEmpleado(int idEmpleado) {
+    public void modificarIdEmpleado(int id, int idEmpleado) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "UPDATE Cliente SET idEmpleado = ? WHERE idEmpleado = ?";
+            String query = "UPDATE Cliente SET id = ? WHERE idEmpleado = ?";
             try(PreparedStatement stmt = conexion.prepareStatement(query)){
-                stmt.setInt(1, idEmpleado);
+                stmt.setInt(1, id);
                 stmt.setInt(2, idEmpleado);
                 stmt.executeUpdate();
             } catch (SQLException e) {

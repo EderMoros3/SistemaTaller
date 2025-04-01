@@ -61,8 +61,14 @@ public class PiezaView {
         System.out.println("Pieza agregada correctamente");
     }
 
+    public Pieza getIdPieza() {
+        System.out.println("Introduzca el Id de la pieza: ");
+        int idPieza = sc.nextInt();
+        return piezaDAO.getIdPieza(idPieza);
+    }
+
     public void eliminarPieza() {
-        Pieza pieza = piezaDAO.getPiezaReferencia();
+        Pieza pieza = this.getIdPieza();
         piezaDAO.eliminarPieza(pieza);
         System.out.println("Pieza eliminada correctamente");
     }
@@ -73,7 +79,8 @@ public class PiezaView {
 
     public void modificarPieza() {
         System.out.println("Modificar pieza");
-        Pieza pieza = piezaDAO.getPiezaReferencia();
+        Pieza pieza = this.getIdPieza();
+        int idPieza = pieza.getIdPieza();
         int opcion;
         do {
             System.out.println("1. Modificar referencia");
@@ -91,7 +98,7 @@ public class PiezaView {
                 System.out.println("Introduce la referencia: ");
                 String referencia = sc.nextLine();
                 sc.next();
-                piezaDAO.modificarRefPieza(referencia);
+                piezaDAO.modificarReferenciaPieza(referencia, idPieza);
                 System.out.println("Referencia modificada correctamente");
             }
 
@@ -99,7 +106,7 @@ public class PiezaView {
                 System.out.println("Introduce la marca: ");
                 String marca = sc.nextLine();
                 sc.next();
-                piezaDAO.moficarMarcaPieza(marca);
+                piezaDAO.modificarMarcaPieza(marca, idPieza);
                 System.out.println("Marca modificada correctamente");
             }
 
@@ -107,7 +114,7 @@ public class PiezaView {
                 System.out.println("Introduce la descripcion: ");
                 String descripcion = sc.nextLine();
                 sc.next();
-                piezaDAO.moficiarDescPieza(descripcion);
+                piezaDAO.modificarDescPieza(descripcion, idPieza);
                 System.out.println("Descripcion modificada correctamente");
             }
 
@@ -117,7 +124,7 @@ public class PiezaView {
                     System.out.println("Introduce el precio: ");
                     precioPieza = sc.nextDouble();
                 } while (precioPieza < 0);
-                piezaDAO.modificarPrecioPieza(precioPieza);
+                piezaDAO.modificarPrecioPieza(precioPieza, idPieza);
                 System.out.println("Precio modificado correctamente");
             }
 
@@ -127,7 +134,7 @@ public class PiezaView {
                     System.out.println("Introduce la cantidad: ");
                     cantidad = sc.nextInt();
                 } while (cantidad < 0);
-                piezaDAO.modificarCantPieza(cantidad);
+                piezaDAO.modificarCantidadPieza(cantidad, idPieza);
                 System.out.println("Cantidad modificada correctamente");
             }
 
