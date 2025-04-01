@@ -14,6 +14,7 @@ import view.ClienteView;
 
 public class CitaDAO {
     ClienteDAO clienteDAO = new ClienteDAO();
+    
     public void insertarCita(Cita cita) {
         String fecha = cita.getFecha();
         String hora = cita.getHora();
