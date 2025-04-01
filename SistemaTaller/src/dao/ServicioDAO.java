@@ -1,38 +1,145 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-
 import model.Servicio;
 
 public class ServicioDAO {
     public void insertarServicio(Servicio servicio) {
-        // INSERT SQL
+        String nombre = servicio.getNombre();
+        int idServicio = servicio.getIdServicio();
+        Double precioServicio = servicio.getPrecioServicio();
+
+        Connection conexion = ConexionDB.conectar();
+
+        if (conexion != null) {
+            String query = "INSERT INTO Servicio (nombre, idServicio, precioServicio) VALUES (?, ?, ?)";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, nombre);
+                ps.setInt(2, idServicio);
+                ps.setDouble(3, precioServicio);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al insertar servicio: " + e.getMessage());
+            }
+        }
     }
 
     public void eliminarServicio(Servicio servicio) {
-        // DELETE SQL
+        int idServicio = servicio.getIdServicio();
+
+        Connection conexion = ConexionDB.conectar();
+
+        if (conexion != null) {
+            String query = "DELETE FROM Servicio WHERE idServicio = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setInt(1, idServicio);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al eliminar servicio: " + e.getMessage());
+            }
+        }
+
     }
 
-    public Servicio getServicioID() {
-        // SELECT SQL
-        return null;
+    public Servicio getServicioID(int idServicio) {
+        Connection conexion = ConexionDB.conectar();
+        Servicio servicio = null;
+
+        if (conexion != null) {
+            String query = "SELECT * FROM Cliente WHERE dni = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setInt(1, idServicio);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        String nombre = rs.getString("nombre");
+                        Double precioServicio = rs.getDouble("precioServicio");
+
+                        servicio = new Servicio(nombre, idServicio, precioServicio);
+                    }
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al obtener servicio por ID: " + e.getMessage());
+            }
+        }
+        return servicio;
     }
 
     public ArrayList<Servicio> listarServicios() {
-        // SELECT SQL
+        Connection conexion = ConexionDB.conectar();
+        ArrayList<Servicio> servicios = new ArrayList<>();
+
+        if (conexion != null) {
+            String query = "SELECT * FROM Servicio";
+
+            try (Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    String nombre = rs.getString("nombre");
+                    int idServicio = rs.getInt("idServicio");
+                    Double precioServicio = rs.getDouble("precioServicio");
+                    
+
+                    Servicio servicio = new Servicio(nombre, idServicio, precioServicio);
+                    servicios.add(servicio);
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al listar clientes: " + e.getMessage());
+            }
+        return servicios;
+        }
         return null;
     }
 
-    public void modificarNombreServicio(String nombre) {
-        // UPDATE SQL
+    public void actualizarNombreServicio(String nombre, int idServicio) {
+        Connection conexion = ConexionDB.conectar();
+
+        if (conexion != null) {
+            String query = "UPDATE Servicio SET nombre = ? WHERE idServicio = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, nombre);
+                ps.setInt(2, idServicio);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar nombre del servicio: " + e.getMessage());
+            }
+        }
     }
 
-    public void modificarPrecioServicio(Double precio) {
-        // UPDATE SQL
+    public void actualizarPrecioServicio(Double precio, int idServicio) {
+        Connection conexion = ConexionDB.conectar();
+        if (conexion != null) {
+            String query = "UPDATE Servicio SET precio = ? WHERE idServicio = ?";
+            try(PreparedStatement stmt = conexion.prepareStatement(query)){
+                stmt.setDouble(1, precio);
+                stmt.setInt(2, idServicio);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar precio del servicio: " + e.getMessage());
+            }
+        }
     }
 
-    public void modificarIdServicio(int id) {
-        // UPDATE SQL
+    public void actualizarIdServicio(int idServicio) {
+        Connection conexion = ConexionDB.conectar();
+        if (conexion != null) {
+            String query = "UPDATE Servicio SET idServicio = ? WHERE idServicio = ?";
+            try(PreparedStatement stmt = conexion.prepareStatement(query)){
+                stmt.setInt(1, idServicio);
+                stmt.setInt(2, idServicio);
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar ID del servicio: " + e.getMessage());
+            }
+        }
     }
 
 }
