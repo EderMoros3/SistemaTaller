@@ -1,6 +1,5 @@
 package dao;
 
-import com.sun.source.doctree.EscapeTree;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.Pedido;
-import model.Cliente;
+import model.Proveedor;
 
 public class PedidoDAO {
     public void insertarPedido(Pedido pedido) {
@@ -75,7 +74,7 @@ public class PedidoDAO {
                     String fechaEntrega = rs.getString("fechaEntrega");
                     Boolean estado = rs.getBoolean("estado");
                     Double precio = rs.getDouble("precio");
-                    Proveedor proveedor = new ProveedorDAO().getIdProveedor(rs.getInt("proveedor")); // Asumiendo que el proveedor tiene un método getDni()
+                    Proveedor proveedor = new ProveedorDAO().getProveedorID(rs.getInt("idProveedor"));
                     
 
                     Pedido pedido = new Pedido(idPedido, fechaPedido, fechaEntrega, estado, precio, proveedor);
@@ -104,14 +103,14 @@ public class PedidoDAO {
                         String fechaEntrega = rs.getString("fechaEntrega");
                         Boolean estado = rs.getBoolean("estado");
                         Double precio = rs.getDouble("precio");
-                        Proveedor proveedor = new ProveedorDAO().getIdProveedor(rs.getInt("proveedor")); // Asumiendo que el proveedor tiene un método getDni()
+                        Proveedor proveedor = new ProveedorDAO().getProveedorID(rs.getInt("idProveedor"));
                         
 
-                        pedido = new Pedido(fechaPedido, fechaEntrega, estado, precio, proveedor);
+                        pedido = new Pedido(idPedido, fechaPedido, fechaEntrega, estado, precio, proveedor);
                     }
                 }
             } catch (SQLException e) {
-                System.err.println("Error al obtener cliente por DNI: " + e.getMessage());
+                System.err.println("Error al obtener pedido por ID: " + e.getMessage());
             }
         }
         return pedido;
@@ -147,59 +146,46 @@ public class PedidoDAO {
         }
     }
 
-    public void modificarEstado(String dni, int telefono) {
+    public void modificarEstadoPedido(int idPedido, Boolean estado) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
             String query = "UPDATE Pedido SET estado = ? WHERE idPedido = ? AND fechaEntrega IS NOT NULL";
             try(PreparedStatement stmt = conexion.prepareStatement(query)){
-                stmt.setInt(1, telefono);
-                stmt.setString(2, dni);
+                stmt.setBoolean(1, estado);
+                stmt.setInt(2, idPedido);
                 stmt.executeUpdate();
             } catch (SQLException e) {
-                System.err.println("Error al actualizar telefono del cliente: " + e.getMessage());
+                System.err.println("Error al modificar estado del pedido: " + e.getMessage());
             }
         }
     }
 
-    public void actualizarDireccionCliente(String dni, String direccion) {
+    public void modificarPrecioPedido(int idPedido, Double precio) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "UPDATE Cliente SET direccion = ? WHERE dni = ?";
+            String query = "UPDATE Pedido SET Precio = ? WHERE idPedido = ?";
             try(PreparedStatement stmt = conexion.prepareStatement(query)){
-                stmt.setString(1, direccion);
-                stmt.setString(2, dni);
+                stmt.setDouble(1, precio);
+                stmt.setInt(2, idPedido);
                 stmt.executeUpdate();
             } catch (SQLException e) {
-                System.err.println("Error al actualizar direccion del cliente: " + e.getMessage());
+                System.err.println("Error al modificar precio del pedido: " + e.getMessage());
             }
         }
     }
 
-    public void actualizarEmailCliente(String dni, String email) {
+    public void modificarProveedorPedido(int idPedido, int idProveedor) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "UPDATE Cliente SET email = ? WHERE dni = ?";
+            String query = "UPDATE Pedido SET idProveedor = ? WHERE idPedido = ?";
             try(PreparedStatement stmt = conexion.prepareStatement(query)){
-                stmt.setString(1, email);
-                stmt.setString(2, dni);
+                stmt.setInt(1, idProveedor);
+                stmt.setInt(2, idPedido);
                 stmt.executeUpdate();
             } catch (SQLException e) {
-                System.err.println("Error al actualizar email del cliente: " + e.getMessage());
+                System.err.println("Error al modificar Proveedor del Pedido: " + e.getMessage());
             }
         }
     }
 
-    public void actualizarDniCliente(String dni) {
-        Connection conexion = ConexionDB.conectar();
-        if (conexion != null) {
-            String query = "UPDATE Cliente SET dni = ? WHERE dni = ?";
-            try(PreparedStatement stmt = conexion.prepareStatement(query)){
-                stmt.setString(1, dni);
-                stmt.setString(2, dni);
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                System.err.println("Error al actualizar dni del cliente: " + e.getMessage());
-            }
-        }
-    }
 }

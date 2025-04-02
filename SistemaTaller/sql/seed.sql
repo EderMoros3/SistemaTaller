@@ -49,3 +49,23 @@ CREATE TABLE Pieza (
     precio DECIMAL(10,2) NOT NULL,
     cantidad INT NOT NULL
 );
+
+CREATE TABLE Proveedor (
+    idProveedor INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    telefono int NOT NULL,
+    direccion VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Pedido (
+    idPedido INT PRIMARY KEY AUTO_INCREMENT,
+    fechaPedido DATE NOT NULL,
+    fechaEntrega DATE NOT NULL,
+    estado VARCHAR(50) NOT NULL,
+    precioTotal DECIMAL(10,2) NOT NULL,
+    idProveedor INT NOT NULL,
+    idPieza INT NOT NULL,
+    FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza),
+    FOREIGN KEY (idProveedor) REFERENCES Proveedor(idProveedor)
+)

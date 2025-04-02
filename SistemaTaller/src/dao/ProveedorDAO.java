@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import model.Proveedor;
 
 public class ProveedorDAO {
@@ -103,9 +102,68 @@ public class ProveedorDAO {
         return proveedor;
     }
 
+    public void modificarNombreProveedor(int idProveedor, String nombre) {
+        Connection conexion = ConexionDB.conectar();
 
+        if (conexion != null) {
+            String query = "UPDATE Proveedor SET nombre = ? WHERE idProveedor = ?";
 
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, nombre);
+                ps.setInt(2, idProveedor);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al modificar nombre del proveedor: " + e.getMessage());
+            }
+        }
+    }
 
+    public void modificarTelefonoProveedor(int idProveedor, int telefono) {
+        Connection conexion = ConexionDB.conectar();
+
+        if (conexion != null) {
+            String query = "UPDATE Proveedor SET telefono = ? WHERE idProveedor = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setInt(1, telefono);
+                ps.setInt(2, idProveedor);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al modificar telefono del proveedor: " + e.getMessage());
+            }
+        }
+    }
+
+    public void modificarDireccionProveedor(int idProveedor, String direccion) {
+        Connection conexion = ConexionDB.conectar();
+
+        if (conexion != null) {
+            String query = "UPDATE Proveedor SET direccion = ? WHERE idProveedor = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, direccion);
+                ps.setInt(2, idProveedor);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al modificar direccion del proveedor: " + e.getMessage());
+            }
+        }
+    }
+    public void modificarEmailProveedor(int idProveedor, String email) {
+        Connection conexion = ConexionDB.conectar();
+
+        if (conexion != null) {
+            String query = "UPDATE Proveedor SET email = ? WHERE idProveedor = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, email);
+                ps.setInt(2, idProveedor);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al modificar email del proveedor: " + e.getMessage());
+            }
+        }
+    }
 
 
 }

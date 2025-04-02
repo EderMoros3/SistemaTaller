@@ -1,8 +1,7 @@
 package view;
 
-import java.util.Scanner;
-
 import dao.ProveedorDAO;
+import java.util.Scanner;
 import model.Proveedor;
 
 public class ProveedorView {
@@ -60,13 +59,13 @@ public class ProveedorView {
     public Proveedor getProveedorId() {
         System.out.println("Introduzca el ID del proveedor: ");
         int id = sc.nextInt();
-        return proveedorDAO.getProveedorID(id);
+        Proveedor proveedor = proveedorDAO.getProveedorID(id);
+        return proveedor;
     }
 
     public void modificarProveedor() {
         Proveedor proveedor = this.getProveedorId();
         int idProveedor = proveedor.getIdProveedor();
-
         int opcion;
 
         do {
@@ -84,14 +83,14 @@ public class ProveedorView {
                     System.out.println("Introduzca el nuevo nombre: ");
                     String nombre = sc.nextLine();
                     sc.next();
-                    proveedorDAO.modificarNombreProveedor(nombre, idProveedor);
+                    proveedorDAO.modificarNombreProveedor(idProveedor, nombre);
                     System.out.println("Nombre modificado correctamente");
                 }
 
                 case 2 -> {
                     System.out.println("Introduzca el nuevo telefono: ");
                     int telefono = sc.nextInt();
-                    proveedorDAO.modificarTelefonoProveedor(telefono, idProveedor);
+                    proveedorDAO.modificarTelefonoProveedor(idProveedor, telefono);
                     System.out.println("Telefono modificado correctamente");
                 }
 
@@ -99,16 +98,16 @@ public class ProveedorView {
                     System.out.println("Introduzca la nueva direccion: ");
                     String direccion = sc.nextLine();
                     sc.next();
-                    proveedorDAO.modificarDireccionProveedor(direccion, idProveedor);
+                    proveedorDAO.modificarDireccionProveedor(idProveedor, direccion);
                     System.out.println("Direccion modificada correctamente");
                 }
 
                 case 4 -> {
-                    System.out.println("Introduzca el nuevo correo: ");
+                    System.out.println("Introduzca el nuevo email: ");
                     String correo = sc.nextLine();
                     sc.next();
-                    proveedorDAO.modificarCorreoProveedor(correo, idProveedor);
-                    System.out.println("Correo modificado correctamente");
+                    proveedorDAO.modificarEmailProveedor(idProveedor, correo);
+                    System.out.println("Email modificado correctamente");
                 }
 
                 case 5 -> System.out.println("Volver al Menu Principal");
