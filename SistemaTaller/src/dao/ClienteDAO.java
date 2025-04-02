@@ -34,9 +34,6 @@ public class ClienteDAO {
             } catch (SQLException e) {
                 System.err.println("Error al insertar cliente: " + e.getMessage());
             }
-        
-        
-        
         }
     }
 
@@ -197,5 +194,43 @@ public class ClienteDAO {
                 System.err.println("Error al actualizar dni del cliente: " + e.getMessage());
             }
         }
+    }
+
+    public boolean existeDni(String dni) {
+        Connection conexion = ConexionDB.conectar();
+        boolean existe = false;
+
+        if (conexion != null) {
+            String query = "SELECT * FROM Cliente WHERE dni = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, dni);
+                try (ResultSet rs = ps.executeQuery()) {
+                    existe = rs.next();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al verificar existencia de DNI: " + e.getMessage());
+            }
+        }
+        return existe;
+    }
+
+    public boolean existeTelefono(int telefono) {
+        Connection conexion = ConexionDB.conectar();
+        boolean existe = false;
+
+        if (conexion != null) {
+            String query = "SELECT * FROM Cliente WHERE telefono = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setInt(1, telefono);
+                try (ResultSet rs = ps.executeQuery()) {
+                    existe = rs.next();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al verificar existencia de telefono: " + e.getMessage());
+            }
+        }
+        return existe;
     }
 }

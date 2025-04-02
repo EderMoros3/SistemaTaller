@@ -54,7 +54,8 @@ public class ServicioView {
     public Servicio getServicioId() {
         System.out.println("Introduce el ID del servicio: ");
         int id = sc.nextInt();
-        return servicioDAO.getServicioID(id);
+        Servicio servicio = servicioDAO.getServicioID(id);
+        return servicio;
     }
 
     public void eliminarServicio() {
@@ -110,5 +111,12 @@ public class ServicioView {
                 case 4 -> System.out.println("Volviendo al menú anterior");
             }
         } while (opcion != 4);
+    }
+
+    public void historialServiciosCliente() {
+        System.out.println("Introduce el dni del cliente: ");
+        String dni = sc.nextLine();
+        sc.next();
+        servicioDAO.historialServiciosCliente(dni);
     }
 }
