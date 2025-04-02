@@ -43,6 +43,7 @@ CREATE TABLE Servicio (
 
 CREATE TABLE Pieza (
     idPieza INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
     referencia VARCHAR(100) NOT NULL,
     marca VARCHAR(100) NOT NULL,
     descripcion VARCHAR(200) NOT NULL,

@@ -4,9 +4,8 @@ public class Servicio {
     int idServicio;
     Double precioServicio;
 
-    public Servicio(String nombre, int idServicio, Double precioServicio) {
+    public Servicio(String nombre, Double precioServicio) {
         this.nombre = nombre;
-        this.idServicio = idServicio;
         this.precioServicio = precioServicio;
     }
 

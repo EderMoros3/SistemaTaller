@@ -8,8 +8,7 @@ public class Cita {
     String descripcion;
 
     //Constructor
-    public Cita (int idCita, Cliente cliente, String fecha, String hora, String descripcion) {
-        this.idCita = idCita;
+    public Cita (Cliente cliente, String fecha, String hora, String descripcion) {
         this.cliente = cliente;
         this.fecha = fecha;
         this.hora = hora;
