@@ -1,7 +1,6 @@
 package view;
 
 import dao.PedidoDAO;
-import dao.ProveedorDAO;
 import java.util.Scanner;
 import model.Pedido;
 import model.Proveedor;
@@ -9,7 +8,7 @@ import model.Proveedor;
 public class PedidoView {
     private Scanner sc = new Scanner(System.in);
     private PedidoDAO pedidoDAO = new PedidoDAO();
-    private ProveedorDAO proveedorDAO = new ProveedorDAO();
+
     private ProveedorView proveedorView = new ProveedorView();
 
     public void gestionPedidos() {
@@ -36,9 +35,7 @@ public class PedidoView {
 
     public void agregarPedido() {
         System.out.println("Agregar pedido");
-        System.out.println("Introduce el id del pedido: ");
-        int idPedido = sc.nextInt();
-        sc.nextLine(); // Limpiar el buffer
+
         System.out.println("Introduce la fecha del pedido: ");
         String fechaPedido = sc.nextLine();
         System.out.println("Introduce la fecha de entrega: ");
@@ -48,7 +45,7 @@ public class PedidoView {
         System.out.println("Introduce el precio: ");
         Double precio = sc.nextDouble();
         Proveedor proveedor = proveedorView.getProveedorId();
-        Pedido pedido = new Pedido(idPedido, fechaPedido, fechaEntrega, estado, precio, proveedor);
+        Pedido pedido = new Pedido(fechaPedido, fechaEntrega, estado, precio, proveedor);
         pedidoDAO.insertarPedido(pedido);
         System.out.println("Pedido agregado correctamente");
     }

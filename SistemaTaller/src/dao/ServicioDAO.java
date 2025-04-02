@@ -62,7 +62,7 @@ public class ServicioDAO {
                         String nombre = rs.getString("nombre");
                         Double precioServicio = rs.getDouble("precioServicio");
 
-                        servicio = new Servicio(nombre, idServicio, precioServicio);
+                        servicio = new Servicio(nombre,precioServicio);
                     }
                 }
             } catch (SQLException e) {

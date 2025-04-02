@@ -1,23 +1,13 @@
 import java.util.Scanner;
 
-import model.Empleado;
-import view.CitaView;
 import view.ClienteView;
 import view.EmpleadoView;
-import view.PiezaView;
-import view.ServicioView;
-import view.VehiculoView;
-import view.PedidoView;
+
 
 public class App {
     public static void main(String[] args) {
         ClienteView cliente = new ClienteView();
-        CitaView cita = new CitaView();
         EmpleadoView empleado = new EmpleadoView();
-        PiezaView pieza = new PiezaView();
-        ServicioView servicio = new ServicioView();
-        VehiculoView vehiculo = new VehiculoView();
-        PedidoView pedido = new PedidoView();
         
         Scanner sc = new Scanner(System.in);
 
