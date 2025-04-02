@@ -57,12 +57,8 @@ public class PiezaView {
             System.out.println("Introduce la cantidad: ");
             cantidad = sc.nextInt();
         } while (cantidad < 0);
-
-        System.out.println("Introduce el id de la pieza: ");
-        int idPieza = sc.nextInt();
-        sc.next();
         
-        Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precioPieza, cantidad, idPieza);
+        Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precioPieza, cantidad);
         piezaDAO.insertarPieza(pieza);
         System.out.println("Pieza agregada correctamente");
     }
