@@ -1,16 +1,13 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
-import dao.ClienteDAO;
 import model.Cita;
 import model.Cliente;
-import view.ClienteView;
 
 public class CitaDAO {
     ClienteDAO clienteDAO = new ClienteDAO();
@@ -62,12 +59,11 @@ public class CitaDAO {
             String query = "SELECT * FROM Cita";
             try (Statement stmt = conexion.createStatement();
                 ResultSet rs = stmt.executeQuery(query)) {
-                int idCita = rs.getInt("idCita");
                 String fecha = rs.getString("fecha");
                 String hora = rs.getString("hora");
                 String descripcion = rs.getString("descripcion");
                 Cliente cliente = clienteDAO.getClienteDni(rs.getString("dni"));
-                citas.add(new Cita(idCita, cliente, fecha, hora, descripcion ));
+                citas.add(new Cita(cliente, fecha, hora, descripcion ));
             } catch (SQLException e) {
                 System.err.println("Error al listar citas: " + e.getMessage());
             }
@@ -85,12 +81,11 @@ public class CitaDAO {
                 ps.setString(1, dni);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
-                        int idCita = rs.getInt("idCita");
                         String fecha = rs.getString("fecha");
                         String hora = rs.getString("hora");
                         String descripcion = rs.getString("descripcion");
                         Cliente cliente = clienteDAO.getClienteDni(rs.getString("dni"));
-                        citas.add(new Cita(idCita, cliente, fecha, hora, descripcion));
+                        citas.add(new Cita(cliente, fecha, hora, descripcion));
                     }
                 }
             } catch (SQLException e) {
@@ -114,7 +109,7 @@ public class CitaDAO {
                         String hora = rs.getString("hora");
                         String descripcion = rs.getString("descripcion");
                         Cliente cliente = clienteDAO.getClienteDni(rs.getString("dni"));
-                        cita = new Cita(idCita, cliente, fecha, hora, descripcion);
+                        cita = new Cita(cliente, fecha, hora, descripcion);
                     }
                 }
             } catch (SQLException e) {

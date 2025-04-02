@@ -13,8 +13,7 @@ public class Pedido {
     ArrayList<Pieza> pieza = new ArrayList<>();
 
     //Constructor
-    public Pedido(int idPedido, String fechaPedido, String fechaEntrega, Boolean estado, Double precio, Proveedor proveedor) {
-        this.idPedido = idPedido;
+    public Pedido(String fechaPedido, String fechaEntrega, Boolean estado, Double precio, Proveedor proveedor) {
         this.fechaPedido = fechaPedido;
         this.fechaEntrega = fechaEntrega;
         this.estado = estado;

@@ -6,10 +6,9 @@ public class Empleado {
     private int idEmpleado;
     private int telefono;
 
-    public Empleado(String nombre, String apellido, int idEmpleado, int telefono) {
+    public Empleado(String nombre, String apellido, int telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.idEmpleado = idEmpleado;
         this.telefono = telefono;
     }
 

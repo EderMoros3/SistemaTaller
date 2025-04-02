@@ -1,9 +1,9 @@
 package view;
 
-import java.util.Scanner;
-import model.Cita;
 import dao.CitaDAO;
 import dao.ClienteDAO;
+import java.util.Scanner;
+import model.Cita;
 import model.Cliente;
 public class CitaView {
     private Scanner sc = new Scanner(System.in);
@@ -55,9 +55,7 @@ public class CitaView {
     }
 
     public void agregarCita() {
-        System.out.println("Agregar Cita");
-        System.out.println("Insertar ID de cita: ");
-        int idCita = sc.nextInt();
+        System.out.println("Agregar Cita");        
         System.out.println("Insertar fecha de cita (DIA-MES-AÑO: ");
         String fecha = sc.nextLine();
         sc.next();
@@ -69,8 +67,9 @@ public class CitaView {
         sc.next();
         Cliente cliente = clienteView.getClienteDni();  
 
-        Cita cita = new Cita(idCita, cliente, fecha, hora, descripcion);
+        Cita cita = new Cita(cliente, fecha, hora, descripcion);
         citaDAO.insertarCita(cita);
+        
     }
 
     public void eliminarCita() {

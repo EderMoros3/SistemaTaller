@@ -8,14 +8,13 @@ public class Pieza {
     private int cantidad;
     private int idPieza;
 
-    public Pieza(String referencia, String nombre, String marca, String descripcion, Double precio, int cantidad, int idPieza) {
+    public Pieza(String referencia, String nombre, String marca, String descripcion, Double precio, int cantidad) {
         this.referencia = referencia;
         this.nombre = nombre;
         this.marca = marca;
         this.descripcion = descripcion;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.idPieza = idPieza;
     }
 
     // getters
