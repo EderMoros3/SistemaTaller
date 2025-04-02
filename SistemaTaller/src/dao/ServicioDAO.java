@@ -142,4 +142,32 @@ public class ServicioDAO {
         }
     }
 
+    public ArrayList<Servicio> historialServiciosCliente(String dni) {
+        Connection conexion = ConexionDB.conectar();
+        ArrayList<Servicio> servicios = new ArrayList<>();
+        
+        if (conexion != null) {
+            String query = "SELECT s.idServicio, s.nombre, s.precioServicio " +
+                    "FROM Servicio s " +
+                    "JOIN Taller t ON s.idServicio = t.idServicio " +
+                    "JOIN Cliente c ON t.dni = c.dni " + 
+                    "WHERE c.dni = ?";
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, dni);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        int idServicio = rs.getInt("idServicio");
+                        String nombre = rs.getString("nombre");
+                        Double precioServicio = rs.getDouble("precioServicio");
+
+                        Servicio servicio = new Servicio(nombre, idServicio, precioServicio);
+                        servicios.add(servicio);
+                    }
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al obtener historial de servicios del cliente: " + e.getMessage());
+            }
+        }
+        return servicios;
+    }
 }

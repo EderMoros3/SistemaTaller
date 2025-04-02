@@ -49,3 +49,20 @@ CREATE TABLE Pieza (
     precio DECIMAL(10,2) NOT NULL,
     cantidad INT NOT NULL
 );
+
+
+CREATE TABLE Taller (
+    idRelacion INT PRIMARY KEY AUTO_INCREMENT,
+    idEmpleado INT,
+    dniCliente VARCHAR(9),
+    matriculaVehiculo VARCHAR(20),
+    idCita INT,
+    idServicio INT,
+    idPieza INT,
+    FOREIGN KEY (idEmpleado) REFERENCES Empleado(idEmpleado),
+    FOREIGN KEY (dniCliente) REFERENCES Cliente(dni),
+    FOREIGN KEY (matriculaVehiculo) REFERENCES Vehiculo(matricula),
+    FOREIGN KEY (idCita) REFERENCES Cita(idCita),
+    FOREIGN KEY (idServicio) REFERENCES Servicio(idServicio),
+    FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza)
+);

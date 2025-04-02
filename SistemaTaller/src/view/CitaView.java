@@ -33,6 +33,27 @@ public class CitaView {
         } while (opcion != 5);
     }
 
+    public void menuCitasCliente() {
+        int opcion;
+        do {
+            System.out.println("Menu citas cliente");
+            System.out.println("1. Agregar cita");
+            System.out.println("2. Modificar cita");
+            System.out.println("3. Eliminar cita");
+            System.out.println("4. Listar citas personales");
+            System.out.println("5. Volver al menu anterior");
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1 -> this.agregarCita();
+                case 2 -> this.modificarCita();
+                case 3 -> this.eliminarCita();
+                case 4 -> this.listarCitasCliente();
+                case 5 -> System.out.println("Volviendo al menu anterior");
+            }
+        } while (opcion != 5);
+    }
+
     public void agregarCita() {
         System.out.println("Agregar Cita");
         System.out.println("Insertar ID de cita: ");
@@ -67,6 +88,12 @@ public class CitaView {
 
     public void listarCitas() {
         citaDAO.listarCitas();
+    }
+
+    public void listarCitasCliente() {
+        System.out.println("Introduzca el dni del cliente: ");
+        String dni = sc.nextLine();
+        citaDAO.listarCitasCliente(dni);
     }
 
     public void modificarCita() {

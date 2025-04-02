@@ -9,6 +9,9 @@ import model.Cliente;
 public class ClienteView {
     private Scanner sc = new Scanner(System.in);
     private ClienteDAO clienteDAO = new ClienteDAO();
+    private ArrayList<Cliente> clientes = new ArrayList<>();
+    private CitaView citas = new CitaView();
+    private ServicioView servicios = new ServicioView();
 
     public void gestionClientes() {
 
@@ -33,29 +36,88 @@ public class ClienteView {
         } while (opcion != 5);
     }
 
-    public void agregarCliente() {
-        System.out.println("Agregar cliente");
-        System.out.println("Introduce el nombre: ");
-        String nombre = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el apellido: ");
-        String apellido = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el telefono: ");
-        int telefono = sc.nextInt();
-        System.out.println("Introduce la direccion: ");
-        String direccion = sc.nextLine();
-        sc.next();
-        System.out.println("Introduce el email: ");
-        String email = sc.nextLine();
-        sc.next();
+    public void iniciarSesionCliente() {
+        System.out.println("Iniciar sesion como cliente");
         System.out.println("Introduce el dni: ");
         String dni = sc.nextLine();
         sc.next();
 
+        for (Cliente cliente : this.clientes) {
+            if (cliente.getDni().equals(dni)) {
+                System.out.println("Bienvenido " + cliente.getNombre() + " " + cliente.getApellido());
+            } else {
+                System.out.println("Cliente no encontrado");
+            }
+        }
+        this.menuCliente();
+    }
+
+    public void menuCliente() {
+        Cliente cliente = this.getClienteDni();
+        System.out.println("Bienvenido " + cliente.getNombre() + " " + cliente.getApellido());
+        int opcion;
+        do {
+            System.out.println("Menu cliente");
+            System.out.println("1. Modificar datos personales");
+            System.out.println("2. Citas");
+            System.out.println("3. Ver historial de servicios");
+            System.out.println("4. Volver al menu principal");
+            System.out.println("Ingrese una opcion: ");
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1 -> this.modificarCliente();
+                case 2 -> citas.menuCitasCliente();
+                case 3 -> servicios.historialServiciosCliente();
+                case 4 -> System.out.println("Volviendo al menu principal");
+            }
+        } while (opcion != 4);
+    }
+
+    
+    public void agregarCliente() {
+        System.out.println("Agregar cliente");
+
+        System.out.println("Introduce el nombre: ");
+        String nombre = sc.nextLine();
+        sc.next();
+
+        System.out.println("Introduce el apellido: ");
+        String apellido = sc.nextLine();
+        sc.next();
+
+        int telefono;
+        do {
+            System.out.println("Introduce el telefono: ");
+            telefono = sc.nextInt();
+            sc.nextLine();
+            if (clienteDAO.existeTelefono(telefono)) {
+                System.out.println("El telefono ya está registrado. Intente con otro.");
+            }
+        } while (clienteDAO.existeTelefono(telefono));
+
+        System.out.println("Introduce la direccion: ");
+        String direccion = sc.nextLine();
+        sc.next();
+
+        System.out.println("Introduce el email: ");
+        String email = sc.nextLine();
+        sc.next();
+
+        String dni;
+        do {
+            System.out.println("Introduce el dni: ");
+            dni = sc.nextLine();
+            sc.next();
+            if (clienteDAO.existeDni(dni)) {
+                System.out.println("El DNI ya está registrado. Intente con otro.");
+            }
+        } while (clienteDAO.existeDni(dni));
+
         Cliente cliente = new Cliente(nombre, apellido, telefono, direccion, email, dni);
         clienteDAO.insertarCliente(cliente);
-        System.out.println("Cliente agregado correctamente");
+        clientes.add(cliente);
+        System.out.println("Cliente creado correctamente");
     }
 
     public void eliminarCliente() {
