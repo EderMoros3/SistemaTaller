@@ -2,8 +2,6 @@ package view;
 
 import java.util.Scanner;
 
-import dao.ClienteDAO;
-import view.ClienteView;
 import dao.VehiculoDAO;
 import model.Cliente;
 import model.Vehiculo;
@@ -11,7 +9,6 @@ import model.Vehiculo;
 public class VehiculoView {
     private Scanner sc = new Scanner(System.in);
     private VehiculoDAO vehiculoDAO = new VehiculoDAO();
-    private ClienteDAO clienteDAO = new ClienteDAO();
     private ClienteView clienteView = new ClienteView();
 
     public void gestionVehiculos() {

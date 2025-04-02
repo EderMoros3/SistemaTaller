@@ -69,7 +69,6 @@ public class PedidoDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
-                    int idPedido = rs.getInt("idPedido");
                     String fechaPedido = rs.getString("fechaPedido");
                     String fechaEntrega = rs.getString("fechaEntrega");
                     Boolean estado = rs.getBoolean("estado");

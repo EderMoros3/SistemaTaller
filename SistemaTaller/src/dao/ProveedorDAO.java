@@ -60,7 +60,6 @@ public class ProveedorDAO {
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int idProveedor = rs.getInt("idProveedor");
                     String nombre = rs.getString("nombre");
                     int telefono = rs.getInt("telefono");
                     String direccion = rs.getString("direccion");

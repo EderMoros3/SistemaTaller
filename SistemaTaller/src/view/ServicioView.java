@@ -46,7 +46,7 @@ public class ServicioView {
         
         System.out.println("Introduce el ID del servicio: ");
         int idServicio = sc.nextInt();
-        Servicio servicio = new Servicio(nombre, idServicio, precio);
+        Servicio servicio = new Servicio(nombre, precio);
         servicioDAO.insertarServicio(servicio);
         System.out.println("Servicio agregado correctamente");
     }

@@ -78,13 +78,11 @@ public class EmpleadoView {
         String apellido = sc.nextLine();
         sc.next();
 
-        System.out.println("Ingrese el ID del empleado");
-        int idEmpleado = sc.nextInt();
 
         System.out.println("Ingrese el telefono del empleado");
         int telefono = sc.nextInt();
 
-        Empleado empleado = new Empleado(nombre, apellido, idEmpleado, telefono);
+        Empleado empleado = new Empleado(nombre, apellido, telefono);
         empleadoDAO.insertarEmpleado(empleado);
         System.out.println("Empleado agregado correctamente");
     }
@@ -113,12 +111,11 @@ public class EmpleadoView {
             System.out.println("-----------------------");
             System.out.println("1. Modificar nombre del empleado");
             System.out.println("2. Modificar apellido del empleado");
-            System.out.println("3. Modificar ID del Empleado");
-            System.out.println("4. Modificar telefono del Empleado");
-            System.out.println("5. Volver a Gestion Empleados");
+            System.out.println("3. Modificar telefono del Empleado");
+            System.out.println("4. Volver a Gestion Empleados");
             opcion = sc.nextInt();
 
-        } while (opcion != 5);
+        } while (opcion != 4);
 
         switch (opcion) {
             case 1 -> {
@@ -135,13 +132,8 @@ public class EmpleadoView {
                 empleadoDAO.modificarApellidoEmpleado(apellido, idEmpleado);
                 System.out.println("Apellido modificado correctamente");
             }
+
             case 3 -> {
-                System.out.println("Introduce el ID nuevo: ");
-                int id = sc.nextInt();
-                empleadoDAO.modificarIdEmpleado(id, idEmpleado);
-                System.out.println("ID modificado correctamente");
-            }
-            case 4 -> {
                 System.out.println("Introduce el telefono: ");
                 int telefono = sc.nextInt();
                 empleadoDAO.modificarTlfEmpleado(telefono, idEmpleado);

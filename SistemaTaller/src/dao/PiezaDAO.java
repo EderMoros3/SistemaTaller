@@ -217,7 +217,6 @@ public class PiezaDAO {
                     String descripcion = rs.getString("descripcion");
                     Double precio = rs.getDouble("precio");
                     int cantidad = rs.getInt("cantidad");
-                    int idPieza = rs.getInt("idPieza");
                     
 
                     Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precio, cantidad);
