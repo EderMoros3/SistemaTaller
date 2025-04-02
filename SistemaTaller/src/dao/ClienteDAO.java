@@ -233,4 +233,23 @@ public class ClienteDAO {
         }
         return existe;
     }
+
+    public boolean existeEmail(String email) {
+        Connection conexion = ConexionDB.conectar();
+        boolean existe = false;
+
+        if (conexion != null) {
+            String query = "SELECT * FROM Cliente WHERE email = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, email);
+                try (ResultSet rs = ps.executeQuery()) {
+                    existe = rs.next();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al verificar existencia de email: " + e.getMessage());
+            }
+        }
+        return existe;
+    }
 }
