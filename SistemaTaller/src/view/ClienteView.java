@@ -204,7 +204,6 @@ public class ClienteView {
                 System.out.println("Email modificado correctamente");
             }
             case 6 -> {
-                String dni;
                 do {
                     System.out.println("Introduce el dni: ");
                     dni = sc.nextLine();
