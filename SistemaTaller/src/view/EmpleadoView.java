@@ -1,8 +1,7 @@
 package view;
 
-import java.util.Scanner;
-
 import dao.EmpleadoDAO;
+import java.util.Scanner;
 import model.Empleado;
 
 public class EmpleadoView {
@@ -54,7 +53,7 @@ public class EmpleadoView {
     }
 
     public void eliminarEmpleado() {
-        Empleado empleado = empleadoDAO.getEmpleadoID();
+        Empleado empleado = this.getEmpleadoID();
         empleadoDAO.eliminarEmpleado(empleado);
         System.out.println("Empleado eliminado correctamente");
     }

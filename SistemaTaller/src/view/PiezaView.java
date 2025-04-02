@@ -1,8 +1,7 @@
 package view;
 
-import java.util.Scanner;
-
 import dao.PiezaDAO;
+import java.util.Scanner;
 import model.Pieza;
 
 public class PiezaView {
@@ -39,6 +38,9 @@ public class PiezaView {
         System.out.println("Introduce la referencia: ");
         String referencia = sc.nextLine();
         sc.next();
+        System.out.println("Introduce el nombre: ");
+        String nombre = sc.nextLine();
+        sc.next();
         System.out.println("Introduce la marca: ");
         String marca = sc.nextLine();
         sc.next();
@@ -55,8 +57,12 @@ public class PiezaView {
             System.out.println("Introduce la cantidad: ");
             cantidad = sc.nextInt();
         } while (cantidad < 0);
+
+        System.out.println("Introduce el id de la pieza: ");
+        int idPieza = sc.nextInt();
+        sc.next();
         
-        Pieza pieza = new Pieza(referencia, marca, descripcion, precioPieza, cantidad);
+        Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precioPieza, cantidad, idPieza);
         piezaDAO.insertarPieza(pieza);
         System.out.println("Pieza agregada correctamente");
     }

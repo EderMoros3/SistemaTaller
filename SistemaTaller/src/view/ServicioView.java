@@ -1,8 +1,8 @@
 package view;
 
+import dao.ServicioDAO;
 import java.util.Scanner;
 import model.Servicio;
-import dao.ServicioDAO;
 
 public class ServicioView {
     private Scanner sc = new Scanner(System.in);
@@ -44,7 +44,9 @@ public class ServicioView {
             precio = sc.nextDouble();
         } while (precio < 0);
         
-        Servicio servicio = new Servicio(nombre, precio);
+        System.out.println("Introduce el ID del servicio: ");
+        int idServicio = sc.nextInt();
+        Servicio servicio = new Servicio(nombre, idServicio, precio);
         servicioDAO.insertarServicio(servicio);
         System.out.println("Servicio agregado correctamente");
     }
@@ -56,7 +58,7 @@ public class ServicioView {
     }
 
     public void eliminarServicio() {
-        Servicio servicio = this.getServicioID();
+        Servicio servicio = this.getServicioId();
         servicioDAO.eliminarServicio(servicio);
         System.out.println("Servicio eliminado correctamente");
     }
