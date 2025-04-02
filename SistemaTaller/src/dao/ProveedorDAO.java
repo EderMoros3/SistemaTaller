@@ -66,7 +66,7 @@ public class ProveedorDAO {
                     String direccion = rs.getString("direccion");
                     String correo = rs.getString("correo");
 
-                    Proveedor proveedor = new Proveedor(idProveedor, nombre, telefono, direccion, correo);
+                    Proveedor proveedor = new Proveedor(nombre, telefono, direccion, correo);
                     proveedores.add(proveedor);
                 }
                 } catch (SQLException e) {
@@ -92,7 +92,7 @@ public class ProveedorDAO {
                         String direccion = rs.getString("direccion");
                         String correo = rs.getString("correo");
 
-                        proveedor = new Proveedor(idProveedor, nombre, telefono, direccion, correo);
+                        proveedor = new Proveedor(nombre, telefono, direccion, correo);
                     }
                 }
             } catch (SQLException e) {

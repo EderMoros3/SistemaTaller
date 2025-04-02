@@ -69,7 +69,7 @@ public class EmpleadoDAO {
                         String apellido = rs.getString("apellido");
                         int telefono = rs.getInt("telefono");
 
-                        empleado = new Empleado(nombre, apellido, telefono, idEmpleado);
+                        empleado = new Empleado(nombre, apellido, telefono);
                     }
                 }
             } catch (SQLException e) {
@@ -95,7 +95,7 @@ public class EmpleadoDAO {
                     int telefono = rs.getInt("telefono");
                     
 
-                    Empleado empleado = new Empleado(nombre, apellido, idEmpleado, telefono);
+                    Empleado empleado = new Empleado(nombre, apellido, , telefono);
                     empleados.add(empleado);
                 }
             } catch (SQLException e) {
