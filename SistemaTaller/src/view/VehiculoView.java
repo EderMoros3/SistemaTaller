@@ -23,14 +23,16 @@ public class VehiculoView {
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
 
-            switch (opcion) {
-                case 1 -> this.agregarVehiculo();
-                case 2 -> this.modificarVehiculo();
-                case 3 -> this.eliminarVehiculo();
-                case 4 -> this.listarVehiculos();
-                case 5 -> System.out.println("Volviendo al menu principal");
-            }
+            
         } while (opcion != 5);
+
+        switch (opcion) {
+            case 1 -> this.agregarVehiculo();
+            case 2 -> this.modificarVehiculo();
+            case 3 -> this.eliminarVehiculo();
+            case 4 -> this.listarVehiculos();
+            case 5 -> System.out.println("Volviendo al menu principal");
+        }
 
     }
 
@@ -45,8 +47,13 @@ public class VehiculoView {
         System.out.println("Introduce el modelo: ");
         String modelo = sc.nextLine();
         sc.next();
-        System.out.println("Introduce el año: ");
-        int year = sc.nextInt();
+
+        int year;
+        do {
+            System.out.println("Introduce el año: ");
+            year = sc.nextInt();
+        } while (year < 1769 || year > 2025); 
+
         Cliente titular = clienteView.getClienteDni();
         Vehiculo vehiculo = new Vehiculo(matricula, marca, modelo, year, titular);
         vehiculoDAO.insertarVehiculo(vehiculo);
@@ -60,9 +67,11 @@ public class VehiculoView {
     }
 
     public Vehiculo getVehiculoMatricula() {
-        System.out.println("Introduce la matricula del vehiculo: ");
-        String matricula = sc.nextLine();
-        sc.next();
+        String matricula;
+        do {
+            System.out.println("Introduce la matricula del vehiculo (7 caracteres): ");
+            matricula = sc.nextLine();
+        } while (matricula.length() != 7);
         Vehiculo vehiculo = vehiculoDAO.getVehiculoMatricula(matricula);
         return vehiculo;
     }
@@ -74,15 +83,19 @@ public class VehiculoView {
     public void modificarVehiculo() {
         Vehiculo vehiculo = this.getVehiculoMatricula();
         String matricula = vehiculo.getMatricula();
-        System.out.println("Modificar vehiculo");
-        System.out.println("1. Modificar matricula");
-        System.out.println("2. Modificar marca");
-        System.out.println("3. Modificar modelo");
-        System.out.println("4. Modificar año");
-        System.out.println("5. Modificar titular");
-        System.out.println("6. Volver al menu anterior");
-        System.out.println("Ingrese una opcion: ");
-        int opcion = sc.nextInt();
+
+        int opcion;
+        do {
+            System.out.println("Modificar vehiculo");
+            System.out.println("1. Modificar matricula");
+            System.out.println("2. Modificar marca");
+            System.out.println("3. Modificar modelo");
+            System.out.println("4. Modificar año");
+            System.out.println("5. Modificar titular");
+            System.out.println("6. Volver al menu anterior");
+            System.out.println("Ingrese una opcion: ");
+            opcion = sc.nextInt();
+        } while (opcion != 6);
 
         switch (opcion) {
             case 1 -> {
@@ -107,8 +120,11 @@ public class VehiculoView {
                 System.out.println("Modelo modificado correctamente");
             }
             case 4 -> {
-                System.out.println("Introduce el año: ");
-                int year = sc.nextInt();
+                int year;
+                do {
+                    System.out.println("Introduce el año: ");
+                    year = sc.nextInt();
+                } while (year < 1769 || year > 2025);
                 vehiculoDAO.modificarYearVehiculo(matricula, year);
                 System.out.println("Año modificado correctamente");
             }

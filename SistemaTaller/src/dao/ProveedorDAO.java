@@ -164,5 +164,22 @@ public class ProveedorDAO {
         }
     }
 
+    public boolean existeTelefono(int telefono) {
+        Connection conexion = ConexionDB.conectar();
+        boolean existe = false;
 
+        if (conexion != null) {
+            String query = "SELECT * FROM Proveedor WHERE telefono = ?";
+
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setInt(1, telefono);
+                try (ResultSet rs = ps.executeQuery()) {
+                    existe = rs.next();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al verificar existencia de telefono: " + e.getMessage());
+            }
+        }
+        return existe;
+    }
 }
