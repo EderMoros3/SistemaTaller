@@ -1,7 +1,6 @@
 package view;
 
 import dao.CitaDAO;
-import dao.ClienteDAO;
 import java.util.Scanner;
 import model.Cita;
 import model.Cliente;

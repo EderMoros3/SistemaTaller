@@ -70,7 +70,7 @@ public class VehiculoDAO {
                 System.err.println("Error al obtener vehiculo: " + e.getMessage());
             }
         }
-        return null;
+        return vehiculo;
     }
 
     public ArrayList<Vehiculo> listarVehiculos() {

@@ -95,7 +95,7 @@ public class EmpleadoDAO {
                     int telefono = rs.getInt("telefono");
                     
 
-                    Empleado empleado = new Empleado(nombre, apellido, , telefono);
+                    Empleado empleado = new Empleado(nombre, apellido, telefono);
                     empleados.add(empleado);
                 }
             } catch (SQLException e) {
