@@ -10,7 +10,7 @@ public class PedidoView {
     private Scanner sc = new Scanner(System.in);
     private PedidoDAO pedidoDAO = new PedidoDAO();
 
-    private void gestionPedidos(); {
+    private void gestionPedidos() {
         int opcion;
         do {
             System.out.println("\nGestion de pedidos");
