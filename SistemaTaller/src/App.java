@@ -20,7 +20,6 @@ public class App {
         PedidoView pedido = new PedidoView();
         
         Scanner sc = new Scanner(System.in);
-        Taller taller = new Taller();
 
         String usuario = "propietario";
         String passwd = "abadpayo";
@@ -53,7 +52,7 @@ public class App {
 
                     if (usuarioEntrada.equals(usuario) && passwdEntrada.equals(passwd)) {
                         System.out.println("Bienvenido administrador");
-                        empleado.menuEmpleados();
+                        empleado.menuEmpleado();
                     } else {
                         System.out.println("Usuario o contraseña incorrectos");
                         

@@ -17,14 +17,6 @@ public class EmpleadoView {
 
     public void menuEmpleado() {
         int opcion;
-        do {
-            System.out.println("Menu Empleado");
-            System.out.println("---------------------");
-        } while ();
-    }
-
-    public void menuGestiones() {
-        int opcion;
 
         do {
             System.out.println("\nBienvenido al taller: ");
@@ -43,8 +35,8 @@ public class EmpleadoView {
             switch (opcion) {
                 case 1 -> cliente.gestionClientes();
                 case 2 -> this.gestionEmpleados();
-                case 3 -> servicio.gestionServicios(); // asignaciones
-                case 4 -> pieza.gestionInvetario(); // provedores
+                case 3 -> servicio.gestionServicios(); 
+                case 4 -> pieza.gestionInvetario(); 
                 case 5 -> pedido.gestionPedidos();
                 case 6 -> vehiculo.gestionVehiculos();
                 case 7 -> cita.gestionCitas();
@@ -66,7 +58,7 @@ public class EmpleadoView {
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1 -> this.agregarEmpleado();
+                case 1 -> this.agregarEmpleados();
                 case 2 -> this.modificarEmpleado();
                 case 3 -> this.eliminarEmpleado();
                 case 4 -> this.listarEmpleados();
@@ -75,7 +67,7 @@ public class EmpleadoView {
         } while (opcion != 5);
     }
 
-    public void agregarEmpleado() {
+    public void agregarEmpleados() {
         System.out.println("Agregar empleado");
         System.out.println("-----------------------");
         System.out.println("Ingrese el nombre del empleado");
