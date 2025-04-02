@@ -83,11 +83,10 @@ public class ServicioDAO {
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
                     String nombre = rs.getString("nombre");
-                    int idServicio = rs.getInt("idServicio");
                     Double precioServicio = rs.getDouble("precioServicio");
                     
 
-                    Servicio servicio = new Servicio(nombre, idServicio, precioServicio);
+                    Servicio servicio = new Servicio(nombre, precioServicio);
                     servicios.add(servicio);
                 }
             } catch (SQLException e) {
@@ -156,11 +155,10 @@ public class ServicioDAO {
                 ps.setString(1, dni);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
-                        int idServicio = rs.getInt("idServicio");
                         String nombre = rs.getString("nombre");
                         Double precioServicio = rs.getDouble("precioServicio");
 
-                        Servicio servicio = new Servicio(nombre, idServicio, precioServicio);
+                        Servicio servicio = new Servicio(nombre, precioServicio);
                         servicios.add(servicio);
                     }
                 }

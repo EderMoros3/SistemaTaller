@@ -69,7 +69,6 @@ public class PedidoDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
-                    int idPedido = rs.getInt("idPedido");
                     String fechaPedido = rs.getString("fechaPedido");
                     String fechaEntrega = rs.getString("fechaEntrega");
                     Boolean estado = rs.getBoolean("estado");
@@ -77,7 +76,7 @@ public class PedidoDAO {
                     Proveedor proveedor = new ProveedorDAO().getProveedorID(rs.getInt("idProveedor"));
                     
 
-                    Pedido pedido = new Pedido(idPedido, fechaPedido, fechaEntrega, estado, precio, proveedor);
+                    Pedido pedido = new Pedido(fechaPedido, fechaEntrega, estado, precio, proveedor);
                     pedidos.add(pedido);
                 }
             } catch (SQLException e) {
@@ -106,7 +105,7 @@ public class PedidoDAO {
                         Proveedor proveedor = new ProveedorDAO().getProveedorID(rs.getInt("idProveedor"));
                         
 
-                        pedido = new Pedido(idPedido, fechaPedido, fechaEntrega, estado, precio, proveedor);
+                        pedido = new Pedido(fechaPedido, fechaEntrega, estado, precio, proveedor);
                     }
                 }
             } catch (SQLException e) {

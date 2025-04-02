@@ -79,7 +79,7 @@ public class PiezaDAO {
                         Double precio = rs.getDouble("precio");
                         int cantidad = rs.getInt("cantidad");
 
-                        pieza = new Pieza(referencia, nombre, marca, descripcion, precio, cantidad, idPieza);
+                        pieza = new Pieza(referencia, nombre, marca, descripcion, precio, cantidad);
                     }
                 }
             } catch (SQLException e) {
@@ -217,10 +217,9 @@ public class PiezaDAO {
                     String descripcion = rs.getString("descripcion");
                     Double precio = rs.getDouble("precio");
                     int cantidad = rs.getInt("cantidad");
-                    int idPieza = rs.getInt("idPieza");
                     
 
-                    Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precio, cantidad, idPieza);
+                    Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precio, cantidad);
                     piezas.add(pieza);
                 }
             } catch (SQLException e) {

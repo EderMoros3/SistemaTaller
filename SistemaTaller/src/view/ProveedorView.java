@@ -37,9 +37,6 @@ public class ProveedorView {
         String nombre = sc.nextLine();
         sc.next();
         
-        System.out.println("Ingrese el ID del proveedor: ");
-        int idProveedor = sc.nextInt();
-        
         System.out.println("Ingrese el telefono del proveedor: ");
         int telefono = sc.nextInt();
         
@@ -51,7 +48,7 @@ public class ProveedorView {
         String correo = sc.nextLine();
         sc.next();
 
-        Proveedor proveedor = new Proveedor(idProveedor, nombre, telefono, direccion, correo);    
+        Proveedor proveedor = new Proveedor(nombre, telefono, direccion, correo);    
         proveedorDAO.insertarProveedor(proveedor);
         System.out.println("Proveedor agregado correctamente");
     }
