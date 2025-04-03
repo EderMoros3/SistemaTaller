@@ -116,7 +116,7 @@ public class CitaDAO {
                 System.err.println("Error al obtener cita: " + e.getMessage());
             }
         }
-        return null;
+        return cita;
     }
 
     public void modificarClienteCita(Cliente cliente, Cita cita) {
