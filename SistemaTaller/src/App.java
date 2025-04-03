@@ -2,13 +2,18 @@ import java.util.Scanner;
 
 import view.ClienteView;
 import view.EmpleadoView;
-
+import view.CitaView;
 
 public class App {
     public static void main(String[] args) {
         ClienteView cliente = new ClienteView();
+        CitaView cita = new CitaView();
+
+        // Establecer las dependencias
+        cliente.setCitaView(cita);
+        cita.setClienteView(cliente);
+
         EmpleadoView empleado = new EmpleadoView();
-        
         Scanner sc = new Scanner(System.in);
 
         String usuario = "propietario";
@@ -30,22 +35,20 @@ public class App {
             System.out.println("3. Salir");
             System.out.println("Selecciona una opcion: ");
             opcion = sc.nextInt();
+            sc.nextLine(); // Limpiar el buffer después de leer un entero
 
             switch (opcion) {
                 case 1 -> {
                     System.out.println("Introduce el usuario de administracion: ");
                     String usuarioEntrada = sc.nextLine();
-                    sc.next();
                     System.out.println("Introduce la contraseña: ");
                     String passwdEntrada = sc.nextLine();
-                    sc.next();
 
                     if (usuarioEntrada.equals(usuario) && passwdEntrada.equals(passwd)) {
                         System.out.println("Bienvenido administrador");
                         empleado.menuEmpleado();
                     } else {
                         System.out.println("Usuario o contraseña incorrectos");
-                        
                     }
                 }
                 case 2 -> {
@@ -55,6 +58,7 @@ public class App {
                     System.out.println("3. Salir");
                     System.out.println("Selecciona una opcion: ");
                     subOpcion = sc.nextInt();
+                    sc.nextLine(); // Limpiar el buffer después de leer un entero
 
                     switch (subOpcion) {
                         case 1 -> cliente.iniciarSesionCliente();
@@ -62,6 +66,8 @@ public class App {
                         case 3 -> System.out.println("Saliendo del sistema...");
                     }
                 }
+                case 3 -> System.out.println("Saliendo del sistema...");
+                default -> System.out.println("Opción no válida, intenta de nuevo.");
             }
         } while (opcion != 3);
     }

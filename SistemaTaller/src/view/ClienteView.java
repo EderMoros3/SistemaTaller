@@ -9,8 +9,15 @@ public class ClienteView {
     private Scanner sc = new Scanner(System.in);
     private ClienteDAO clienteDAO = new ClienteDAO();
     private ArrayList<Cliente> clientes = new ArrayList<>();
-    private CitaView citas = new CitaView();
+    private CitaView citas;
     private ServicioView servicios = new ServicioView();
+
+    public ClienteView() {}
+
+    // Método para establecer la dependencia de CitaView
+    public void setCitaView(CitaView citas) {
+        this.citas = citas;
+    }
 
     public void gestionClientes() {
 
@@ -24,6 +31,7 @@ public class ClienteView {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+            sc.nextLine(); // Limpiar el buffer después de leer un entero
 
         } while (opcion != 5);
 

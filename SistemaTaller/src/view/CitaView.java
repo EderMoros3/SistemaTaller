@@ -1,19 +1,25 @@
 package view;
 
 import dao.CitaDAO;
-import dao.ClienteDAO;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import model.Cita;
 import model.Cliente;
+
 public class CitaView {
     private Scanner sc = new Scanner(System.in);
     private CitaDAO citaDAO = new CitaDAO();
-    private ClienteDAO clienteDAO = new ClienteDAO();
-    private ClienteView clienteView = new ClienteView();
-    
+    private ClienteView clienteView;
+
+    public CitaView() {}
+
+    // Método para establecer la dependencia de ClienteView
+    public void setClienteView(ClienteView clienteView) {
+        this.clienteView = clienteView;
+    }
+
     public void gestionCitas() {
         int opcion;
         do {
