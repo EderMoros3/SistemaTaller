@@ -91,9 +91,7 @@ public class EmpleadoDAO {
                 while (rs.next()) {
                     String nombre = rs.getString("nombre");
                     String apellido = rs.getString("apellido");
-                    int idEmpleado = rs.getInt("idEmpleado");
                     int telefono = rs.getInt("telefono");
-                    
 
                     Empleado empleado = new Empleado(nombre, apellido, telefono);
                     empleados.add(empleado);
