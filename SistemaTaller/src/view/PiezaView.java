@@ -20,14 +20,15 @@ public class PiezaView {
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
 
-            switch (opcion) {
-                case 1 -> this.agregarPieza();
-                case 2 -> this.modificarPieza();
-                case 3 -> this.eliminarPieza();
-                case 4 -> this.listarPiezas();
-                case 5 -> System.out.println("Volviendo al menu principal");
-            }
         } while (opcion != 5);
+        
+        switch (opcion) {
+            case 1 -> this.agregarPieza();
+            case 2 -> this.modificarPieza();
+            case 3 -> this.eliminarPieza();
+            case 4 -> this.listarPiezas();
+            case 5 -> System.out.println("Volviendo al menu principal");
+        }
     }
 
     public void agregarPieza() {
