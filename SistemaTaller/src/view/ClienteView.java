@@ -1,9 +1,8 @@
 package view;
 
+import dao.ClienteDAO;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import dao.ClienteDAO;
 import model.Cliente;
 
 public class ClienteView {
@@ -26,14 +25,15 @@ public class ClienteView {
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
 
-            switch (opcion) {
-                case 1 -> this.agregarCliente();
-                case 2 -> this.modificarCliente();
-                case 3 -> this.eliminarCliente();
-                case 4 -> this.listarClientes();
-                case 5 -> System.out.println("Volviendo al menu principal");
-            }
         } while (opcion != 5);
+
+        switch (opcion) {
+            case 1 -> this.agregarCliente();
+            case 2 -> this.modificarCliente();
+            case 3 -> this.eliminarCliente();
+            case 4 -> this.listarClientes();
+            case 5 -> System.out.println("Volviendo al menu principal");
+        }
     }
 
     public void iniciarSesionCliente() {
@@ -50,6 +50,7 @@ public class ClienteView {
             }
         }
         this.menuCliente();
+        
     }
 
     public void menuCliente() {
@@ -65,27 +66,25 @@ public class ClienteView {
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
 
-            switch (opcion) {
-                case 1 -> this.modificarCliente();
-                case 2 -> citas.menuCitasCliente();
-                case 3 -> servicios.historialServiciosCliente();
-                case 4 -> System.out.println("Volviendo al menu principal");
-            }
         } while (opcion != 4);
+
+        switch (opcion) {
+            case 1 -> this.modificarCliente();
+            case 2 -> citas.menuCitasCliente();
+            case 3 -> servicios.historialServiciosCliente();
+            case 4 -> System.out.println("Volviendo al menu principal");
+        }
     }
 
     
     public void agregarCliente() {
         System.out.println("Agregar cliente");
-
         System.out.println("Introduce el nombre: ");
         String nombre = sc.nextLine();
         sc.next();
-
         System.out.println("Introduce el apellido: ");
         String apellido = sc.nextLine();
         sc.next();
-
         int telefono;
         do {
             System.out.println("Introduce el telefono: ");
@@ -99,10 +98,15 @@ public class ClienteView {
         System.out.println("Introduce la direccion: ");
         String direccion = sc.nextLine();
         sc.next();
-
-        System.out.println("Introduce el email: ");
-        String email = sc.nextLine();
-        sc.next();
+        String email;
+        do { 
+            System.out.println("Introduce el email: ");
+            email = sc.nextLine();
+            sc.next();
+            if (clienteDAO.existeEmail(email)) {
+                System.out.println("El email ya está registrado. Intente con otro.");
+            }
+        } while (clienteDAO.existeEmail(email));
 
         String dni;
         do {
@@ -167,8 +171,15 @@ public class ClienteView {
                 System.out.println("Apellido modificado correctamente");
             }
             case 3 -> {
-                System.out.println("Introduce el telefono: ");
-                int telefono = sc.nextInt();
+                int telefono;
+                do {
+                    System.out.println("Introduce el telefono: ");
+                    telefono = sc.nextInt();
+                    sc.nextLine();
+                if (clienteDAO.existeTelefono(telefono)) {
+                    System.out.println("El telefono ya está registrado. Intente con otro.");
+                }
+                } while (clienteDAO.existeTelefono(telefono));
                 clienteDAO.actualizarTlfCliente(dni, telefono);
                 System.out.println("Telefono modificado correctamente");
             }
@@ -180,16 +191,27 @@ public class ClienteView {
                 System.out.println("Direccion modificada correctamente");
             }
             case 5 -> {
-                System.out.println("Introduce el email: ");
-                String email = sc.nextLine();
-                sc.next();
+                String email;
+                do { 
+                    System.out.println("Introduce el email: ");
+                    email = sc.nextLine();
+                    sc.next();
+                    if (clienteDAO.existeEmail(email)) {
+                        System.out.println("El email ya está registrado. Intente con otro.");
+                    }
+                } while (clienteDAO.existeEmail(email));
                 clienteDAO.actualizarEmailCliente(dni, email);
                 System.out.println("Email modificado correctamente");
             }
             case 6 -> {
-                System.out.println("Introduce el dni: ");
-                dni = sc.nextLine();
-                sc.next();
+                do {
+                    System.out.println("Introduce el dni: ");
+                    dni = sc.nextLine();
+                    sc.next();
+                    if (clienteDAO.existeDni(dni)) {
+                        System.out.println("El DNI ya está registrado. Intente con otro.");
+                    }
+                } while (clienteDAO.existeDni(dni));
                 clienteDAO.actualizarDniCliente(dni);
                 System.out.println("Dni modificado correctamente");
             }
