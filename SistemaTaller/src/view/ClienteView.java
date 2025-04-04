@@ -136,6 +136,11 @@ public class ClienteView {
     public void eliminarCliente() {
         Cliente cliente = this.getClienteDni();
         clienteDAO.eliminarCliente(cliente);
+        if (clienteDAO.existeDni(cliente.getDni())) {
+            System.out.println("Error al eliminar el cliente. Por favor, intente nuevamente.");
+            return;
+            
+        }
         System.out.println("Cliente eliminado correctamente");
     }
 
@@ -163,7 +168,7 @@ public class ClienteView {
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
             sc.nextLine();
-            
+
             switch (opcion) {
                 case 1 -> {
                     System.out.println("Introduce el nombre: ");

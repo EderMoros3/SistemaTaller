@@ -24,7 +24,7 @@ CREATE TABLE Vehiculo (
     modelo VARCHAR(100) NOT NULL,
     ano int NOT NULL,
     dni VARCHAR(9) NOT NULL,
-    FOREIGN KEY (dni) REFERENCES Cliente(dni)
+    FOREIGN KEY (dni) REFERENCES Cliente(dni) ON DELETE CASCADE
 );
 
 CREATE TABLE Cita (
@@ -46,9 +46,9 @@ CREATE TABLE Pieza (
     nombre VARCHAR(100) NOT NULL,
     referencia VARCHAR(100) NOT NULL,
     marca VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(200) NOT NULL,
     precio DECIMAL(10,2) NOT NULL,
-    cantidad INT NOT NULL
+    cantidad INT NOT NULL,
+    descripcion VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE Proveedor (
@@ -67,8 +67,8 @@ CREATE TABLE Pedido (
     precioTotal DECIMAL(10,2) NOT NULL,
     idProveedor INT NOT NULL,
     idPieza INT NOT NULL,
-    FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza),
-    FOREIGN KEY (idProveedor) REFERENCES Proveedor(idProveedor)
+    FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza) ON DELETE CASCADE,
+    FOREIGN KEY (idProveedor) REFERENCES Proveedor(idProveedor) ON DELETE CASCADE
 );
 
 CREATE TABLE Taller (
@@ -79,10 +79,10 @@ CREATE TABLE Taller (
     idCita INT,
     idServicio INT,
     idPieza INT,
-    FOREIGN KEY (idEmpleado) REFERENCES Empleado(idEmpleado),
-    FOREIGN KEY (dniCliente) REFERENCES Cliente(dni),
-    FOREIGN KEY (matriculaVehiculo) REFERENCES Vehiculo(matricula),
-    FOREIGN KEY (idCita) REFERENCES Cita(idCita),
-    FOREIGN KEY (idServicio) REFERENCES Servicio(idServicio),
-    FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza)
+    FOREIGN KEY (idEmpleado) REFERENCES Empleado(idEmpleado) ON DELETE CASCADE,
+    FOREIGN KEY (dniCliente) REFERENCES Cliente(dni) ON DELETE CASCADE,
+    FOREIGN KEY (matriculaVehiculo) REFERENCES Vehiculo(matricula) ON DELETE CASCADE,
+    FOREIGN KEY (idCita) REFERENCES Cita(idCita) ON DELETE CASCADE,
+    FOREIGN KEY (idServicio) REFERENCES Servicio(idServicio) ON DELETE CASCADE,
+    FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza) ON DELETE CASCADE
 );
