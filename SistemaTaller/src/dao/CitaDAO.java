@@ -8,9 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import model.Cita;
 import model.Cliente;
+import view.ClienteView;
 
 public class CitaDAO {
     ClienteDAO clienteDAO = new ClienteDAO();
+    ClienteView clienteView = new ClienteView();
     
     public void insertarCita(Cita cita) {
         String fecha = cita.getFecha();
@@ -57,18 +59,29 @@ public class CitaDAO {
 
         if (conexion != null) {
             String query = "SELECT * FROM Cita";
+
             try (Statement stmt = conexion.createStatement();
-                ResultSet rs = stmt.executeQuery(query)) {
-                String fecha = rs.getString("fecha");
-                String hora = rs.getString("hora");
-                String descripcion = rs.getString("descripcion");
-                Cliente cliente = clienteDAO.getClienteDni(rs.getString("dni"));
-                citas.add(new Cita(cliente, fecha, hora, descripcion ));
+            ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    int idCita = rs.getInt("idCita"); // Recuperar el idCita de la base de datos
+                    String nombreCompleto = rs.getString("cliente"); // Usar el campo 'cliente' para obtener el nombre completo
+                    String fecha = rs.getString("fecha");
+                    String hora = rs.getString("hora");
+                    String descripcion = rs.getString("descripcion");
+
+                    // Crear un cliente con el nombre completo (sin otros datos)
+                    Cliente cliente = new Cliente(nombreCompleto, "", 0, "", "", "");
+
+                    // Crear la cita con el idCita y agregarla a la lista
+                    Cita cita = new Cita(cliente, fecha, hora, descripcion);
+                    cita.setIdCita(idCita); // Asignar el idCita al objeto Cita
+                    citas.add(cita);
+                }
             } catch (SQLException e) {
                 System.err.println("Error al listar citas: " + e.getMessage());
             }
         }
-        return null;
+        return citas;
     }
 
     public ArrayList<Cita> listarCitasCliente(String dni) {
