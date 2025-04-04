@@ -22,16 +22,15 @@ public class ServicioView {
             opcion = sc.nextInt();
 
             
-        }
-        while (opcion != 5);
+            switch (opcion) {
+                case 1 -> this.agregarServicio();
+                case 2 -> this.modificarServicio();
+                case 3 -> this.eliminarServicio();
+                case 4 -> this.listarServicios();
+                case 5 -> System.out.println("Volviendo al menú principal");
+            }
+        } while (opcion != 5);
 
-        switch (opcion) {
-            case 1 -> this.agregarServicio();
-            case 2 -> this.modificarServicio();
-            case 3 -> this.eliminarServicio();
-            case 4 -> this.listarServicios();
-            case 5 -> System.out.println("Volviendo al menú principal");
-        }
     }
 
     public void agregarServicio() {
@@ -81,37 +80,38 @@ public class ServicioView {
             System.out.println("4. Volver al menú principal");
             System.out.println("Ingrese una opción: ");
             opcion = sc.nextInt();
-        } while (opcion != 4);
 
-        switch (opcion) {
-            case 1 -> {
-                System.out.println("Introduce el nuevo nombre: ");
-                String nombre = sc.nextLine();
-                sc.next();
-                servicioDAO.modificarNombreServicio(nombre, idServicio);
-                System.out.println("Nombre modificado correctamente");
+            switch (opcion) {
+                case 1 -> {
+                    System.out.println("Introduce el nuevo nombre: ");
+                    String nombre = sc.nextLine();
+                    sc.next();
+                    servicioDAO.modificarNombreServicio(nombre, idServicio);
+                    System.out.println("Nombre modificado correctamente");
+                }
+                case 2 -> {
+                    Double precio;
+                    do {
+                        System.out.println("Introduce el nuevo precio: ");
+                        precio = sc.nextDouble();
+                    } while (precio < 0);
+                    servicioDAO.modificarPrecioServicio(precio, idServicio);
+                    System.out.println("Precio modificado correctamente");
+                }
+                case 3 -> {
+                    int id;
+                    do {
+                        System.out.println("Introduce el nuevo id: ");
+                        id = sc.nextInt();
+                    } while (id < 0);
+                    servicioDAO.modificarIdServicio(id, idServicio);
+                    System.out.println("ID modificado correctamente");
+                }
+                case 4 -> System.out.println("Volviendo al menú anterior");
             }
-            case 2 -> {
-                Double precio;
-                do {
-                    System.out.println("Introduce el nuevo precio: ");
-                    precio = sc.nextDouble();
-                } while (precio < 0);
-                servicioDAO.modificarPrecioServicio(precio, idServicio);
-                System.out.println("Precio modificado correctamente");
-            }
-            case 3 -> {
-                int id;
-                do {
-                    System.out.println("Introduce el nuevo id: ");
-                    id = sc.nextInt();
-                } while (id < 0);
-                servicioDAO.modificarIdServicio(id, idServicio);
-                System.out.println("ID modificado correctamente");
-            }
-            case 4 -> System.out.println("Volviendo al menú anterior");
-        }
-    }
+        } while (opcion != 4);
+}
+
 
     public void historialServiciosCliente() {
         System.out.println("Introduce el dni del cliente: ");

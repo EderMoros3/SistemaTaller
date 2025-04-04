@@ -58,16 +58,16 @@ public class CitaView {
             System.out.println("5. Volver al menu anterior");
             opcion = sc.nextInt();
             
+            switch (opcion) {
+                case 1 -> this.agregarCita();
+                case 2 -> this.modificarCita();
+                case 3 -> this.eliminarCita();
+                case 4 -> this.listarCitasCliente();
+                case 5 -> System.out.println("Volviendo al menu anterior");
+                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            }
         } while (opcion != 5);
 
-        switch (opcion) {
-            case 1 -> this.agregarCita();
-            case 2 -> this.modificarCita();
-            case 3 -> this.eliminarCita();
-            case 4 -> this.listarCitasCliente();
-            case 5 -> System.out.println("Volviendo al menu anterior");
-            default -> System.out.println("Opción no válida. Intente nuevamente.");
-        }
     }
 
     public void agregarCita() {

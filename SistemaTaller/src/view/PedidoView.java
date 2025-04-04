@@ -78,43 +78,44 @@ public class PedidoView {
             System.out.println("6. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
-        } while (opcion != 6);
 
-        switch (opcion) {
-            case 1 -> {
-                System.out.println("Introduce la nueva fecha de pedido (DD-MM-YYYY): ");
-                String fecha = sc.nextLine();
-                sc.next();
-                pedidoDAO.modificarFechaPedido(idPedido, fecha);
-                System.out.println("Fecha modificado correctamente");
+            switch (opcion) {
+                case 1 -> {
+                    System.out.println("Introduce la nueva fecha de pedido (DD-MM-YYYY): ");
+                    String fecha = sc.nextLine();
+                    sc.next();
+                    pedidoDAO.modificarFechaPedido(idPedido, fecha);
+                    System.out.println("Fecha modificado correctamente");
+                }
+                case 2 -> {
+                    System.out.println("Introduce la nueva fecha de entrega (DD-MM-YYYY): ");
+                    String fecha = sc.nextLine();
+                    sc.next();
+                    pedidoDAO.modifcarFechaEntregaPedido(idPedido, fecha);
+                    System.out.println("Fecha de entrega modificado correctamente");
+                }
+                case 3 -> {
+                    System.out.println("Introduce el nuevo estado (true/false): ");
+                    Boolean estado = sc.nextBoolean();
+                    pedidoDAO.modificarEstadoPedido(idPedido, estado);
+                    System.out.println("Estado modificado correctamente");
+                }
+                case 4 -> {
+                    System.out.println("Introduce el nuevo precio: ");
+                    Double precio = sc.nextDouble();
+                    pedidoDAO.modificarPrecioPedido(idPedido, precio);
+                    System.out.println("Precio modificado correctamente");
+                }
+                case 5 -> {
+                    Proveedor proveedor = proveedorView.getProveedorId();
+                    pedidoDAO.modificarProveedorPedido(idPedido, proveedor.getIdProveedor());
+                    System.out.println("Proveedor modificado correctamente");
+                }
+                case 6 -> System.out.println("Volviendo al menu principal");
             }
-            case 2 -> {
-                System.out.println("Introduce la nueva fecha de entrega (DD-MM-YYYY): ");
-                String fecha = sc.nextLine();
-                sc.next();
-                pedidoDAO.modifcarFechaEntregaPedido(idPedido, fecha);
-                System.out.println("Fecha de entrega modificado correctamente");
-            }
-            case 3 -> {
-                System.out.println("Introduce el nuevo estado (true/false): ");
-                Boolean estado = sc.nextBoolean();
-                pedidoDAO.modificarEstadoPedido(idPedido, estado);
-                System.out.println("Estado modificado correctamente");
-            }
-            case 4 -> {
-                System.out.println("Introduce el nuevo precio: ");
-                Double precio = sc.nextDouble();
-                pedidoDAO.modificarPrecioPedido(idPedido, precio);
-                System.out.println("Precio modificado correctamente");
-            }
-            case 5 -> {
-                Proveedor proveedor = proveedorView.getProveedorId();
-                pedidoDAO.modificarProveedorPedido(idPedido, proveedor.getIdProveedor());
-                System.out.println("Proveedor modificado correctamente");
-            }
-            case 6 -> System.out.println("Volviendo al menu principal");
-        }
+        } while (opcion != 6);
     }
+
 
     public void listarPedidos() {
         pedidoDAO.listarPedidos();

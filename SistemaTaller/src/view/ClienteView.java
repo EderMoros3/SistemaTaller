@@ -162,70 +162,70 @@ public class ClienteView {
             System.out.println("7. Volver al menu anterior");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+            switch (opcion) {
+                case 1 -> {
+                    System.out.println("Introduce el nombre: ");
+                    String nombre = sc.nextLine();
+                    sc.next();
+                    clienteDAO.actualizarNombreCliente(dni, nombre);
+                    System.out.println("Nombre modificado correctamente");
+                }
+                case 2 -> {
+                    System.out.println("Introduce el apellido: ");
+                    String apellido = sc.nextLine();
+                    sc.next();
+                    clienteDAO.actualizarApellidoCliente(dni, apellido);
+                    System.out.println("Apellido modificado correctamente");
+                }
+                case 3 -> {
+                    int telefono;
+                    do {
+                        System.out.println("Introduce el telefono: ");
+                        telefono = sc.nextInt();
+                        sc.nextLine();
+                    if (clienteDAO.existeTelefono(telefono)) {
+                        System.out.println("El telefono ya está registrado. Intente con otro.");
+                    }
+                    } while (clienteDAO.existeTelefono(telefono));
+                    clienteDAO.actualizarTlfCliente(dni, telefono);
+                    System.out.println("Telefono modificado correctamente");
+                }
+                case 4 -> {
+                    System.out.println("Introduce la direccion: ");
+                    String direccion = sc.nextLine();
+                    sc.next();
+                    clienteDAO.actualizarDireccionCliente(dni, direccion);
+                    System.out.println("Direccion modificada correctamente");
+                }
+                case 5 -> {
+                    String email;
+                    do { 
+                        System.out.println("Introduce el email: ");
+                        email = sc.nextLine();
+                        sc.next();
+                        if (clienteDAO.existeEmail(email)) {
+                            System.out.println("El email ya está registrado. Intente con otro.");
+                        }
+                    } while (clienteDAO.existeEmail(email));
+                    clienteDAO.actualizarEmailCliente(dni, email);
+                    System.out.println("Email modificado correctamente");
+                }
+                case 6 -> {
+                    do {
+                        System.out.println("Introduce el dni: ");
+                        dni = sc.nextLine();
+                        sc.next();
+                        if (clienteDAO.existeDni(dni)) {
+                            System.out.println("El DNI ya está registrado. Intente con otro.");
+                        }
+                    } while (clienteDAO.existeDni(dni));
+                    clienteDAO.actualizarDniCliente(dni);
+                    System.out.println("Dni modificado correctamente");
+                }
+                case 7 -> System.out.println("Volviendo al menu anterior");
+            }
         } while (opcion != 7);
 
-        switch (opcion) {
-            case 1 -> {
-                System.out.println("Introduce el nombre: ");
-                String nombre = sc.nextLine();
-                sc.next();
-                clienteDAO.actualizarNombreCliente(dni, nombre);
-                System.out.println("Nombre modificado correctamente");
-            }
-            case 2 -> {
-                System.out.println("Introduce el apellido: ");
-                String apellido = sc.nextLine();
-                sc.next();
-                clienteDAO.actualizarApellidoCliente(dni, apellido);
-                System.out.println("Apellido modificado correctamente");
-            }
-            case 3 -> {
-                int telefono;
-                do {
-                    System.out.println("Introduce el telefono: ");
-                    telefono = sc.nextInt();
-                    sc.nextLine();
-                if (clienteDAO.existeTelefono(telefono)) {
-                    System.out.println("El telefono ya está registrado. Intente con otro.");
-                }
-                } while (clienteDAO.existeTelefono(telefono));
-                clienteDAO.actualizarTlfCliente(dni, telefono);
-                System.out.println("Telefono modificado correctamente");
-            }
-            case 4 -> {
-                System.out.println("Introduce la direccion: ");
-                String direccion = sc.nextLine();
-                sc.next();
-                clienteDAO.actualizarDireccionCliente(dni, direccion);
-                System.out.println("Direccion modificada correctamente");
-            }
-            case 5 -> {
-                String email;
-                do { 
-                    System.out.println("Introduce el email: ");
-                    email = sc.nextLine();
-                    sc.next();
-                    if (clienteDAO.existeEmail(email)) {
-                        System.out.println("El email ya está registrado. Intente con otro.");
-                    }
-                } while (clienteDAO.existeEmail(email));
-                clienteDAO.actualizarEmailCliente(dni, email);
-                System.out.println("Email modificado correctamente");
-            }
-            case 6 -> {
-                do {
-                    System.out.println("Introduce el dni: ");
-                    dni = sc.nextLine();
-                    sc.next();
-                    if (clienteDAO.existeDni(dni)) {
-                        System.out.println("El DNI ya está registrado. Intente con otro.");
-                    }
-                } while (clienteDAO.existeDni(dni));
-                clienteDAO.actualizarDniCliente(dni);
-                System.out.println("Dni modificado correctamente");
-            }
-            case 7 -> System.out.println("Volviendo al menu anterior");
-        }
 
     }
 
