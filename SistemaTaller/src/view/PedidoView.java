@@ -22,7 +22,8 @@ public class PedidoView {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
-
+            sc.nextLine();
+            
             switch (opcion) {
                 case 1 -> this.agregarPedido();
                 case 2 -> this.modificarPedido();
@@ -78,6 +79,7 @@ public class PedidoView {
             System.out.println("6. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1 -> {

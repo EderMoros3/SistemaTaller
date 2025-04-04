@@ -162,6 +162,8 @@ public class ClienteView {
             System.out.println("7. Volver al menu anterior");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+            sc.nextLine();
+            
             switch (opcion) {
                 case 1 -> {
                     System.out.println("Introduce el nombre: ");

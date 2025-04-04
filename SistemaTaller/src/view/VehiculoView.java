@@ -22,6 +22,7 @@ public class VehiculoView {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1 -> this.agregarVehiculo();

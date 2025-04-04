@@ -32,6 +32,7 @@ public class CitaView {
             System.out.println("4. Listar citas");
             System.out.println("5. Volver al menu principal");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1 -> this.agregarCita();
@@ -57,6 +58,7 @@ public class CitaView {
             System.out.println("4. Listar citas personales");
             System.out.println("5. Volver al menu anterior");
             opcion = sc.nextInt();
+            sc.nextLine();
             
             switch (opcion) {
                 case 1 -> this.agregarCita();
@@ -177,7 +179,7 @@ public class CitaView {
             System.out.println("5. Volver al menu anterior");
             System.out.print("Ingrese una opción: ");
             opcion = sc.nextInt();
-            sc.nextLine(); // Limpiar buffer
+            sc.nextLine(); 
     
             switch (opcion) {
                 case 1 -> {

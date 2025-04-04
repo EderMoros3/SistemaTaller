@@ -19,7 +19,7 @@ public class ProveedorView {
             System.out.println("4. Listar Proveedores");
             System.out.println("5. Volver al Menu Principal");
             opcion = sc.nextInt();
-
+            sc.nextLine();
             
             switch (opcion) {
                 case 1 -> this.agregarProveedor();
@@ -83,7 +83,7 @@ public class ProveedorView {
             System.out.println("4. Modificar correo");
             System.out.println("5. Volver al Menu Principal");
             opcion = sc.nextInt();
-
+            sc.nextLine();
             
             switch (opcion) {
                 case 1 -> {

@@ -19,7 +19,8 @@ public class PiezaView {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
-
+            sc.nextLine();
+            
             switch (opcion) {
                 case 1 -> this.agregarPieza();
                 case 2 -> this.modificarPieza();
@@ -94,6 +95,8 @@ public class PiezaView {
             System.out.println("6. Volver al menu anterior");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+            sc.nextLine();
+
             switch (opcion) {
                 case 1 -> {
                     System.out.println("Introduce la referencia: ");

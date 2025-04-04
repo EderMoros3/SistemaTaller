@@ -20,6 +20,7 @@ public class ServicioView {
             System.out.println("5. Volver al menú principal");
             System.out.println("Ingrese una opción: ");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             
             switch (opcion) {
@@ -80,6 +81,7 @@ public class ServicioView {
             System.out.println("4. Volver al menú principal");
             System.out.println("Ingrese una opción: ");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1 -> {

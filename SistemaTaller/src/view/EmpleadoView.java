@@ -31,7 +31,8 @@ public class EmpleadoView {
             System.out.println("8. Salir");
             System.out.println("Selecciona una opcion: ");
             opcion = sc.nextInt();
-
+            sc.nextLine();
+            
             switch (opcion) {
                 case 1 -> cliente.gestionClientes();
                 case 2 -> this.gestionEmpleados();
@@ -56,6 +57,7 @@ public class EmpleadoView {
             System.out.println("4. Listar Empleados");
             System.out.println("5. Volver al Menu Principal");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1 -> this.agregarEmpleados();
@@ -114,6 +116,7 @@ public class EmpleadoView {
             System.out.println("3. Modificar telefono del Empleado");
             System.out.println("4. Volver a Gestion Empleados");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1 -> {
