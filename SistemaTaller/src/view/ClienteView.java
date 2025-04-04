@@ -147,7 +147,7 @@ public class ClienteView {
     public Cliente getClienteDni() {
         System.out.println("Introduce el dni del cliente: ");
         String dni = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         Cliente cliente = clienteDAO.getClienteDni(dni);
         return cliente;
     }
