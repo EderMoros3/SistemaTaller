@@ -1,11 +1,12 @@
+import dao.ConexionDB;
+import java.sql.Connection;
 import java.util.Scanner;
-
+import view.CitaView;
 import view.ClienteView;
 import view.EmpleadoView;
-import view.CitaView;
-
 public class App {
     public static void main(String[] args) {
+        Connection conexion = ConexionDB.conectar();
         ClienteView cliente = new ClienteView();
         CitaView cita = new CitaView();
 
@@ -16,12 +17,16 @@ public class App {
         EmpleadoView empleado = new EmpleadoView();
         Scanner sc = new Scanner(System.in);
 
-        String usuario = "propietario";
+        String usuario = "admin";
         String passwd = "abadpayo";
 
         int opcion;
         int subOpcion;
-
+        if (conexion != null) {
+            System.out.println("Conexión exitosa a la base de datos.");
+        } else {
+            System.out.println("Error al conectar a la base de datos.");
+        }
         // TODO: Login para verificar admin o usuario normal
         // TODO: Actualizar tablas de la base de datos
         // TODO: Fix de cosas

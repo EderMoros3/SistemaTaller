@@ -20,7 +20,6 @@ public class ClienteView {
     }
 
     public void gestionClientes() {
-
         int opcion;
         do {
             System.out.println("\nGestion de clientes");
@@ -31,17 +30,17 @@ public class ClienteView {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
-            sc.nextLine(); // Limpiar el buffer después de leer un entero
-
+            sc.nextLine();
+    
+            switch (opcion) {
+                case 1 -> this.agregarCliente();
+                case 2 -> this.modificarCliente();
+                case 3 -> this.eliminarCliente();
+                case 4 -> this.listarClientes();
+                case 5 -> System.out.println("Volviendo al menu principal");
+                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            }
         } while (opcion != 5);
-
-        switch (opcion) {
-            case 1 -> this.agregarCliente();
-            case 2 -> this.modificarCliente();
-            case 3 -> this.eliminarCliente();
-            case 4 -> this.listarClientes();
-            case 5 -> System.out.println("Volviendo al menu principal");
-        }
     }
 
     public void iniciarSesionCliente() {
@@ -73,15 +72,17 @@ public class ClienteView {
             System.out.println("4. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
-
+            sc.nextLine();
+    
+            
+            switch (opcion) {
+                case 1 -> this.modificarCliente();
+                case 2 -> citas.menuCitasCliente();
+                case 3 -> servicios.historialServiciosCliente();
+                case 4 -> System.out.println("Volviendo al menu principal");
+                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            }
         } while (opcion != 4);
-
-        switch (opcion) {
-            case 1 -> this.modificarCliente();
-            case 2 -> citas.menuCitasCliente();
-            case 3 -> servicios.historialServiciosCliente();
-            case 4 -> System.out.println("Volviendo al menu principal");
-        }
     }
 
     

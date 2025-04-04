@@ -4,6 +4,7 @@ import dao.CitaDAO;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Cita;
 import model.Cliente;
@@ -32,16 +33,18 @@ public class CitaView {
             System.out.println("5. Volver al menu principal");
             opcion = sc.nextInt();
 
+            switch (opcion) {
+                case 1 -> this.agregarCita();
+                case 2 -> this.modificarCita();
+                case 3 -> this.eliminarCita();
+                case 4 -> this.listarCitas();
+                case 5 -> System.out.println("Volviendo al menu principal");
+                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            }
+
         } while (opcion != 5);
         
-        switch (opcion) {
-            case 1 -> this.agregarCita();
-            case 2 -> this.modificarCita();
-            case 3 -> this.eliminarCita();
-            case 4 -> this.listarCitas();
-            case 5 -> System.out.println("Volviendo al menu principal");
-            default -> System.out.println("Opción no válida. Intente nuevamente.");
-        }
+        
     }
 
     public void menuCitasCliente() {
@@ -146,7 +149,11 @@ public class CitaView {
     }
 
     public void listarCitas() {
-        citaDAO.listarCitas();
+        ArrayList<Cita> citas = citaDAO.listarCitas();
+        System.out.println("Lista de citas: ");
+        for (Cita cita : citas) {
+            System.out.println(cita.toString());
+        }
     }
 
     public void listarCitasCliente() {

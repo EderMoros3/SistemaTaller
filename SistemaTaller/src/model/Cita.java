@@ -33,7 +33,7 @@ public class Cita {
     public String toString() {
         return "Cita{" +
                 "idCita=" + idCita +
-                ", cliente=" + cliente +
+                ", cliente=" + cliente.getNombre() + " " + cliente.getApellido() + // Mostrar solo nombre y apellido
                 ", fecha='" + fecha + '\'' +
                 ", hora='" + hora + '\'' +
                 ", descripcion='" + descripcion + '\'' +
