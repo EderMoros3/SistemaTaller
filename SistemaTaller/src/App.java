@@ -23,7 +23,7 @@ public class App {
         int opcion;
         int subOpcion;
         if (conexion != null) {
-            System.out.println("Conexión exitosa a la base de datos.");
+            System.out.println("\nConexión exitosa a la base de datos.");
         } else {
             System.out.println("Error al conectar a la base de datos.");
         }

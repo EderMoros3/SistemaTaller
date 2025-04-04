@@ -1,6 +1,7 @@
 package view;
 
 import dao.PiezaDAO;
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Pieza;
 
@@ -32,7 +33,7 @@ public class PiezaView {
     }
 
     public void agregarPieza() {
-        Double precioPieza;
+        Double precio;
         int cantidad;
 
         System.out.println("Agregar pieza");
@@ -51,15 +52,15 @@ public class PiezaView {
 
         do {
             System.out.println("Introduce el precio: ");
-            precioPieza = sc.nextDouble();
-        } while (precioPieza < 0);
+            precio = sc.nextDouble();
+        } while (precio < 0);
 
         do {
             System.out.println("Introduce la cantidad: ");
             cantidad = sc.nextInt();
         } while (cantidad < 0);
         
-        Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precioPieza, cantidad);
+        Pieza pieza = new Pieza(nombre, referencia, marca, cantidad, precio, descripcion);
         piezaDAO.insertarPieza(pieza);
         System.out.println("Pieza agregada correctamente");
     }
@@ -77,7 +78,11 @@ public class PiezaView {
     }
 
     public void listarPiezas() {
-        piezaDAO.listarPiezas();
+        ArrayList<Pieza> piezas = piezaDAO.listarPiezas();
+        System.out.println("Lista de piezas: ");
+        for (Pieza pieza : piezas) {
+            System.out.println(pieza.toString());
+        }
     }
 
     public void modificarPieza() {

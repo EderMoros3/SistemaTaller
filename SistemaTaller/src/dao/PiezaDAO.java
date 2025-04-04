@@ -79,7 +79,9 @@ public class PiezaDAO {
                         Double precio = rs.getDouble("precio");
                         int cantidad = rs.getInt("cantidad");
 
-                        pieza = new Pieza(referencia, nombre, marca, descripcion, precio, cantidad);
+                        pieza = new Pieza(nombre, referencia, marca, cantidad, precio, descripcion);
+                        pieza.setIdPieza(idPieza);
+                        
                     }
                 }
             } catch (SQLException e) {
@@ -176,7 +178,7 @@ public class PiezaDAO {
             String query = "UPDATE Pieza SET cantidad = ? WHERE idPieza = ?";
 
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
-                ps.setDouble(1, cantidad);
+                ps.setInt(1, cantidad);
                 ps.setInt(2, idPieza);
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -211,23 +213,22 @@ public class PiezaDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
-                    String referencia = rs.getString("referencia");
+                    int idPieza = rs.getInt("idPieza");
                     String nombre = rs.getString("nombre");
+                    String referencia = rs.getString("referencia");
                     String marca = rs.getString("marca");
-                    String descripcion = rs.getString("descripcion");
-                    Double precio = rs.getDouble("precio");
                     int cantidad = rs.getInt("cantidad");
-                    
-
-                    Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precio, cantidad);
+                    Double precio = rs.getDouble("precio");
+                    String descripcion = rs.getString("descripcion");
+                    Pieza pieza = new Pieza(nombre, referencia, marca, cantidad, precio, descripcion);
+                    pieza.setIdPieza(idPieza);
                     piezas.add(pieza);
                 }
             } catch (SQLException e) {
                 System.err.println("Error al listar piezas: " + e.getMessage());
             }
-        return piezas;
         }
-        return null;
+        return piezas;
     }
 
 

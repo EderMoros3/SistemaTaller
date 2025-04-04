@@ -11,18 +11,16 @@ import model.Servicio;
 public class ServicioDAO {
     public void insertarServicio(Servicio servicio) {
         String nombre = servicio.getNombre();
-        int idServicio = servicio.getIdServicio();
-        Double precioServicio = servicio.getPrecioServicio();
+        Double precio = servicio.getPrecio(); // Cambiado de "precioServicio" a "precio"
 
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
-            String query = "INSERT INTO Servicio (nombre, idServicio, precioServicio) VALUES (?, ?, ?)";
+            String query = "INSERT INTO Servicio (nombre, precio) VALUES (?, ?)"; // Cambiado de "precioServicio" a "precio"
 
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setString(1, nombre);
-                ps.setInt(2, idServicio);
-                ps.setDouble(3, precioServicio);
+                ps.setDouble(2, precio);
                 ps.executeUpdate();
             } catch (SQLException e) {
                 System.err.println("Error al insertar servicio: " + e.getMessage());
@@ -53,16 +51,16 @@ public class ServicioDAO {
         Servicio servicio = null;
 
         if (conexion != null) {
-            String query = "SELECT * FROM Cliente WHERE dni = ?";
+            String query = "SELECT * FROM Servicio WHERE idServicio = ?";
 
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setInt(1, idServicio);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         String nombre = rs.getString("nombre");
-                        Double precioServicio = rs.getDouble("precioServicio");
+                        Double precio = rs.getDouble("precio"); // Cambiado de "precioServicio" a "precio"
 
-                        servicio = new Servicio(nombre,precioServicio);
+                        servicio = new Servicio(nombre, precio);
                     }
                 }
             } catch (SQLException e) {
@@ -82,19 +80,19 @@ public class ServicioDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
+                    int idServicio = rs.getInt("idServicio");
                     String nombre = rs.getString("nombre");
-                    Double precioServicio = rs.getDouble("precioServicio");
+                    Double precio = rs.getDouble("precio"); // Cambiado de "precioServicio" a "precio"
                     
-
-                    Servicio servicio = new Servicio(nombre, precioServicio);
+                    Servicio servicio = new Servicio(nombre, precio);
+                    servicio.setIdServicio(idServicio);
                     servicios.add(servicio);
                 }
             } catch (SQLException e) {
-                System.err.println("Error al listar clientes: " + e.getMessage());
+                System.err.println("Error al listar servicios: " + e.getMessage());
             }
-        return servicios;
         }
-        return null;
+        return servicios;
     }
 
     public void modificarNombreServicio(String nombre, int idServicio) {
@@ -116,8 +114,8 @@ public class ServicioDAO {
     public void modificarPrecioServicio(Double precio, int idServicio) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "UPDATE Servicio SET precio = ? WHERE idServicio = ?";
-            try(PreparedStatement stmt = conexion.prepareStatement(query)){
+            String query = "UPDATE Servicio SET precio = ? WHERE idServicio = ?"; // Cambiado de "precioServicio" a "precio"
+            try (PreparedStatement stmt = conexion.prepareStatement(query)) {
                 stmt.setDouble(1, precio);
                 stmt.setInt(2, idServicio);
                 stmt.executeUpdate();
@@ -130,7 +128,7 @@ public class ServicioDAO {
     public void modificarIdServicio(int id, int idServicio) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "UPDATE Servicio SET id = ? WHERE idServicio = ?";
+            String query = "UPDATE Servicio SET idServicio = ? WHERE idServicio = ?";
             try(PreparedStatement stmt = conexion.prepareStatement(query)){
                 stmt.setInt(1, id);
                 stmt.setInt(2, idServicio);
@@ -144,21 +142,21 @@ public class ServicioDAO {
     public ArrayList<Servicio> historialServiciosCliente(String dni) {
         Connection conexion = ConexionDB.conectar();
         ArrayList<Servicio> servicios = new ArrayList<>();
-        
+
         if (conexion != null) {
-            String query = "SELECT s.idServicio, s.nombre, s.precioServicio " +
-                    "FROM Servicio s " +
-                    "JOIN Taller t ON s.idServicio = t.idServicio " +
-                    "JOIN Cliente c ON t.dni = c.dni " + 
-                    "WHERE c.dni = ?";
+            String query = "SELECT s.idServicio, s.nombre, s.precio " + // Cambiado de "precioServicio" a "precio"
+                           "FROM Servicio s " +
+                           "JOIN Taller t ON s.idServicio = t.idServicio " +
+                           "JOIN Cliente c ON t.dniCliente = c.dni " +
+                           "WHERE c.dni = ?";
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setString(1, dni);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
                         String nombre = rs.getString("nombre");
-                        Double precioServicio = rs.getDouble("precioServicio");
+                        Double precio = rs.getDouble("precio"); // Cambiado de "precioServicio" a "precio"
 
-                        Servicio servicio = new Servicio(nombre, precioServicio);
+                        Servicio servicio = new Servicio(nombre, precio);
                         servicios.add(servicio);
                     }
                 }

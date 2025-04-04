@@ -24,4 +24,11 @@ public class Empleado {
     public void setIdEmpleado(int idEmpleado) { this.idEmpleado = idEmpleado; }
     public void setTelefono(int telefono) { this.telefono = telefono; }
 
+
+    @Override
+    public String toString() {
+        return "Empleado [idEmpleado=" + idEmpleado + ", apellido=" + apellido + ", nombre=" + nombre + ", telefono="
+                + telefono + "]";
+    }
+
 }

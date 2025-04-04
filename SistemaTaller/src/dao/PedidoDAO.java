@@ -21,7 +21,7 @@ public class PedidoDAO {
         Connection conexion = ConexionDB.conectar();
         
         if (conexion != null) {
-            String query = "INSERT INTO Pedido (idPedido, fechaPedido, fechaEntrega, estado, precio, idProveedor) VALUES ( ?, ?, ? ,?, ?, ?)";
+            String query = "INSERT INTO Pedido (fechaPedido, fechaEntrega, estado, precio, idProveedor) VALUES ( ?, ?, ? ,?, ?, ?)";
             
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setInt(1, idPedido);

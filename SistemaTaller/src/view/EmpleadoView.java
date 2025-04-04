@@ -1,6 +1,7 @@
 package view;
 
 import dao.EmpleadoDAO;
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Empleado;
 
@@ -145,6 +146,10 @@ public class EmpleadoView {
     }
 
     public void listarEmpleados() {
-        empleadoDAO.listarEmpleados();
+        ArrayList<Empleado> empleados = empleadoDAO.listarEmpleados();
+        System.out.println("Lista de empleados: ");
+        for (Empleado empleado : empleados) {
+            System.out.println(empleado.toString());
+        }
     }
 }

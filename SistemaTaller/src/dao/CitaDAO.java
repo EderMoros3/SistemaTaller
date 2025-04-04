@@ -64,13 +64,13 @@ public class CitaDAO {
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
                     int idCita = rs.getInt("idCita"); // Recuperar el idCita de la base de datos
-                    String nombreCompleto = rs.getString("cliente"); // Usar el campo 'cliente' para obtener el nombre completo
+                    String nombreCompleto = rs.getString("cliente");
+                    Cliente cliente = new Cliente(nombreCompleto, "", 0, "", "", "");
                     String fecha = rs.getString("fecha");
                     String hora = rs.getString("hora");
                     String descripcion = rs.getString("descripcion");
 
                     // Crear un cliente con el nombre completo (sin otros datos)
-                    Cliente cliente = new Cliente(nombreCompleto, "", 0, "", "", "");
 
                     // Crear la cita con el idCita y agregarla a la lista
                     Cita cita = new Cita(cliente, fecha, hora, descripcion);
@@ -89,7 +89,7 @@ public class CitaDAO {
         ArrayList<Cita> citas = new ArrayList<>();
 
         if (conexion != null) {
-            String query = "SELECT * FROM Cita WHERE dni = ?";
+            String query = "SELECT * FROM Cita WHERE cliente = ?";
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setString(1, dni);
                 try (ResultSet rs = ps.executeQuery()) {

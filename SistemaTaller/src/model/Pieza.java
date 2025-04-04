@@ -1,20 +1,21 @@
 package model;
 public class Pieza {
-    private String referencia;
-    private String nombre;
-    private String marca;
-    private String descripcion;
-    private Double precio;
-    private int cantidad;
     private int idPieza;
+    private String nombre;
+    private String referencia;
+    private String marca;
+    private int cantidad;
+    private Double precio;
+    private String descripcion;
+    
 
-    public Pieza(String referencia, String nombre, String marca, String descripcion, Double precio, int cantidad) {
-        this.referencia = referencia;
+    public Pieza(String nombre, String referencia, String marca, int cantidad, Double precio, String descripcion) {
         this.nombre = nombre;
+        this.referencia = referencia;
         this.marca = marca;
-        this.descripcion = descripcion;
-        this.precio = precio;
         this.cantidad = cantidad;
+        this.precio = precio;
+        this.descripcion = descripcion;
     }
 
     // getters
@@ -35,4 +36,22 @@ public class Pieza {
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setIdPieza(int idPieza) { this.idPieza = idPieza; }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Pieza{");
+        sb.append("idPieza=").append(idPieza);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", referencia=").append(referencia);
+        sb.append(", marca=").append(marca);
+        sb.append(", cantidad=").append(cantidad);
+        sb.append(", precio=").append(precio);
+        sb.append(", descripcion=").append(descripcion);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    
+
+    
 }

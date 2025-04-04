@@ -46,9 +46,9 @@ CREATE TABLE Pieza (
     nombre VARCHAR(100) NOT NULL,
     referencia VARCHAR(100) NOT NULL,
     marca VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(200) NOT NULL,
     precio DECIMAL(10,2) NOT NULL,
-    cantidad INT NOT NULL
+    cantidad INT NOT NULL,
+    descripcion VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE Proveedor (

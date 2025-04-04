@@ -94,7 +94,7 @@ public class VehiculoDAO {
                 
             }
         }
-        return null;
+        return vehiculos;
     }
 
     public void modificarMatriculaVehiculo(String matricula) {

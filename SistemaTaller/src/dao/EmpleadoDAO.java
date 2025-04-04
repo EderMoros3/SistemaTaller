@@ -42,7 +42,7 @@ public class EmpleadoDAO {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
-            String query = "DELETE FROM Empledao WHERE idEmpleado = ?";
+            String query = "DELETE FROM Empleado WHERE idEmpleado = ?";
 
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setInt(1, idEmpleado);
@@ -89,19 +89,20 @@ public class EmpleadoDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
+                    int idEmpleado = rs.getInt("idEmpleado");
                     String nombre = rs.getString("nombre");
                     String apellido = rs.getString("apellido");
                     int telefono = rs.getInt("telefono");
 
                     Empleado empleado = new Empleado(nombre, apellido, telefono);
+                    empleado.setIdEmpleado(idEmpleado);
                     empleados.add(empleado);
                 }
             } catch (SQLException e) {
                 System.err.println("Error al listar empleados: " + e.getMessage());
             }
-        return empleados;
         }
-        return null;
+        return empleados;
     }
 
     public void modificarNombreEmpleado(String nombre, int idEmpleado) {

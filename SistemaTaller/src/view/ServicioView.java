@@ -1,6 +1,7 @@
 package view;
 
 import dao.ServicioDAO;
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Servicio;
 
@@ -11,6 +12,7 @@ public class ServicioView {
     public void gestionServicios() {
 
         int opcion;
+        
         do{
             System.out.println("Gestión de servicios");
             System.out.println("1. Agregar servicio");
@@ -20,6 +22,7 @@ public class ServicioView {
             System.out.println("5. Volver al menú principal");
             System.out.println("Ingrese una opción: ");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             
         }
@@ -65,7 +68,11 @@ public class ServicioView {
     }
 
     public void listarServicios() {
-        servicioDAO.listarServicios();
+        ArrayList<Servicio> servicios = servicioDAO.listarServicios();
+        System.out.println("Lista de servicios: ");
+        for (Servicio servicio : servicios) {
+            System.out.println(servicio.toString());
+        }
     }
 
     public void modificarServicio() {
@@ -81,6 +88,7 @@ public class ServicioView {
             System.out.println("4. Volver al menú principal");
             System.out.println("Ingrese una opción: ");
             opcion = sc.nextInt();
+            sc.nextLine();
         } while (opcion != 4);
 
         switch (opcion) {
