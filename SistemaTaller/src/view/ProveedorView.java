@@ -19,17 +19,17 @@ public class ProveedorView {
             System.out.println("4. Listar Proveedores");
             System.out.println("5. Volver al Menu Principal");
             opcion = sc.nextInt();
-
+            sc.nextLine();
             
+            switch (opcion) {
+                case 1 -> this.agregarProveedor();
+                case 2 -> this.modificarProveedor();
+                case 3 -> this.eliminarProveedor();
+                case 4 -> this.listarProveedores();
+                case 5 -> System.out.println("Volver al Menu Principal");
+            }
         } while (opcion != 5);
 
-        switch (opcion) {
-            case 1 -> this.agregarProveedor();
-            case 2 -> this.modificarProveedor();
-            case 3 -> this.eliminarProveedor();
-            case 4 -> this.listarProveedores();
-            case 5 -> System.out.println("Volver al Menu Principal");
-        }
     }
 
     public void agregarProveedor() {
@@ -83,45 +83,45 @@ public class ProveedorView {
             System.out.println("4. Modificar correo");
             System.out.println("5. Volver al Menu Principal");
             opcion = sc.nextInt();
-
+            sc.nextLine();
             
+            switch (opcion) {
+                case 1 -> {
+                    System.out.println("Introduzca el nuevo nombre: ");
+                    String nombre = sc.nextLine();
+                    sc.next();
+                    proveedorDAO.modificarNombreProveedor(idProveedor, nombre);
+                    System.out.println("Nombre modificado correctamente");
+                }
+    
+                case 2 -> {
+                    System.out.println("Introduzca el nuevo telefono: ");
+                    int telefono = sc.nextInt();
+                    proveedorDAO.modificarTelefonoProveedor(idProveedor, telefono);
+                    System.out.println("Telefono modificado correctamente");
+                }
+    
+                case 3 -> {
+                    System.out.println("Introduzca la nueva direccion: ");
+                    String direccion = sc.nextLine();
+                    sc.next();
+                    proveedorDAO.modificarDireccionProveedor(idProveedor, direccion);
+                    System.out.println("Direccion modificada correctamente");
+                }
+    
+                case 4 -> {
+                    System.out.println("Introduzca el nuevo email: ");
+                    String correo = sc.nextLine();
+                    sc.next();
+                    proveedorDAO.modificarEmailProveedor(idProveedor, correo);
+                    System.out.println("Email modificado correctamente");
+                }
+    
+                case 5 -> System.out.println("Volver al Menu Principal");
+            }
         } while (opcion != 5);
-
-        switch (opcion) {
-            case 1 -> {
-                System.out.println("Introduzca el nuevo nombre: ");
-                String nombre = sc.nextLine();
-                sc.next();
-                proveedorDAO.modificarNombreProveedor(idProveedor, nombre);
-                System.out.println("Nombre modificado correctamente");
-            }
-
-            case 2 -> {
-                System.out.println("Introduzca el nuevo telefono: ");
-                int telefono = sc.nextInt();
-                proveedorDAO.modificarTelefonoProveedor(idProveedor, telefono);
-                System.out.println("Telefono modificado correctamente");
-            }
-
-            case 3 -> {
-                System.out.println("Introduzca la nueva direccion: ");
-                String direccion = sc.nextLine();
-                sc.next();
-                proveedorDAO.modificarDireccionProveedor(idProveedor, direccion);
-                System.out.println("Direccion modificada correctamente");
-            }
-
-            case 4 -> {
-                System.out.println("Introduzca el nuevo email: ");
-                String correo = sc.nextLine();
-                sc.next();
-                proveedorDAO.modificarEmailProveedor(idProveedor, correo);
-                System.out.println("Email modificado correctamente");
-            }
-
-            case 5 -> System.out.println("Volver al Menu Principal");
-        }
     }
+
 
     public void eliminarProveedor() {
         Proveedor proveedor = this.getProveedorId();

@@ -19,16 +19,17 @@ public class PiezaView {
             System.out.println("5. Volver al menu principal");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
-
+            sc.nextLine();
+            
+            switch (opcion) {
+                case 1 -> this.agregarPieza();
+                case 2 -> this.modificarPieza();
+                case 3 -> this.eliminarPieza();
+                case 4 -> this.listarPiezas();
+                case 5 -> System.out.println("Volviendo al menu principal");
+            }
         } while (opcion != 5);
         
-        switch (opcion) {
-            case 1 -> this.agregarPieza();
-            case 2 -> this.modificarPieza();
-            case 3 -> this.eliminarPieza();
-            case 4 -> this.listarPiezas();
-            case 5 -> System.out.println("Volviendo al menu principal");
-        }
     }
 
     public void agregarPieza() {
@@ -94,56 +95,56 @@ public class PiezaView {
             System.out.println("6. Volver al menu anterior");
             System.out.println("Ingrese una opcion: ");
             opcion = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcion) {
+                case 1 -> {
+                    System.out.println("Introduce la referencia: ");
+                    String referencia = sc.nextLine();
+                    sc.next();
+                    piezaDAO.modificarReferenciaPieza(referencia, idPieza);
+                    System.out.println("Referencia modificada correctamente");
+                }
+    
+                case 2 -> {
+                    System.out.println("Introduce la marca: ");
+                    String marca = sc.nextLine();
+                    sc.next();
+                    piezaDAO.modificarMarcaPieza(marca, idPieza);
+                    System.out.println("Marca modificada correctamente");
+                }
+    
+                case 3 -> {
+                    System.out.println("Introduce la descripcion: ");
+                    String descripcion = sc.nextLine();
+                    sc.next();
+                    piezaDAO.modificarDescPieza(descripcion, idPieza);
+                    System.out.println("Descripcion modificada correctamente");
+                }
+    
+                case 4 -> {
+                    Double precioPieza;
+                    do {
+                        System.out.println("Introduce el precio: ");
+                        precioPieza = sc.nextDouble();
+                    } while (precioPieza < 0);
+                    piezaDAO.modificarPrecioPieza(precioPieza, idPieza);
+                    System.out.println("Precio modificado correctamente");
+                }
+    
+                case 5 -> {
+                    int cantidad;
+                    do {
+                        System.out.println("Introduce la cantidad: ");
+                        cantidad = sc.nextInt();
+                    } while (cantidad < 0);
+                    piezaDAO.modificarCantidadPieza(cantidad, idPieza);
+                    System.out.println("Cantidad modificada correctamente");
+                }
+    
+                case 6 -> System.out.println("Volviendo al menu anterior");
+            }
         } while (opcion != 6);
-
-        switch (opcion) {
-            case 1 -> {
-                System.out.println("Introduce la referencia: ");
-                String referencia = sc.nextLine();
-                sc.next();
-                piezaDAO.modificarReferenciaPieza(referencia, idPieza);
-                System.out.println("Referencia modificada correctamente");
-            }
-
-            case 2 -> {
-                System.out.println("Introduce la marca: ");
-                String marca = sc.nextLine();
-                sc.next();
-                piezaDAO.modificarMarcaPieza(marca, idPieza);
-                System.out.println("Marca modificada correctamente");
-            }
-
-            case 3 -> {
-                System.out.println("Introduce la descripcion: ");
-                String descripcion = sc.nextLine();
-                sc.next();
-                piezaDAO.modificarDescPieza(descripcion, idPieza);
-                System.out.println("Descripcion modificada correctamente");
-            }
-
-            case 4 -> {
-                Double precioPieza;
-                do {
-                    System.out.println("Introduce el precio: ");
-                    precioPieza = sc.nextDouble();
-                } while (precioPieza < 0);
-                piezaDAO.modificarPrecioPieza(precioPieza, idPieza);
-                System.out.println("Precio modificado correctamente");
-            }
-
-            case 5 -> {
-                int cantidad;
-                do {
-                    System.out.println("Introduce la cantidad: ");
-                    cantidad = sc.nextInt();
-                } while (cantidad < 0);
-                piezaDAO.modificarCantidadPieza(cantidad, idPieza);
-                System.out.println("Cantidad modificada correctamente");
-            }
-
-            case 6 -> System.out.println("Volviendo al menu anterior");
-        }
-
     }
 
 }

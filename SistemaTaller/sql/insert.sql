@@ -39,3 +39,10 @@ INSERT INTO Pieza (referencia, marca, descripcion, precio, cantidad) VALUES
 ('BUJIAS003', 'NGK', 'Juego de bujías', 30.00, 25),
 ('NEUMATICO004', 'Michelin', 'Neumático 205/55R16', 90.00, 10),
 ('BATERIA005', 'Varta', 'Batería de 70Ah', 120.00, 5);
+
+INSERT INTO Pieza (nombre, referencia, marca, descripcion, precio, cantidad) VALUES
+('Filtro','FILTRO001', 'Bosch', 'Filtro de aceite', 15.00, 20),
+('Pastilla','PASTILLAS002', 'Brembo', 'Juego de pastillas de freno', 45.00, 15),
+('Bujia','BUJIAS003', 'NGK', 'Juego de bujías', 30.00, 25),
+('Neumatico','NEUMATICO004', 'Michelin', 'Neumático 205/55R16', 90.00, 10),
+('Bateria','BATERIA005', 'Varta', 'Batería de 70Ah', 120.00, 5);
