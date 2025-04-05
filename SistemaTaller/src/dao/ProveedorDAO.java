@@ -71,8 +71,9 @@ public class ProveedorDAO {
                 } catch (SQLException e) {
                     System.err.println("Error al listar proveedores: " + e.getMessage());
                 }
+                return proveedores;
             }
-            return proveedores;
+            return null;
         }
 
     public Proveedor getProveedorID(int idProveedor) {

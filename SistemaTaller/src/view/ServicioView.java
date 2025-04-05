@@ -1,6 +1,9 @@
 package view;
 
 import dao.ServicioDAO;
+
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Servicio;
 
@@ -40,7 +43,7 @@ public class ServicioView {
         System.out.println("Agregar servicio");
         System.out.println("Introduce el nombre: ");
         String nombre = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         do {
             System.out.println("Introduce el precio: ");
             precio = sc.nextDouble();
@@ -65,7 +68,12 @@ public class ServicioView {
     }
 
     public void listarServicios() {
-        servicioDAO.listarServicios();
+        ArrayList<Servicio> listaServicios = servicioDAO.listarServicios();
+        System.out.println("Lista de servicios: ");
+        for (Servicio servicio : listaServicios) {
+            System.out.println(servicio.toString());
+        }
+
     }
 
     public void modificarServicio() {
@@ -87,7 +95,7 @@ public class ServicioView {
                 case 1 -> {
                     System.out.println("Introduce el nuevo nombre: ");
                     String nombre = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     servicioDAO.modificarNombreServicio(nombre, idServicio);
                     System.out.println("Nombre modificado correctamente");
                 }
@@ -97,7 +105,7 @@ public class ServicioView {
                         System.out.println("Introduce el nuevo precio: ");
                         precio = sc.nextDouble();
                     } while (precio < 0);
-                    servicioDAO.modificarPrecioServicio(precio, idServicio);
+                    servicioDAO.modificarprecio(precio, idServicio);
                     System.out.println("Precio modificado correctamente");
                 }
                 case 3 -> {
@@ -118,7 +126,7 @@ public class ServicioView {
     public void historialServiciosCliente() {
         System.out.println("Introduce el dni del cliente: ");
         String dni = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         servicioDAO.historialServiciosCliente(dni);
     }
 }

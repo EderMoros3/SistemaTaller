@@ -1,6 +1,8 @@
 package view;
 
 import dao.EmpleadoDAO;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Empleado;
 
@@ -74,11 +76,11 @@ public class EmpleadoView {
         System.out.println("-----------------------");
         System.out.println("Ingrese el nombre del empleado");
         String nombre = sc.nextLine();
-        sc.next();
+        sc.nextLine();
 
         System.out.println("Ingrese el apellido del empleado");
         String apellido = sc.nextLine();
-        sc.next();
+        sc.nextLine();
 
 
         System.out.println("Ingrese el telefono del empleado");
@@ -122,14 +124,14 @@ public class EmpleadoView {
                 case 1 -> {
                     System.out.println("Introduce el nombre: ");
                     String nombre = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     empleadoDAO.modificarNombreEmpleado(nombre, idEmpleado);
                     System.out.println("Nombre modificado correctamente");
                 }
                 case 2 -> {
                     System.out.println("Introduce el apellido: ");
                     String apellido = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     empleadoDAO.modificarApellidoEmpleado(apellido, idEmpleado);
                     System.out.println("Apellido modificado correctamente");
                 }
@@ -148,6 +150,10 @@ public class EmpleadoView {
     }
 
     public void listarEmpleados() {
-        empleadoDAO.listarEmpleados();
+        ArrayList<Empleado> empleados = empleadoDAO.listarEmpleados();
+        System.out.println("Lista de empleados: ");
+        for (Empleado empleado : empleados) {
+            System.out.println(empleado.toString());
+        }
     }
 }

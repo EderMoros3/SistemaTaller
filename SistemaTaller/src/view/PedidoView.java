@@ -1,7 +1,11 @@
 package view;
 
 import dao.PedidoDAO;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
+
 import model.Pedido;
 import model.Proveedor;
 
@@ -85,14 +89,14 @@ public class PedidoView {
                 case 1 -> {
                     System.out.println("Introduce la nueva fecha de pedido (DD-MM-YYYY): ");
                     String fecha = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     pedidoDAO.modificarFechaPedido(idPedido, fecha);
                     System.out.println("Fecha modificado correctamente");
                 }
                 case 2 -> {
                     System.out.println("Introduce la nueva fecha de entrega (DD-MM-YYYY): ");
                     String fecha = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     pedidoDAO.modifcarFechaEntregaPedido(idPedido, fecha);
                     System.out.println("Fecha de entrega modificado correctamente");
                 }
@@ -120,6 +124,10 @@ public class PedidoView {
 
 
     public void listarPedidos() {
-        pedidoDAO.listarPedidos();
+        ArrayList<Pedido> pedidos = pedidoDAO.listarPedidos();
+        System.out.println("Lista de pedidos: ");
+        for (Pedido pedido : pedidos) {
+            System.out.println(pedido.toString());
+        }
     }
 }

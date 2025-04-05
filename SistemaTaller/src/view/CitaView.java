@@ -127,7 +127,7 @@ public class CitaView {
         } while (!minutoValido);
         
         String hora = String.format("%02d:%02d", horas, minutos);
-        sc.next(); // Limpiar buffer
+        sc.nextLine(); // Limpiar buffer
         
         System.out.println("Agregue una descripcion a la cita: ");
         String descripcion = sc.nextLine();
@@ -162,6 +162,9 @@ public class CitaView {
         System.out.println("Introduzca el dni del cliente: ");
         String dni = sc.nextLine();
         citaDAO.listarCitasCliente(dni);
+        if (citaDAO.listarCitasCliente(dni) == null) {
+            System.out.println("No hay citas para el cliente con DNI: " + dni);
+        } 
     }
 
     public void modificarCita() {
@@ -195,7 +198,7 @@ public class CitaView {
                     
                     do {
                         System.out.println("Introduzca la nueva fecha (dd-MM-yyyy): ");
-                        nuevaFecha = sc.nextLine(); sc.next();
+                        nuevaFecha = sc.nextLine(); sc.nextLine();
                         
                         try {
                             LocalDate fechaCita = LocalDate.parse(nuevaFecha, dateFormatter);
@@ -254,7 +257,7 @@ public class CitaView {
                 case 4 -> {
                     System.out.println("Introduzca la nueva descripción: ");
                     String descripcion = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     citaDAO.modificarDescripcionCita(cita, descripcion);
                     System.out.println("Descripción modificada correctamente");
                 }

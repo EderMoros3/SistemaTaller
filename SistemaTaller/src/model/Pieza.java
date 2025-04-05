@@ -35,4 +35,11 @@ public class Pieza {
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setIdPieza(int idPieza) { this.idPieza = idPieza; }
 
+    @Override
+    public String toString() {
+        return "Pieza [referencia=" + referencia + ", nombre=" + nombre + ", marca=" + marca + ", descripcion="
+                + descripcion + ", precio=" + precio + ", cantidad=" + cantidad + ", idPieza=" + idPieza + "]";
+    }
+
+    
 }

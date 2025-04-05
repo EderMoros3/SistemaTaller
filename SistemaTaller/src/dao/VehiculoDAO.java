@@ -14,18 +14,18 @@ public class VehiculoDAO {
         String matricula = vehiculo.getMatricula();
         String marca = vehiculo.getMarca();
         String modelo = vehiculo.getModelo();
-        int year = vehiculo.getYear();
+        int ano = vehiculo.getYear();
 
         String dni = vehiculo.getTitular().getDni();
 
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
-            String query = "INSERT INTO Vehiculo (matricula, marca, modelo, year, dni) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Vehiculo (matricula, marca, modelo, ano, dni) VALUES (?, ?, ?, ?, ?)";
             try (var ps = conexion.prepareStatement(query)) {
                 ps.setString(1, matricula);
                 ps.setString(2, marca);
                 ps.setString(3, modelo);
-                ps.setInt(4, year);
+                ps.setInt(4, ano);
                 ps.setString(5, dni);
                 ps.executeUpdate();
             } catch (Exception e) {
@@ -61,9 +61,9 @@ public class VehiculoDAO {
                     if (rs.next()) {
                         String marca = rs.getString("marca");
                         String modelo = rs.getString("modelo");
-                        int year = rs.getInt("year");
+                        int ano = rs.getInt("ano");
                         Cliente titular = new ClienteDAO().getClienteDni(rs.getString("dni"));
-                        vehiculo = new Vehiculo(matricula, marca, modelo, year, titular);
+                        vehiculo = new Vehiculo(matricula, marca, modelo, ano, titular);
                     }
                 }
             } catch (SQLException e) {
@@ -85,14 +85,15 @@ public class VehiculoDAO {
                     String matricula = rs.getString("matricula");
                     String marca = rs.getString("marca");
                     String modelo = rs.getString("modelo");
-                    int year = rs.getInt("year");
+                    int ano = rs.getInt("ano");
                     Cliente titular = new ClienteDAO().getClienteDni(rs.getString("dni"));
-                    vehiculos.add(new Vehiculo(matricula, marca, modelo, year, titular));
+                    vehiculos.add(new Vehiculo(matricula, marca, modelo, ano, titular));
                 }
             } catch (SQLException e) {
                 System.err.println("Error al listar vehiculos: " + e.getMessage());
                 
             }
+            return vehiculos;
         }
         return null;
     }
@@ -142,13 +143,13 @@ public class VehiculoDAO {
         }
     }
 
-    public void modificarYearVehiculo(String matricula, int year) {
+    public void modificarYearVehiculo(String matricula, int ano) {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
-            String query = "UPDATE Vehiculo SET year = ? WHERE matricula = ?";
+            String query = "UPDATE Vehiculo SET ano = ? WHERE matricula = ?";
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
-                ps.setInt(1, year);
+                ps.setInt(1, ano);
                 ps.setString(2, matricula);
                 ps.executeUpdate();
             } catch (SQLException e) {

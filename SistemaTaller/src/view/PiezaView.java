@@ -1,7 +1,10 @@
 package view;
 
 import dao.PiezaDAO;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
 import model.Pieza;
 
 public class PiezaView {
@@ -39,16 +42,16 @@ public class PiezaView {
         System.out.println("Agregar pieza");
         System.out.println("Introduce la referencia: ");
         String referencia = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         System.out.println("Introduce el nombre: ");
         String nombre = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         System.out.println("Introduce la marca: ");
         String marca = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         System.out.println("Introduce la descripcion: ");
         String descripcion = sc.nextLine();
-        sc.next();
+        sc.nextLine();
 
         do {
             System.out.println("Introduce el precio: ");
@@ -78,7 +81,11 @@ public class PiezaView {
     }
 
     public void listarPiezas() {
-        piezaDAO.listarPiezas();
+        ArrayList<Pieza> piezas = piezaDAO.listarPiezas();
+        System.out.println("Lista de piezas: ");
+        for (Pieza pieza : piezas) {
+            System.out.println(pieza.toString());
+        }
     }
 
     public void modificarPieza() {
@@ -101,7 +108,7 @@ public class PiezaView {
                 case 1 -> {
                     System.out.println("Introduce la referencia: ");
                     String referencia = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     piezaDAO.modificarReferenciaPieza(referencia, idPieza);
                     System.out.println("Referencia modificada correctamente");
                 }
@@ -109,7 +116,7 @@ public class PiezaView {
                 case 2 -> {
                     System.out.println("Introduce la marca: ");
                     String marca = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     piezaDAO.modificarMarcaPieza(marca, idPieza);
                     System.out.println("Marca modificada correctamente");
                 }
@@ -117,7 +124,7 @@ public class PiezaView {
                 case 3 -> {
                     System.out.println("Introduce la descripcion: ");
                     String descripcion = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     piezaDAO.modificarDescPieza(descripcion, idPieza);
                     System.out.println("Descripcion modificada correctamente");
                 }

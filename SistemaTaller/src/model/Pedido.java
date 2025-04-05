@@ -39,6 +39,12 @@ public class Pedido {
     public void setProveedor(Proveedor proveedor) {this.proveedor = proveedor;}
     public void setPieza(ArrayList<Pieza> pieza) {this.pieza = pieza;}
 
+    @Override
+    public String toString() {
+        return "Pedido [idPedido=" + idPedido + ", fechaPedido=" + fechaPedido + ", fechaEntrega=" + fechaEntrega
+                + ", estado=" + estado + ", precio=" + precio + ", proveedor=" + proveedor + ", pieza=" + pieza + "]";
+    }
 
+    
 
 }
