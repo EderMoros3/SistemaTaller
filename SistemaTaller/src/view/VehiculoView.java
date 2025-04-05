@@ -41,13 +41,13 @@ public class VehiculoView {
         System.out.println("Agregar vehiculo");
         System.out.println("Introduce la matricula: ");
         String matricula = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         System.out.println("Introduce la marca: ");
         String marca = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         System.out.println("Introduce el modelo: ");
         String modelo = sc.nextLine();
-        sc.next();
+        sc.nextLine();
 
         int year;
         do {
@@ -101,21 +101,21 @@ public class VehiculoView {
                 case 1 -> {
                     System.out.println("Introduce la matricula: ");
                     matricula = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     vehiculoDAO.modificarMatriculaVehiculo(matricula);
                     System.out.println("Matricula modificada correctamente");
                 }
                 case 2 -> {
                     System.out.println("Introduce la marca: ");
                     String marca = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     vehiculoDAO.modificarMarcaVehiculo(matricula, marca);
                     System.out.println("Marca modificada correctamente");
                 }
                 case 3 -> {
                     System.out.println("Introduce el modelo: ");
                     String modelo = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     vehiculoDAO.modificarModeloVehiculo(matricula, modelo);
                     System.out.println("Modelo modificado correctamente");
                 }

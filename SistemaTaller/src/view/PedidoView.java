@@ -85,14 +85,14 @@ public class PedidoView {
                 case 1 -> {
                     System.out.println("Introduce la nueva fecha de pedido (DD-MM-YYYY): ");
                     String fecha = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     pedidoDAO.modificarFechaPedido(idPedido, fecha);
                     System.out.println("Fecha modificado correctamente");
                 }
                 case 2 -> {
                     System.out.println("Introduce la nueva fecha de entrega (DD-MM-YYYY): ");
                     String fecha = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     pedidoDAO.modifcarFechaEntregaPedido(idPedido, fecha);
                     System.out.println("Fecha de entrega modificado correctamente");
                 }

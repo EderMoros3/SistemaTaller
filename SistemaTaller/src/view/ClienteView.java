@@ -47,7 +47,7 @@ public class ClienteView {
         System.out.println("Iniciar sesion como cliente");
         System.out.println("Introduce el dni: ");
         String dni = sc.nextLine();
-        sc.next();
+        sc.nextLine();
 
         for (Cliente cliente : this.clientes) {
             if (cliente.getDni().equals(dni)) {
@@ -90,10 +90,10 @@ public class ClienteView {
         System.out.println("Agregar cliente");
         System.out.println("Introduce el nombre: ");
         String nombre = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         System.out.println("Introduce el apellido: ");
         String apellido = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         int telefono;
         do {
             System.out.println("Introduce el telefono: ");
@@ -106,12 +106,12 @@ public class ClienteView {
 
         System.out.println("Introduce la direccion: ");
         String direccion = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         String email;
         do { 
             System.out.println("Introduce el email: ");
             email = sc.nextLine();
-            sc.next();
+            sc.nextLine();
             if (clienteDAO.existeEmail(email)) {
                 System.out.println("El email ya está registrado. Intente con otro.");
             }
@@ -121,7 +121,7 @@ public class ClienteView {
         do {
             System.out.println("Introduce el dni: ");
             dni = sc.nextLine();
-            sc.next();
+            sc.nextLine();
             if (clienteDAO.existeDni(dni)) {
                 System.out.println("El DNI ya está registrado. Intente con otro.");
             }
@@ -173,14 +173,14 @@ public class ClienteView {
                 case 1 -> {
                     System.out.println("Introduce el nombre: ");
                     String nombre = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     clienteDAO.actualizarNombreCliente(dni, nombre);
                     System.out.println("Nombre modificado correctamente");
                 }
                 case 2 -> {
                     System.out.println("Introduce el apellido: ");
                     String apellido = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     clienteDAO.actualizarApellidoCliente(dni, apellido);
                     System.out.println("Apellido modificado correctamente");
                 }
@@ -200,7 +200,7 @@ public class ClienteView {
                 case 4 -> {
                     System.out.println("Introduce la direccion: ");
                     String direccion = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     clienteDAO.actualizarDireccionCliente(dni, direccion);
                     System.out.println("Direccion modificada correctamente");
                 }
@@ -209,7 +209,7 @@ public class ClienteView {
                     do { 
                         System.out.println("Introduce el email: ");
                         email = sc.nextLine();
-                        sc.next();
+                        sc.nextLine();
                         if (clienteDAO.existeEmail(email)) {
                             System.out.println("El email ya está registrado. Intente con otro.");
                         }
@@ -221,7 +221,7 @@ public class ClienteView {
                     do {
                         System.out.println("Introduce el dni: ");
                         dni = sc.nextLine();
-                        sc.next();
+                        sc.nextLine();
                         if (clienteDAO.existeDni(dni)) {
                             System.out.println("El DNI ya está registrado. Intente con otro.");
                         }

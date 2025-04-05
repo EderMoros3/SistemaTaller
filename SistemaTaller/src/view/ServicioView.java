@@ -40,7 +40,7 @@ public class ServicioView {
         System.out.println("Agregar servicio");
         System.out.println("Introduce el nombre: ");
         String nombre = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         do {
             System.out.println("Introduce el precio: ");
             precio = sc.nextDouble();
@@ -87,7 +87,7 @@ public class ServicioView {
                 case 1 -> {
                     System.out.println("Introduce el nuevo nombre: ");
                     String nombre = sc.nextLine();
-                    sc.next();
+                    sc.nextLine();
                     servicioDAO.modificarNombreServicio(nombre, idServicio);
                     System.out.println("Nombre modificado correctamente");
                 }
@@ -118,7 +118,7 @@ public class ServicioView {
     public void historialServiciosCliente() {
         System.out.println("Introduce el dni del cliente: ");
         String dni = sc.nextLine();
-        sc.next();
+        sc.nextLine();
         servicioDAO.historialServiciosCliente(dni);
     }
 }
