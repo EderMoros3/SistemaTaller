@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import dao.VehiculoDAO;
@@ -78,7 +79,11 @@ public class VehiculoView {
     }
 
     public void listarVehiculos() {
-        vehiculoDAO.listarVehiculos();
+        ArrayList<Vehiculo> listaVehiculos = vehiculoDAO.listarVehiculos();
+        System.out.println("Lista de vehiculos: ");
+        for (Vehiculo vehiculo : listaVehiculos) {
+            System.out.println(vehiculo.toString());
+        }
     }
 
     public void modificarVehiculo() {

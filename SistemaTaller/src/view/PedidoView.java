@@ -1,7 +1,11 @@
 package view;
 
 import dao.PedidoDAO;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
+
 import model.Pedido;
 import model.Proveedor;
 
@@ -120,6 +124,10 @@ public class PedidoView {
 
 
     public void listarPedidos() {
-        pedidoDAO.listarPedidos();
+        ArrayList<Pedido> pedidos = pedidoDAO.listarPedidos();
+        System.out.println("Lista de pedidos: ");
+        for (Pedido pedido : pedidos) {
+            System.out.println(pedido.toString());
+        }
     }
 }

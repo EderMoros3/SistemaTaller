@@ -78,7 +78,7 @@ public class ClienteDAO {
             } catch (SQLException e) {
                 System.err.println("Error al listar clientes: " + e.getMessage());
             }
-        return clientes;
+            return clientes;
         }
         return null;
     }

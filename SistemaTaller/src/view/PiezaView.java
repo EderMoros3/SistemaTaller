@@ -1,7 +1,10 @@
 package view;
 
 import dao.PiezaDAO;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
 import model.Pieza;
 
 public class PiezaView {
@@ -78,7 +81,11 @@ public class PiezaView {
     }
 
     public void listarPiezas() {
-        piezaDAO.listarPiezas();
+        ArrayList<Pieza> piezas = piezaDAO.listarPiezas();
+        System.out.println("Lista de piezas: ");
+        for (Pieza pieza : piezas) {
+            System.out.println(pieza.toString());
+        }
     }
 
     public void modificarPieza() {

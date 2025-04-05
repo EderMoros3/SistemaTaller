@@ -1,6 +1,8 @@
 package view;
 
 import dao.ProveedorDAO;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Proveedor;
 
@@ -130,6 +132,10 @@ public class ProveedorView {
     }
 
     public void listarProveedores() {
-        proveedorDAO.listarProveedores();
+        ArrayList<Proveedor> proveedores = proveedorDAO.listarProveedores();
+        System.out.println("Lista de Proveedores: ");
+        for (Proveedor proveedor : proveedores) {
+            System.out.println(proveedor.toString());
+        }
     }
 }
