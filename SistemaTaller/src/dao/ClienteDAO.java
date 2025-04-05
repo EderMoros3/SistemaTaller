@@ -106,8 +106,9 @@ public class ClienteDAO {
             } catch (SQLException e) {
                 System.err.println("Error al obtener cliente por DNI: " + e.getMessage());
             }
+            return cliente;
         }
-        return cliente;
+        return null;
     }
 
     public void actualizarNombreCliente(String dni, String nombre) {
@@ -182,16 +183,16 @@ public class ClienteDAO {
         }
     }
 
-    public void actualizarDniCliente(String dni) {
+    public void actualizarDniCliente(String dniActual, String dniNuevo) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
             String query = "UPDATE Cliente SET dni = ? WHERE dni = ?";
-            try(PreparedStatement stmt = conexion.prepareStatement(query)){
-                stmt.setString(1, dni);
-                stmt.setString(2, dni);
+            try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+                stmt.setString(1, dniNuevo);
+                stmt.setString(2, dniActual);
                 stmt.executeUpdate();
             } catch (SQLException e) {
-                System.err.println("Error al actualizar dni del cliente: " + e.getMessage());
+                System.err.println("Error al actualizar DNI del cliente: " + e.getMessage());
             }
         }
     }

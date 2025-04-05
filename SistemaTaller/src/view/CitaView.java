@@ -162,6 +162,9 @@ public class CitaView {
         System.out.println("Introduzca el dni del cliente: ");
         String dni = sc.nextLine();
         citaDAO.listarCitasCliente(dni);
+        if (citaDAO.listarCitasCliente(dni) == null) {
+            System.out.println("No hay citas para el cliente con DNI: " + dni);
+        } 
     }
 
     public void modificarCita() {

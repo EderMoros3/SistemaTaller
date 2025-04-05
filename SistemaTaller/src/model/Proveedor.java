@@ -30,5 +30,11 @@ public class Proveedor {
     public void setDireccion(String direccion) {this.direccion = direccion;}
     public void setEmail(String email) {this.email = email;}
 
+    @Override
+    public String toString() {
+        return "Proveedor [idProveedor=" + idProveedor + ", nombre=" + nombre + ", telefono=" + telefono
+                + ", direccion=" + direccion + ", email=" + email + "]";
+    }
 
+    
 }

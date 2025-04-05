@@ -105,7 +105,7 @@ public class ServicioView {
                         System.out.println("Introduce el nuevo precio: ");
                         precio = sc.nextDouble();
                     } while (precio < 0);
-                    servicioDAO.modificarPrecioServicio(precio, idServicio);
+                    servicioDAO.modificarprecio(precio, idServicio);
                     System.out.println("Precio modificado correctamente");
                 }
                 case 3 -> {

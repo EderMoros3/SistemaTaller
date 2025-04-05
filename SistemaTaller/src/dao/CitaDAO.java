@@ -89,21 +89,25 @@ public class CitaDAO {
         ArrayList<Cita> citas = new ArrayList<>();
 
         if (conexion != null) {
-            String query = "SELECT * FROM Cita WHERE dni = ?";
+            String query = "SELECT * FROM Cita WHERE cliente = ?";
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setString(1, dni);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
+                        int idCita = rs.getInt("idCita");
                         String fecha = rs.getString("fecha");
                         String hora = rs.getString("hora");
                         String descripcion = rs.getString("descripcion");
-                        Cliente cliente = clienteDAO.getClienteDni(rs.getString("dni"));
-                        citas.add(new Cita(cliente, fecha, hora, descripcion));
+                        Cliente cliente = clienteDAO.getClienteDni(dni);
+                        Cita cita = new Cita(cliente, fecha, hora, descripcion);
+                        cita.setIdCita(idCita);
+                        citas.add(cita);
                     }
                 }
             } catch (SQLException e) {
-                System.err.println("Error al listar citas: " + e.getMessage());
+                System.err.println("Error al listar citas del cliente: " + e.getMessage());
             }
+            return citas;
         }
         return null;
     }

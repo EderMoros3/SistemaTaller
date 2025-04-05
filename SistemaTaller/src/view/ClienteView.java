@@ -43,25 +43,20 @@ public class ClienteView {
         } while (opcion != 5);
     }
 
-    public void iniciarSesionCliente() {
+    public Cliente iniciarSesionCliente() {
         System.out.println("Iniciar sesion como cliente");
-        System.out.println("Introduce el dni: ");
-        String dni = sc.nextLine();
-        sc.nextLine();
-
-        for (Cliente cliente : this.clientes) {
-            if (cliente.getDni().equals(dni)) {
-                System.out.println("Bienvenido " + cliente.getNombre() + " " + cliente.getApellido());
-            } else {
-                System.out.println("Cliente no encontrado");
-            }
+        Cliente cliente = this.getClienteDni();
+        if (cliente == null) {
+            System.out.println("El cliente no existe. Por favor, intente nuevamente.");
+            return null;
         }
-        this.menuCliente();
+        menuCliente(cliente);
+        return cliente;
         
     }
 
-    public void menuCliente() {
-        Cliente cliente = this.getClienteDni();
+    public void menuCliente(Cliente cliente) {
+
         System.out.println("Bienvenido " + cliente.getNombre() + " " + cliente.getApellido());
         int opcion;
         do {
@@ -219,14 +214,14 @@ public class ClienteView {
                 }
                 case 6 -> {
                     do {
-                        System.out.println("Introduce el dni: ");
+                        System.out.println("Introduce el dni nuevo: ");
                         dni = sc.nextLine();
                         sc.nextLine();
                         if (clienteDAO.existeDni(dni)) {
                             System.out.println("El DNI ya está registrado. Intente con otro.");
                         }
                     } while (clienteDAO.existeDni(dni));
-                    clienteDAO.actualizarDniCliente(dni);
+                    clienteDAO.actualizarDniCliente(cliente.getDni(), dni);
                     System.out.println("Dni modificado correctamente");
                 }
                 case 7 -> System.out.println("Volviendo al menu anterior");

@@ -12,17 +12,17 @@ public class ServicioDAO {
     public void insertarServicio(Servicio servicio) {
         String nombre = servicio.getNombre();
         int idServicio = servicio.getIdServicio();
-        Double precioServicio = servicio.getPrecioServicio();
+        Double precio = servicio.getPrecioServicio();
 
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
-            String query = "INSERT INTO Servicio (nombre, idServicio, precioServicio) VALUES (?, ?, ?)";
+            String query = "INSERT INTO Servicio (nombre, idServicio, precio) VALUES (?, ?, ?)";
 
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setString(1, nombre);
                 ps.setInt(2, idServicio);
-                ps.setDouble(3, precioServicio);
+                ps.setDouble(3, precio);
                 ps.executeUpdate();
             } catch (SQLException e) {
                 System.err.println("Error al insertar servicio: " + e.getMessage());
@@ -60,9 +60,9 @@ public class ServicioDAO {
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         String nombre = rs.getString("nombre");
-                        Double precioServicio = rs.getDouble("precioServicio");
+                        Double precio = rs.getDouble("precio");
 
-                        servicio = new Servicio(nombre,precioServicio);
+                        servicio = new Servicio(nombre,precio);
                     }
                 }
             } catch (SQLException e) {
@@ -83,10 +83,10 @@ public class ServicioDAO {
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
                     String nombre = rs.getString("nombre");
-                    Double precioServicio = rs.getDouble("precioServicio");
+                    Double precio = rs.getDouble("precio");
                     
 
-                    Servicio servicio = new Servicio(nombre, precioServicio);
+                    Servicio servicio = new Servicio(nombre, precio);
                     servicios.add(servicio);
                 }
             } catch (SQLException e) {
@@ -113,7 +113,7 @@ public class ServicioDAO {
         }
     }
 
-    public void modificarPrecioServicio(Double precio, int idServicio) {
+    public void modificarprecio(Double precio, int idServicio) {
         Connection conexion = ConexionDB.conectar();
         if (conexion != null) {
             String query = "UPDATE Servicio SET precio = ? WHERE idServicio = ?";
@@ -146,26 +146,27 @@ public class ServicioDAO {
         ArrayList<Servicio> servicios = new ArrayList<>();
         
         if (conexion != null) {
-            String query = "SELECT s.idServicio, s.nombre, s.precioServicio " +
+            String query = "SELECT s.idServicio, s.nombre, s.precio " +
                     "FROM Servicio s " +
                     "JOIN Taller t ON s.idServicio = t.idServicio " +
-                    "JOIN Cliente c ON t.dni = c.dni " + 
-                    "WHERE c.dni = ?";
+                    "JOIN Cliente c ON t.dniCliente = c.dniCliente " + 
+                    "WHERE c.dniCliente = ?";
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setString(1, dni);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
                         String nombre = rs.getString("nombre");
-                        Double precioServicio = rs.getDouble("precioServicio");
+                        Double precio = rs.getDouble("precio");
 
-                        Servicio servicio = new Servicio(nombre, precioServicio);
+                        Servicio servicio = new Servicio(nombre, precio);
                         servicios.add(servicio);
                     }
                 }
             } catch (SQLException e) {
                 System.err.println("Error al obtener historial de servicios del cliente: " + e.getMessage());
             }
+            return servicios;
         }
-        return servicios;
+        return null;
     }
 }
