@@ -87,16 +87,14 @@ CREATE TABLE Taller (
     idCita INT,
     idServicio INT,
     idPieza INT,
+    idPedido INT,
+    idProveedor INT,
     FOREIGN KEY (idEmpleado) REFERENCES Empleado(idEmpleado) ON DELETE CASCADE,
     FOREIGN KEY (dniCliente) REFERENCES Cliente(dni) ON DELETE CASCADE,
     FOREIGN KEY (matriculaVehiculo) REFERENCES Vehiculo(matricula) ON DELETE CASCADE,
     FOREIGN KEY (idCita) REFERENCES Cita(idCita) ON DELETE CASCADE,
     FOREIGN KEY (idServicio) REFERENCES Servicio(idServicio) ON DELETE CASCADE,
-    FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza) ON DELETE CASCADE
+    FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza) ON DELETE CASCADE,
+    FOREIGN KEY (idPedido) REFERENCES Pedido(idPedido) ON DELETE CASCADE,
+    FOREIGN KEY (idProveedor) REFERENCES Proveedor(idProveedor) ON DELETE CASCADE
 );
-
--- Modificacion de la tabla taller para aagregar idPedido
--- esto se eliminara cuando actualices tu base de datos
-ALTER TABLE Taller
-ADD COLUMN idPedido INT,
-ADD FOREIGN KEY (idPedido) REFERENCES Pedido(idPedido) ON DELETE CASCADE;
