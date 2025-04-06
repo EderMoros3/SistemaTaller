@@ -211,6 +211,7 @@ public class PiezaDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
+                    int idPieza = rs.getInt("idPieza");
                     String referencia = rs.getString("referencia");
                     String nombre = rs.getString("nombre");
                     String marca = rs.getString("marca");
@@ -220,6 +221,7 @@ public class PiezaDAO {
                     
 
                     Pieza pieza = new Pieza(referencia, nombre, marca, descripcion, precio, cantidad);
+                    pieza.setIdPieza(idPieza);
                     piezas.add(pieza);
                 }
             } catch (SQLException e) {

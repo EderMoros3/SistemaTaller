@@ -33,7 +33,12 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", year=" + ano
-                + ", titular=" + titular + "]";
+        return "Vehiculo {" +
+               "Matricula='" + matricula + '\'' +
+               ", Marca='" + marca + '\'' +
+               ", Modelo='" + modelo + '\'' +
+               ", Año=" + ano +
+               ", Titular='" + titular.getNombre() + " " + titular.getApellido() + " (DNI: " + titular.getDni() + ")'" +
+               '}';
     }
 }

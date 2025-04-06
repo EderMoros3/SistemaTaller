@@ -82,11 +82,13 @@ public class ServicioDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
+                    int idServicio = rs.getInt("idServicio");
                     String nombre = rs.getString("nombre");
                     Double precio = rs.getDouble("precio");
                     
 
                     Servicio servicio = new Servicio(nombre, precio);
+                    servicio.setIdServicio(idServicio);
                     servicios.add(servicio);
                 }
             } catch (SQLException e) {
@@ -149,8 +151,8 @@ public class ServicioDAO {
             String query = "SELECT s.idServicio, s.nombre, s.precio " +
                     "FROM Servicio s " +
                     "JOIN Taller t ON s.idServicio = t.idServicio " +
-                    "JOIN Cliente c ON t.dniCliente = c.dniCliente " + 
-                    "WHERE c.dniCliente = ?";
+                    "JOIN Cliente c ON t.dniCliente = c.dni " + 
+                    "WHERE c.dni = ?";
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setString(1, dni);
                 try (ResultSet rs = ps.executeQuery()) {
