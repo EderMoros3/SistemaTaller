@@ -127,6 +127,17 @@ public class ServicioView {
         System.out.println("Introduce el dni del cliente: ");
         String dni = sc.nextLine();
         sc.nextLine();
-        servicioDAO.historialServiciosCliente(dni);
+
+        ArrayList<Servicio> servicios = servicioDAO.historialServiciosCliente(dni);
+
+        if (servicios == null || servicios.isEmpty()) {
+            System.out.println("Error al listar servicios del cliente. Por favor, intente nuevamente.");
+            return;
+        }
+
+        System.out.println("Historial de servicios del cliente con DNI: " + dni);
+        for (Servicio servicio : servicios) {
+            System.out.println(servicio.toString());
+        }
     }
 }

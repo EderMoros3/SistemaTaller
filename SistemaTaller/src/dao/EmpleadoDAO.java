@@ -89,11 +89,13 @@ public class EmpleadoDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
+                    int idEmpleado = rs.getInt("idEmpleado");
                     String nombre = rs.getString("nombre");
                     String apellido = rs.getString("apellido");
                     int telefono = rs.getInt("telefono");
 
                     Empleado empleado = new Empleado(nombre, apellido, telefono);
+                    empleado.setIdEmpleado(idEmpleado);
                     empleados.add(empleado);
                 }
             } catch (SQLException e) {

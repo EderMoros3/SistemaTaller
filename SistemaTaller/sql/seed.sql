@@ -71,6 +71,14 @@ CREATE TABLE Pedido (
     FOREIGN KEY (idProveedor) REFERENCES Proveedor(idProveedor) ON DELETE CASCADE
 );
 
+CREATE TABLE Proveedor (
+    idProveedor INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    telefono INT NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE Taller (
     idRelacion INT PRIMARY KEY AUTO_INCREMENT,
     idEmpleado INT,
@@ -86,3 +94,9 @@ CREATE TABLE Taller (
     FOREIGN KEY (idServicio) REFERENCES Servicio(idServicio) ON DELETE CASCADE,
     FOREIGN KEY (idPieza) REFERENCES Pieza(idPieza) ON DELETE CASCADE
 );
+
+-- Modificacion de la tabla taller para aagregar idPedido
+-- esto se eliminara cuando actualices tu base de datos
+ALTER TABLE Taller
+ADD COLUMN idPedido INT,
+ADD FOREIGN KEY (idPedido) REFERENCES Pedido(idPedido) ON DELETE CASCADE;

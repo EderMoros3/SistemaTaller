@@ -69,22 +69,24 @@ public class PedidoDAO {
             try (Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
+                    int idPedido = rs.getInt("idPedido");
                     String fechaPedido = rs.getString("fechaPedido");
                     String fechaEntrega = rs.getString("fechaEntrega");
-                    Boolean estado = rs.getBoolean("estado");
-                    Double precio = rs.getDouble("precio");
+                    String estadoStr = rs.getString("estado"); // Leer como cadena
+                    Boolean estado = estadoStr.equalsIgnoreCase("Pendiente"); // Convertir a booleano
+                    Double precio = rs.getDouble("precioTotal");
                     Proveedor proveedor = new ProveedorDAO().getProveedorID(rs.getInt("idProveedor"));
                     
 
                     Pedido pedido = new Pedido(fechaPedido, fechaEntrega, estado, precio, proveedor);
+                    pedido.setIdPedido(idPedido); // Asignar el idPedido al objeto Pedido
                     pedidos.add(pedido);
                 }
             } catch (SQLException e) {
                 System.err.println("Error al listar pedidos: " + e.getMessage());
             }
-        return pedidos;
         }
-        return null;
+        return pedidos;
     }
 
     public Pedido getIdPedido(int idPedido) {

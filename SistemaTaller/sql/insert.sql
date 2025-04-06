@@ -46,3 +46,18 @@ INSERT INTO Pieza (nombre, referencia, marca, descripcion, precio, cantidad) VAL
 ('Bujia','BUJIAS003', 'NGK', 'Juego de bujías', 30.00, 25),
 ('Neumatico','NEUMATICO004', 'Michelin', 'Neumático 205/55R16', 90.00, 10),
 ('Bateria','BATERIA005', 'Varta', 'Batería de 70Ah', 120.00, 5);
+
+INSERT INTO Pedido (fechaPedido, fechaEntrega, estado, precioTotal, idProveedor, idPieza) VALUES
+('2025-04-01', '2025-04-05', 'Pendiente', 1200.50, 1, 3),
+('2025-03-28', '2025-04-03', 'En tránsito', 850.00, 2, 1),
+('2025-04-02', '2025-04-06', 'Entregado', 450.75, 3, 4),
+('2025-04-04', '2025-04-10', 'Pendiente', 999.99, 4, 2),
+('2025-04-05', '2025-04-12', 'Cancelado', 300.00, 5, 5);
+
+
+INSERT INTO Proveedor (nombre, telefono, direccion, email) VALUES
+('Proveedor A', 123456789, 'Avenida Central 123, Ciudad A', 'proveedora@correo.com'),
+('Proveedor B', 987654321, 'Calle 5, Barrio B', 'proveedorb@correo.com'),
+('Proveedor C', 555123456, 'Calle Comercio 10, Ciudad C', 'proveedorc@correo.com'),
+('Proveedor D', 444987654, 'Plaza Mayor 25, Ciudad D', 'proveedord@correo.com'),
+('Proveedor E', 112233445, 'Calle Larga 30, Ciudad E', 'proveedore@correo.com');
