@@ -53,7 +53,7 @@ public class ServicioDAO {
         Servicio servicio = null;
 
         if (conexion != null) {
-            String query = "SELECT * FROM Cliente WHERE dni = ?";
+            String query = "SELECT * FROM Servicio WHERE idServicio = ?";
 
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setInt(1, idServicio);
