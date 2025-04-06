@@ -42,7 +42,7 @@ public class EmpleadoDAO {
         Connection conexion = ConexionDB.conectar();
 
         if (conexion != null) {
-            String query = "DELETE FROM Empledao WHERE idEmpleado = ?";
+            String query = "DELETE FROM Empleado WHERE idEmpleado = ?";
 
             try (PreparedStatement ps = conexion.prepareStatement(query)) {
                 ps.setInt(1, idEmpleado);
